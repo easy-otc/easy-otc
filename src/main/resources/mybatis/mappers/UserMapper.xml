@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easytech.otc.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.easytech.otc.mapper.model.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="mobile" jdbcType="CHAR" property="mobile" />
+    <result column="login_password" jdbcType="VARCHAR" property="loginPassword" />
+    <result column="login_password_private_key" jdbcType="VARCHAR" property="loginPasswordPrivateKey" />
+    <result column="login_password_public_key" jdbcType="VARCHAR" property="loginPasswordPublicKey" />
+    <result column="fund_password" jdbcType="VARCHAR" property="fundPassword" />
+    <result column="fund_password_private_key" jdbcType="VARCHAR" property="fundPasswordPrivateKey" />
+    <result column="fund_password_public_key" jdbcType="VARCHAR" property="fundPasswordPublicKey" />
+    <result column="default_legal_account" jdbcType="INTEGER" property="defaultLegalAccount" />
+    <result column="legal_amount" jdbcType="DECIMAL" property="legalAmount" />
+    <result column="token_to_legal_amount" jdbcType="DECIMAL" property="tokenToLegalAmount" />
+    <result column="trade_times" jdbcType="INTEGER" property="tradeTimes" />
+    <result column="invition_code" jdbcType="VARCHAR" property="invitionCode" />
+    <result column="invited_by" jdbcType="INTEGER" property="invitedBy" />
+    <result column="trade_success_times" jdbcType="INTEGER" property="tradeSuccessTimes" />
+    <result column="praise_rate" jdbcType="DECIMAL" property="praiseRate" />
+    <result column="login_ip" jdbcType="VARCHAR" property="loginIp" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="is_real_name_authed" jdbcType="BIT" property="isRealNameAuthed" />
+    <result column="is_mobile_verified" jdbcType="BIT" property="isMobileVerified" />
+    <result column="is_email_verified" jdbcType="BIT" property="isEmailVerified" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+</mapper>
