@@ -20,7 +20,9 @@ import java.util.Set;
  */
 
 public class RedisTool extends RedisExecutor {
+    public RedisTool(){
 
+    }
     public RedisTool(String host,int port){
         super(new RedisConfig(host,port));
     }
