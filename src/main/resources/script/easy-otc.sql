@@ -216,8 +216,9 @@ CREATE TABLE `user` (
   `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unq_name` (`NAME`),
-  KEY `idx_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `unq_email` (`email`),
+  UNIQUE KEY `unq_mobile` (`mobile`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user` */
 
