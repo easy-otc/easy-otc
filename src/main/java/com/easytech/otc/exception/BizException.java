@@ -3,7 +3,7 @@ package com.easytech.otc.exception;
 /**
  * 通用业务异常
  */
-public class BizException extends Exception {
+public class BizException extends RuntimeException {
 
     public BizException() {
     }

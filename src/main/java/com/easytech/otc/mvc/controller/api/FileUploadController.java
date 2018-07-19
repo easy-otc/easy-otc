@@ -11,7 +11,7 @@ import com.easytech.otc.mvc.controller.WebConst;
 import com.easytech.otc.mvc.protocol.ACL;
 import com.easytech.otc.mvc.protocol.Resp;
 import com.easytech.otc.mvc.protocol.RetCodeEnum;
-import com.easytech.otc.common.PictureData;
+import com.easytech.otc.mvc.vo.PictureVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -42,10 +42,10 @@ public class FileUploadController {
      */
     @PostMapping(value = "/pic/{uid}")
     @ACL(authTagKey = "uid")
-    public Resp<PictureData> upload(@PathVariable("uid") Integer uid, @RequestParam("uploadFile") MultipartFile uploadFile) {
+    public Resp<PictureVo> upload(@PathVariable("uid") Integer uid, @RequestParam("uploadFile") MultipartFile uploadFile) {
 
-        Resp<PictureData> response = new Resp<>();
-        PictureData pic = new PictureData();
+        Resp<PictureVo> response = new Resp<>();
+        PictureVo pic = new PictureVo();
 
         // 图片不存在
         if (uploadFile == null) {

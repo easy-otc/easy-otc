@@ -1,6 +1,6 @@
 package com.easytech.otc.manager.redis.support;
 
-import com.easytech.otc.exception.RedisException;
+import com.easytech.otc.manager.redis.RedisException;
 import com.easytech.otc.manager.redis.RedisKey;
 import com.easytech.otc.manager.redis.core.*;
 import redis.clients.jedis.Jedis;

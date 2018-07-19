@@ -1,4 +1,4 @@
-package com.easytech.otc.common;
+package com.easytech.otc.common.fastjson;
 
 import com.alibaba.fastjson.serializer.ValueFilter;
 import org.slf4j.Logger;

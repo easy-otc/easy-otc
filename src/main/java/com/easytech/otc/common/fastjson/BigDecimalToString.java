@@ -1,4 +1,4 @@
-package com.easytech.otc.common;
+package com.easytech.otc.common.fastjson;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
