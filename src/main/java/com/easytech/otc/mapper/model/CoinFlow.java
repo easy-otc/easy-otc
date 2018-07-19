@@ -11,29 +11,29 @@ public class CoinFlow {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "SELECT LAST_INSERT_ID()")
-    private Integer id;
+    private Integer    id;
 
     /**
      * 用户id
      */
-    private Integer uid;
+    private Integer    uid;
 
     /**
      * 币种
      */
     @Column(name = "coin_type")
-    private Integer coinType;
+    private Integer    coinType;
 
     /**
      * 操作类型，0-充，1-提，2-买，3-卖，充提是主动流水，买卖是自动流水
      */
     @Column(name = "op_type")
-    private Integer opType;
+    private Integer    opType;
 
     /**
      * 地址
      */
-    private String address;
+    private String     address;
 
     /**
      * token数量
@@ -62,7 +62,7 @@ public class CoinFlow {
      * 记录创建时间
      */
     @Column(name = "create_time")
-    private Date createTime;
+    private Date       createTime;
 
     /**
      * 获取id

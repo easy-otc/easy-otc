@@ -11,42 +11,42 @@ public class Order {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "SELECT LAST_INSERT_ID()")
-    private Integer id;
+    private Integer    id;
 
     /**
      * 订单号
      */
     @Column(name = "order_id")
-    private String orderId;
+    private String     orderId;
 
     /**
      * 用户id
      */
-    private Integer uid;
+    private Integer    uid;
 
     /**
      * 订单备注号
      */
     @Column(name = "memo_code")
-    private String memoCode;
+    private String     memoCode;
 
     /**
      * 订单类型，0-买单，1-卖单
      */
     @Column(name = "order_type")
-    private Integer orderType;
+    private Integer    orderType;
 
     /**
      * 广告id
      */
     @Column(name = "ad_id")
-    private Integer adId;
+    private Integer    adId;
 
     /**
      * 币种
      */
     @Column(name = "coin_type")
-    private Integer coinType;
+    private Integer    coinType;
 
     /**
      * 交易数量
@@ -69,37 +69,37 @@ public class Order {
      * 支付状态，0-未支付，1-已支付
      */
     @Column(name = "payment_status")
-    private Integer paymentStatus;
+    private Integer    paymentStatus;
 
     /**
      * 订单状态，0-进行中，1-已完成，2-已取消
      */
     @Column(name = "order_status")
-    private Integer orderStatus;
+    private Integer    orderStatus;
 
     /**
      * 支付时间
      */
     @Column(name = "payment_time")
-    private Date paymentTime;
+    private Date       paymentTime;
 
     /**
      * 确认放币时间
      */
     @Column(name = "coin_Release_time")
-    private Date coinReleaseTime;
+    private Date       coinReleaseTime;
 
     /**
      * 记录创建时间
      */
     @Column(name = "create_time")
-    private Date createTime;
+    private Date       createTime;
 
     /**
      * 修改时间
      */
     @Column(name = "update_time")
-    private Date updateTime;
+    private Date       updateTime;
 
     /**
      * 获取id

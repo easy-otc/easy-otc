@@ -22,32 +22,32 @@ import javax.sql.DataSource;
 public class DruidConfig {
 
     @Value("${jdbc.druid.url}")
-    private String url;
+    private String  url;
     @Value("${jdbc.druid.username}")
-    private String username;
+    private String  username;
     @Value("${jdbc.druid.password}")
-    private String password;
+    private String  password;
     @Value("${jdbc.druid.driverClassName}")
-    private String driverClassName;
+    private String  driverClassName;
 
     @Value("${jdbc.druid.filters}")
-    private String filters;
+    private String  filters;
 
     @Value("${jdbc.druid.maxActive}")
-    private int maxActive;
+    private int     maxActive;
     @Value("${jdbc.druid.initialSize}")
-    private int initialSize;
+    private int     initialSize;
     @Value("${jdbc.druid.maxWait}")
-    private int maxWait;
+    private int     maxWait;
     @Value("${jdbc.druid.minIdle}")
-    private int minIdle;
+    private int     minIdle;
 
     @Value("${jdbc.druid.timeBetweenEvictionRunsMillis}")
-    private long timeBetweenEvictionRunsMillis;
+    private long    timeBetweenEvictionRunsMillis;
     @Value("${jdbc.druid.minEvictableIdleTimeMillis}")
-    private long minEvictableIdleTimeMillis;
+    private long    minEvictableIdleTimeMillis;
     @Value("${jdbc.druid.validationQuery}")
-    private String validationQuery;
+    private String  validationQuery;
 
     @Value("${jdbc.druid.testWhileIdle}")
     private boolean testWhileIdle;
@@ -59,18 +59,17 @@ public class DruidConfig {
     @Value("${jdbc.druid.poolPreparedStatements}")
     private boolean poolPreparedStatements;
     @Value("${jdbc.druid.maxPoolPreparedStatementPerConnectionSize}")
-    private int maxPoolPreparedStatementPerConnectionSize;
+    private int     maxPoolPreparedStatementPerConnectionSize;
     @Value("${jdbc.druid.connectionProperties}")
-    private String connectionProperties;
+    private String  connectionProperties;
 
     @Value("${jdbc.druid.stat.loginUsername}")
-    private String loginUsername;
+    private String  loginUsername;
     @Value("${jdbc.druid.stat.loginPassword}")
-    private String loginPassword;
-
+    private String  loginPassword;
 
     @Bean
-    @Primary  //在同样的DataSource中，首先使用被标注的DataSource
+    @Primary //在同样的DataSource中，首先使用被标注的DataSource
     public DataSource dataSource() {
         DruidDataSource datasource = new DruidDataSource();
 
@@ -97,7 +96,6 @@ public class DruidConfig {
         datasource.setProxyFilters(Lists.newArrayList(statFilter(), wallFilter()));
         return datasource;
     }
-
 
     @Bean
     public ServletRegistrationBean druidServlet() {

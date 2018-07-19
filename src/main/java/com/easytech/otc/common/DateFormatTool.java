@@ -9,29 +9,29 @@ import java.util.Date;
  */
 public class DateFormatTool {
 
-    private static final String data_format_day = "yyyy-MM-dd";
+    private static final String data_format_day           = "yyyy-MM-dd";
 
-    private static final String data_format_minute = "yyyy-MM-dd HH:mm";
+    private static final String data_format_minute        = "yyyy-MM-dd HH:mm";
 
-    private static final String data_format_time_minute = "HH:mm";
+    private static final String data_format_time_minute   = "HH:mm";
 
-    private static final String data_format_month = "MM-dd";
+    private static final String data_format_month         = "MM-dd";
 
     private static final String data_format_chinese_month = "MM月dd日";
 
-    private static final String data_format_time = "yyyy-MM-dd HH:mm:ss";
+    private static final String data_format_time          = "yyyy-MM-dd HH:mm:ss";
 
-    private static final String data_format_hour = "HH:mm:ss";
+    private static final String data_format_hour          = "HH:mm:ss";
 
-    private static final String data_format_second = "yyyyMMddHHmmss";
+    private static final String data_format_second        = "yyyyMMddHHmmss";
 
-    private static final String data_format_milli_second = "yyyyMMddHHmmssSSS";
+    private static final String data_format_milli_second  = "yyyyMMddHHmmssSSS";
 
-    private static final String data_format_day_chinese = "yyyy年MM月dd日";
+    private static final String data_format_day_chinese   = "yyyy年MM月dd日";
 
     private static final String data_format_month_chinese = "MM月dd日  HH时mm分";
 
-    static final int[] DAYS_OF_MONTH = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    static final int[]          DAYS_OF_MONTH             = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
     public static String formatDate2ChineseMonthDay(Date date) {
         SimpleDateFormat format = new SimpleDateFormat(data_format_chinese_month);

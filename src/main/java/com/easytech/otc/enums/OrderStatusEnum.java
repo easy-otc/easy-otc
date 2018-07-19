@@ -8,10 +8,9 @@ import lombok.Getter;
 @Getter
 public enum OrderStatusEnum {
 
-    PROCESSING(0, "进行中"), FINISHED(1, "已完成"), CANCELLED(1, "已取消");
+                             PROCESSING(0, "进行中"), FINISHED(1, "已完成"), CANCELLED(1, "已取消");
 
-
-    int code;
+    int    code;
     String desc;
 
     OrderStatusEnum(int code, String desc) {

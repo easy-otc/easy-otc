@@ -8,7 +8,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
  */
 public interface ProtocolResponse {
 
-    public final static SerializerFeature[] SERIAL_FEATURE = new SerializerFeature[]{SerializerFeature.UseISO8601DateFormat};
+    public final static SerializerFeature[] SERIAL_FEATURE = new SerializerFeature[] { SerializerFeature.UseISO8601DateFormat };
 
     /**
      * 转换成协议字符串

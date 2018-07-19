@@ -11,9 +11,9 @@ public enum WorkOrderEnum {
     @Getter
     public enum Type {
 
-        TRADE(0, "交易"), ACCOUNT(1, "账户"), COMPLAINT(2, "投诉"), SUGGEST(3, "建议");
+                      TRADE(0, "交易"), ACCOUNT(1, "账户"), COMPLAINT(2, "投诉"), SUGGEST(3, "建议");
 
-        int code;
+        int    code;
         String desc;
 
         Type(int code, String desc) {
@@ -28,9 +28,9 @@ public enum WorkOrderEnum {
     @Getter
     public enum Status {
 
-        COMMITED(0, "提交"), PROCESSING(1, "处理中"), FINISHED(2, "完成");
+                        COMMITED(0, "提交"), PROCESSING(1, "处理中"), FINISHED(2, "完成");
 
-        int code;
+        int    code;
         String desc;
 
         Status(int code, String desc) {

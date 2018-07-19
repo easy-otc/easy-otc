@@ -8,7 +8,7 @@ public interface HeaderNames {
     /**
      * 幂等号
      */
-    String IDEMPOTENT = "idempotent";
+    String IDEMPOTENT    = "idempotent";
 
     /**
      * token
@@ -18,6 +18,6 @@ public interface HeaderNames {
     /**
      * uid
      */
-    String IDENTITY = "identity";
+    String IDENTITY      = "identity";
 
 }

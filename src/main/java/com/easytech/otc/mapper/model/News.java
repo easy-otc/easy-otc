@@ -21,12 +21,12 @@ public class News {
     /**
      * 标题
      */
-    private String title;
+    private String  title;
 
     /**
      * 作者
      */
-    private String author;
+    private String  author;
 
     /**
      * 讯息状态,0-发布，1-撤销
@@ -37,18 +37,18 @@ public class News {
      * 记录创建时间
      */
     @Column(name = "create_time")
-    private Date createTime;
+    private Date    createTime;
 
     /**
      * 修改时间
      */
     @Column(name = "update_time")
-    private Date updateTime;
+    private Date    updateTime;
 
     /**
      * 内容。以HTML的形式存储，前端拿到后直接渲染
      */
-    private String content;
+    private String  content;
 
     /**
      * 获取id

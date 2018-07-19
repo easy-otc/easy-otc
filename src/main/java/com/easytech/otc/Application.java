@@ -35,7 +35,7 @@ public class Application {
         Application application = context.getBean(Application.class);
 
         System.setProperty("server.port", application.port);
-//        System.setProperty("spring.mvc.view.prefix", application.mvcViewPrefix);
-//        System.setProperty("spring.mvc.view.suffix", application.mvcViewSuffix);
+        //        System.setProperty("spring.mvc.view.prefix", application.mvcViewPrefix);
+        //        System.setProperty("spring.mvc.view.suffix", application.mvcViewSuffix);
     }
 }

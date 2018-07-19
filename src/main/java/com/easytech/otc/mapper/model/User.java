@@ -11,65 +11,65 @@ public class User {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "SELECT LAST_INSERT_ID()")
-    private Integer id;
+    private Integer    id;
 
     /**
      * 用户名
      */
     @Column(name = "NAME")
-    private String name;
+    private String     name;
 
     /**
      * 邮箱
      */
-    private String email;
+    private String     email;
 
     /**
      * 手机号码
      */
-    private String mobile;
+    private String     mobile;
 
     /**
      * 登录密码
      */
     @Column(name = "login_password")
-    private String loginPassword;
+    private String     loginPassword;
 
     /**
      * 登录密码私钥
      */
     @Column(name = "login_password_private_key")
-    private String loginPasswordPrivateKey;
+    private String     loginPasswordPrivateKey;
 
     /**
      * 登录密码公钥
      */
     @Column(name = "login_password_public_key")
-    private String loginPasswordPublicKey;
+    private String     loginPasswordPublicKey;
 
     /**
      * 资金密码
      */
     @Column(name = "fund_password")
-    private String fundPassword;
+    private String     fundPassword;
 
     /**
      * 资金密码私钥
      */
     @Column(name = "fund_password_private_key")
-    private String fundPasswordPrivateKey;
+    private String     fundPasswordPrivateKey;
 
     /**
      * 资金密码公钥
      */
     @Column(name = "fund_password_public_key")
-    private String fundPasswordPublicKey;
+    private String     fundPasswordPublicKey;
 
     /**
      * 默认法币账号
      */
     @Column(name = "default_legal_account")
-    private Integer defaultLegalAccount;
+    private Integer    defaultLegalAccount;
 
     /**
      * 法币余额
@@ -87,25 +87,25 @@ public class User {
      * 邀请码
      */
     @Column(name = "invition_code")
-    private String invitionCode;
+    private String     invitionCode;
 
     /**
      * 邀请者
      */
     @Column(name = "invited_by")
-    private Integer invitedBy;
+    private Integer    invitedBy;
 
     /**
      * 交易次数
      */
     @Column(name = "trade_times")
-    private Integer tradeTimes;
+    private Integer    tradeTimes;
 
     /**
      * 成功交易次数
      */
     @Column(name = "trade_success_times")
-    private Integer tradeSuccessTimes;
+    private Integer    tradeSuccessTimes;
 
     /**
      * 好评率
@@ -117,43 +117,43 @@ public class User {
      * 最近10次登录ip，以竖线分隔
      */
     @Column(name = "login_ip")
-    private String loginIp;
+    private String     loginIp;
 
     /**
      * 最近一次登录时间
      */
     @Column(name = "last_login_time")
-    private Date lastLoginTime;
+    private Date       lastLoginTime;
 
     /**
      * 是否实名认证,0-否,1-是
      */
     @Column(name = "is_real_name_authed")
-    private Integer isRealNameAuthed;
+    private Integer    isRealNameAuthed;
 
     /**
      * 手机号是否验证,0-否,1-是
      */
     @Column(name = "is_mobile_verified")
-    private Integer isMobileVerified;
+    private Integer    isMobileVerified;
 
     /**
      * 邮箱是否验证,0-否,1-是
      */
     @Column(name = "is_email_verified")
-    private Integer isEmailVerified;
+    private Integer    isEmailVerified;
 
     /**
      * 记录创建时间
      */
     @Column(name = "create_time")
-    private Date createTime;
+    private Date       createTime;
 
     /**
      * 修改时间
      */
     @Column(name = "update_time")
-    private Date updateTime;
+    private Date       updateTime;
 
     /**
      * 获取id

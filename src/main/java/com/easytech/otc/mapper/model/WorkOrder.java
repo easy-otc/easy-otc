@@ -26,13 +26,13 @@ public class WorkOrder {
     /**
      * 主题
      */
-    private String theme;
+    private String  theme;
 
     /**
      * 附件图片url
      */
     @Column(name = "attach_url")
-    private String attachUrl;
+    private String  attachUrl;
 
     /**
      * 工单状态，0-提交，2-处理中，3-处理完成
@@ -43,24 +43,24 @@ public class WorkOrder {
      * 记录创建时间
      */
     @Column(name = "create_time")
-    private Date createTime;
+    private Date    createTime;
 
     /**
      * 修改时间
      */
     @Column(name = "update_time")
-    private Date updateTime;
+    private Date    updateTime;
 
     /**
      * 内容
      */
-    private String content;
+    private String  content;
 
     /**
      * 交流记录。以HTML的形式存储，前端拿到后直接渲染
      */
     @Column(name = "communicate_record")
-    private String communicateRecord;
+    private String  communicateRecord;
 
     /**
      * 获取id

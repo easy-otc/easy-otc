@@ -11,5 +11,5 @@ public interface WebConst {
     /**
      * h5前缀
      */
-    String H5_V1_PREFIX = "/h5/v1/";
+    String H5_V1_PREFIX  = "/h5/v1/";
 }

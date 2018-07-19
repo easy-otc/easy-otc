@@ -11,24 +11,24 @@ public class Ad {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "SELECT LAST_INSERT_ID()")
-    private Integer id;
+    private Integer    id;
 
     /**
      * 用户id
      */
-    private Integer uid;
+    private Integer    uid;
 
     /**
      * 广告类型
      */
     @Column(name = "ad_type")
-    private Integer adType;
+    private Integer    adType;
 
     /**
      * 币种
      */
     @Column(name = "coin_type")
-    private Integer coinType;
+    private Integer    coinType;
 
     /**
      * 币数量
@@ -45,24 +45,24 @@ public class Ad {
      * 交易条款
      */
     @Column(name = "Transaction_term")
-    private String transactionTerm;
+    private String     transactionTerm;
 
     /**
      * 是否仅限于已实名认证用户,0-否，1-是
      */
     @Column(name = "only_real_name_authed_user")
-    private Integer onlyRealNameAuthedUser;
+    private Integer    onlyRealNameAuthedUser;
 
     /**
      * 广告状态,0-上单，1-撤单，2-删除
      */
-    private Integer status;
+    private Integer    status;
 
     /**
      * 记录创建时间
      */
     @Column(name = "create_time")
-    private Date createTime;
+    private Date       createTime;
 
     /**
      * 获取id

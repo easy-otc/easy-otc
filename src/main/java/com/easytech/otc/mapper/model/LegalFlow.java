@@ -11,18 +11,18 @@ public class LegalFlow {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "SELECT LAST_INSERT_ID()")
-    private Integer id;
+    private Integer    id;
 
     /**
      * 用户id
      */
-    private Integer uid;
+    private Integer    uid;
 
     /**
      * 流水类型，0-充，1-提，2-手续费，3-手续费返还，充提属于主动流水，手续费、手续费返还属于自动流水
      */
     @Column(name = "op_type")
-    private Integer opType;
+    private Integer    opType;
 
     /**
      * 发生金额，单位：元
@@ -45,7 +45,7 @@ public class LegalFlow {
      * 记录创建时间
      */
     @Column(name = "create_time")
-    private Date createTime;
+    private Date       createTime;
 
     /**
      * 获取id
