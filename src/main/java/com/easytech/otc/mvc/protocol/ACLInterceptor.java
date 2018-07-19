@@ -1,10 +1,9 @@
 package com.easytech.otc.mvc.protocol;
 
-import com.easytech.common.ServletResponsetUtil;
-import com.easytech.common.WebTool;
+import com.easytech.otc.common.ServletResponsetUtil;
+import com.easytech.otc.common.WebTool;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.HandlerMapping;
@@ -19,10 +18,6 @@ import java.util.Map;
  */
 @Slf4j
 public class ACLInterceptor implements HandlerInterceptor {
-
-
-    @Autowired
-    private AuthedInfoRepository authedInfoRepository;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

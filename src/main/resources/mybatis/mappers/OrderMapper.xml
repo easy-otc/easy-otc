@@ -9,6 +9,48 @@
     <result column="order_id" jdbcType="VARCHAR" property="orderId" />
     <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="memo_code" jdbcType="VARCHAR" property="memoCode" />
+    <result column="order_type" jdbcType="TINYINT" property="orderType" />
+    <result column="ad_id" jdbcType="INTEGER" property="adId" />
+    <result column="coin_type" jdbcType="TINYINT" property="coinType" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="legal_price" jdbcType="DECIMAL" property="legalPrice" />
+    <result column="total_legal_price" jdbcType="DECIMAL" property="totalLegalPrice" />
+    <result column="payment_status" jdbcType="TINYINT" property="paymentStatus" />
+    <result column="order_status" jdbcType="TINYINT" property="orderStatus" />
+    <result column="payment_time" jdbcType="TIMESTAMP" property="paymentTime" />
+    <result column="coin_Release_time" jdbcType="TIMESTAMP" property="coinReleaseTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.easytech.otc.mapper.model.Order">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="memo_code" jdbcType="VARCHAR" property="memoCode" />
+    <result column="order_type" jdbcType="TINYINT" property="orderType" />
+    <result column="ad_id" jdbcType="INTEGER" property="adId" />
+    <result column="coin_type" jdbcType="TINYINT" property="coinType" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="legal_price" jdbcType="DECIMAL" property="legalPrice" />
+    <result column="total_legal_price" jdbcType="DECIMAL" property="totalLegalPrice" />
+    <result column="payment_status" jdbcType="TINYINT" property="paymentStatus" />
+    <result column="order_status" jdbcType="TINYINT" property="orderStatus" />
+    <result column="payment_time" jdbcType="TIMESTAMP" property="paymentTime" />
+    <result column="coin_Release_time" jdbcType="TIMESTAMP" property="coinReleaseTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.easytech.otc.mapper.model.Order">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="memo_code" jdbcType="VARCHAR" property="memoCode" />
     <result column="order_type" jdbcType="BIT" property="orderType" />
     <result column="ad_id" jdbcType="INTEGER" property="adId" />
     <result column="coin_type" jdbcType="BIT" property="coinType" />

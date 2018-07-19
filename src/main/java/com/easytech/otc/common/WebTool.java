@@ -1,4 +1,4 @@
-package com.easytech.common;
+package com.easytech.otc.common;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;

@@ -7,6 +7,36 @@
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="ad_type" jdbcType="TINYINT" property="adType" />
+    <result column="coin_type" jdbcType="TINYINT" property="coinType" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="legal_price" jdbcType="DECIMAL" property="legalPrice" />
+    <result column="Transaction_term" jdbcType="VARCHAR" property="transactionTerm" />
+    <result column="only_real_name_authed_user" jdbcType="TINYINT" property="onlyRealNameAuthedUser" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.easytech.otc.mapper.model.Ad">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="ad_type" jdbcType="TINYINT" property="adType" />
+    <result column="coin_type" jdbcType="TINYINT" property="coinType" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="legal_price" jdbcType="DECIMAL" property="legalPrice" />
+    <result column="Transaction_term" jdbcType="VARCHAR" property="transactionTerm" />
+    <result column="only_real_name_authed_user" jdbcType="TINYINT" property="onlyRealNameAuthedUser" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.easytech.otc.mapper.model.Ad">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="ad_type" jdbcType="BIT" property="adType" />
     <result column="coin_type" jdbcType="BIT" property="coinType" />
     <result column="amount" jdbcType="DECIMAL" property="amount" />

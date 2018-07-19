@@ -22,13 +22,13 @@ public class CoinFlow {
      * 币种
      */
     @Column(name = "coin_type")
-    private Boolean coinType;
+    private Byte coinType;
 
     /**
      * 操作类型，0-充，1-提，2-买，3-卖，充提是主动流水，买卖是自动流水
      */
     @Column(name = "op_type")
-    private Boolean opType;
+    private Byte opType;
 
     /**
      * 地址
@@ -105,7 +105,7 @@ public class CoinFlow {
      *
      * @return coin_type - 币种
      */
-    public Boolean getCoinType() {
+    public Byte getCoinType() {
         return coinType;
     }
 
@@ -114,7 +114,7 @@ public class CoinFlow {
      *
      * @param coinType 币种
      */
-    public void setCoinType(Boolean coinType) {
+    public void setCoinType(Byte coinType) {
         this.coinType = coinType;
     }
 
@@ -123,7 +123,7 @@ public class CoinFlow {
      *
      * @return op_type - 操作类型，0-充，1-提，2-买，3-卖，充提是主动流水，买卖是自动流水
      */
-    public Boolean getOpType() {
+    public Byte getOpType() {
         return opType;
     }
 
@@ -132,7 +132,7 @@ public class CoinFlow {
      *
      * @param opType 操作类型，0-充，1-提，2-买，3-卖，充提是主动流水，买卖是自动流水
      */
-    public void setOpType(Boolean opType) {
+    public void setOpType(Byte opType) {
         this.opType = opType;
     }
 
@@ -151,7 +151,7 @@ public class CoinFlow {
      * @param address 地址
      */
     public void setAddress(String address) {
-        this.address = address;
+        this.address = address == null ? null : address.trim();
     }
 
     /**

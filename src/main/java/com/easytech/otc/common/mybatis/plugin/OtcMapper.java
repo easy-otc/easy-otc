@@ -1,4 +1,4 @@
-package com.easytech.common.mybatis.plugin;
+package com.easytech.otc.common.mybatis.plugin;
 
 import tk.mybatis.mapper.common.Mapper;
 

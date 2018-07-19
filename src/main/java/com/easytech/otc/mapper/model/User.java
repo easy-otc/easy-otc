@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
 
+@Table(name = "user")
 public class User {
     /**
      * id
@@ -77,18 +78,6 @@ public class User {
     private BigDecimal legalAmount;
 
     /**
-     * 数字货币折合法币
-     */
-    @Column(name = "token_to_legal_amount")
-    private BigDecimal tokenToLegalAmount;
-
-    /**
-     * 交易次数
-     */
-    @Column(name = "trade_times")
-    private Integer tradeTimes;
-
-    /**
      * 邀请码
      */
     @Column(name = "invition_code")
@@ -99,6 +88,12 @@ public class User {
      */
     @Column(name = "invited_by")
     private Integer invitedBy;
+
+    /**
+     * 交易次数
+     */
+    @Column(name = "trade_times")
+    private Integer tradeTimes;
 
     /**
      * 成功交易次数
@@ -128,19 +123,19 @@ public class User {
      * 是否实名认证,0-否,1-是
      */
     @Column(name = "is_real_name_authed")
-    private Boolean isRealNameAuthed;
+    private Byte isRealNameAuthed;
 
     /**
      * 手机号是否验证,0-否,1-是
      */
     @Column(name = "is_mobile_verified")
-    private Boolean isMobileVerified;
+    private Byte isMobileVerified;
 
     /**
      * 邮箱是否验证,0-否,1-是
      */
     @Column(name = "is_email_verified")
-    private Boolean isEmailVerified;
+    private Byte isEmailVerified;
 
     /**
      * 记录创建时间
@@ -187,7 +182,7 @@ public class User {
      * @param name 用户名
      */
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
 
     /**
@@ -205,7 +200,7 @@ public class User {
      * @param email 邮箱
      */
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email == null ? null : email.trim();
     }
 
     /**
@@ -223,7 +218,7 @@ public class User {
      * @param mobile 手机号码
      */
     public void setMobile(String mobile) {
-        this.mobile = mobile;
+        this.mobile = mobile == null ? null : mobile.trim();
     }
 
     /**
@@ -241,7 +236,7 @@ public class User {
      * @param loginPassword 登录密码
      */
     public void setLoginPassword(String loginPassword) {
-        this.loginPassword = loginPassword;
+        this.loginPassword = loginPassword == null ? null : loginPassword.trim();
     }
 
     /**
@@ -259,7 +254,7 @@ public class User {
      * @param loginPasswordPrivateKey 登录密码私钥
      */
     public void setLoginPasswordPrivateKey(String loginPasswordPrivateKey) {
-        this.loginPasswordPrivateKey = loginPasswordPrivateKey;
+        this.loginPasswordPrivateKey = loginPasswordPrivateKey == null ? null : loginPasswordPrivateKey.trim();
     }
 
     /**
@@ -277,7 +272,7 @@ public class User {
      * @param loginPasswordPublicKey 登录密码公钥
      */
     public void setLoginPasswordPublicKey(String loginPasswordPublicKey) {
-        this.loginPasswordPublicKey = loginPasswordPublicKey;
+        this.loginPasswordPublicKey = loginPasswordPublicKey == null ? null : loginPasswordPublicKey.trim();
     }
 
     /**
@@ -295,7 +290,7 @@ public class User {
      * @param fundPassword 资金密码
      */
     public void setFundPassword(String fundPassword) {
-        this.fundPassword = fundPassword;
+        this.fundPassword = fundPassword == null ? null : fundPassword.trim();
     }
 
     /**
@@ -313,7 +308,7 @@ public class User {
      * @param fundPasswordPrivateKey 资金密码私钥
      */
     public void setFundPasswordPrivateKey(String fundPasswordPrivateKey) {
-        this.fundPasswordPrivateKey = fundPasswordPrivateKey;
+        this.fundPasswordPrivateKey = fundPasswordPrivateKey == null ? null : fundPasswordPrivateKey.trim();
     }
 
     /**
@@ -331,7 +326,7 @@ public class User {
      * @param fundPasswordPublicKey 资金密码公钥
      */
     public void setFundPasswordPublicKey(String fundPasswordPublicKey) {
-        this.fundPasswordPublicKey = fundPasswordPublicKey;
+        this.fundPasswordPublicKey = fundPasswordPublicKey == null ? null : fundPasswordPublicKey.trim();
     }
 
     /**
@@ -371,42 +366,6 @@ public class User {
     }
 
     /**
-     * 获取数字货币折合法币
-     *
-     * @return token_to_legal_amount - 数字货币折合法币
-     */
-    public BigDecimal getTokenToLegalAmount() {
-        return tokenToLegalAmount;
-    }
-
-    /**
-     * 设置数字货币折合法币
-     *
-     * @param tokenToLegalAmount 数字货币折合法币
-     */
-    public void setTokenToLegalAmount(BigDecimal tokenToLegalAmount) {
-        this.tokenToLegalAmount = tokenToLegalAmount;
-    }
-
-    /**
-     * 获取交易次数
-     *
-     * @return trade_times - 交易次数
-     */
-    public Integer getTradeTimes() {
-        return tradeTimes;
-    }
-
-    /**
-     * 设置交易次数
-     *
-     * @param tradeTimes 交易次数
-     */
-    public void setTradeTimes(Integer tradeTimes) {
-        this.tradeTimes = tradeTimes;
-    }
-
-    /**
      * 获取邀请码
      *
      * @return invition_code - 邀请码
@@ -421,7 +380,7 @@ public class User {
      * @param invitionCode 邀请码
      */
     public void setInvitionCode(String invitionCode) {
-        this.invitionCode = invitionCode;
+        this.invitionCode = invitionCode == null ? null : invitionCode.trim();
     }
 
     /**
@@ -440,6 +399,24 @@ public class User {
      */
     public void setInvitedBy(Integer invitedBy) {
         this.invitedBy = invitedBy;
+    }
+
+    /**
+     * 获取交易次数
+     *
+     * @return trade_times - 交易次数
+     */
+    public Integer getTradeTimes() {
+        return tradeTimes;
+    }
+
+    /**
+     * 设置交易次数
+     *
+     * @param tradeTimes 交易次数
+     */
+    public void setTradeTimes(Integer tradeTimes) {
+        this.tradeTimes = tradeTimes;
     }
 
     /**
@@ -493,7 +470,7 @@ public class User {
      * @param loginIp 最近10次登录ip，以竖线分隔
      */
     public void setLoginIp(String loginIp) {
-        this.loginIp = loginIp;
+        this.loginIp = loginIp == null ? null : loginIp.trim();
     }
 
     /**
@@ -519,7 +496,7 @@ public class User {
      *
      * @return is_real_name_authed - 是否实名认证,0-否,1-是
      */
-    public Boolean getIsRealNameAuthed() {
+    public Byte getIsRealNameAuthed() {
         return isRealNameAuthed;
     }
 
@@ -528,7 +505,7 @@ public class User {
      *
      * @param isRealNameAuthed 是否实名认证,0-否,1-是
      */
-    public void setIsRealNameAuthed(Boolean isRealNameAuthed) {
+    public void setIsRealNameAuthed(Byte isRealNameAuthed) {
         this.isRealNameAuthed = isRealNameAuthed;
     }
 
@@ -537,7 +514,7 @@ public class User {
      *
      * @return is_mobile_verified - 手机号是否验证,0-否,1-是
      */
-    public Boolean getIsMobileVerified() {
+    public Byte getIsMobileVerified() {
         return isMobileVerified;
     }
 
@@ -546,7 +523,7 @@ public class User {
      *
      * @param isMobileVerified 手机号是否验证,0-否,1-是
      */
-    public void setIsMobileVerified(Boolean isMobileVerified) {
+    public void setIsMobileVerified(Byte isMobileVerified) {
         this.isMobileVerified = isMobileVerified;
     }
 
@@ -555,7 +532,7 @@ public class User {
      *
      * @return is_email_verified - 邮箱是否验证,0-否,1-是
      */
-    public Boolean getIsEmailVerified() {
+    public Byte getIsEmailVerified() {
         return isEmailVerified;
     }
 
@@ -564,7 +541,7 @@ public class User {
      *
      * @param isEmailVerified 邮箱是否验证,0-否,1-是
      */
-    public void setIsEmailVerified(Boolean isEmailVerified) {
+    public void setIsEmailVerified(Byte isEmailVerified) {
         this.isEmailVerified = isEmailVerified;
     }
 

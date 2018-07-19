@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
 
+@Table(name = "order")
 public class Order {
     /**
      * id
@@ -33,7 +34,7 @@ public class Order {
      * 订单类型，0-买单，1-卖单
      */
     @Column(name = "order_type")
-    private Boolean orderType;
+    private Byte orderType;
 
     /**
      * 广告id
@@ -45,7 +46,7 @@ public class Order {
      * 币种
      */
     @Column(name = "coin_type")
-    private Boolean coinType;
+    private Byte coinType;
 
     /**
      * 交易数量
@@ -68,13 +69,13 @@ public class Order {
      * 支付状态，0-未支付，1-已支付
      */
     @Column(name = "payment_status")
-    private Boolean paymentStatus;
+    private Byte paymentStatus;
 
     /**
      * 订单状态，0-进行中，1-已完成，2-已取消
      */
     @Column(name = "order_status")
-    private Boolean orderStatus;
+    private Byte orderStatus;
 
     /**
      * 支付时间
@@ -133,7 +134,7 @@ public class Order {
      * @param orderId 订单号
      */
     public void setOrderId(String orderId) {
-        this.orderId = orderId;
+        this.orderId = orderId == null ? null : orderId.trim();
     }
 
     /**
@@ -169,7 +170,7 @@ public class Order {
      * @param memoCode 订单备注号
      */
     public void setMemoCode(String memoCode) {
-        this.memoCode = memoCode;
+        this.memoCode = memoCode == null ? null : memoCode.trim();
     }
 
     /**
@@ -177,7 +178,7 @@ public class Order {
      *
      * @return order_type - 订单类型，0-买单，1-卖单
      */
-    public Boolean getOrderType() {
+    public Byte getOrderType() {
         return orderType;
     }
 
@@ -186,7 +187,7 @@ public class Order {
      *
      * @param orderType 订单类型，0-买单，1-卖单
      */
-    public void setOrderType(Boolean orderType) {
+    public void setOrderType(Byte orderType) {
         this.orderType = orderType;
     }
 
@@ -213,7 +214,7 @@ public class Order {
      *
      * @return coin_type - 币种
      */
-    public Boolean getCoinType() {
+    public Byte getCoinType() {
         return coinType;
     }
 
@@ -222,7 +223,7 @@ public class Order {
      *
      * @param coinType 币种
      */
-    public void setCoinType(Boolean coinType) {
+    public void setCoinType(Byte coinType) {
         this.coinType = coinType;
     }
 
@@ -285,7 +286,7 @@ public class Order {
      *
      * @return payment_status - 支付状态，0-未支付，1-已支付
      */
-    public Boolean getPaymentStatus() {
+    public Byte getPaymentStatus() {
         return paymentStatus;
     }
 
@@ -294,7 +295,7 @@ public class Order {
      *
      * @param paymentStatus 支付状态，0-未支付，1-已支付
      */
-    public void setPaymentStatus(Boolean paymentStatus) {
+    public void setPaymentStatus(Byte paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
 
@@ -303,7 +304,7 @@ public class Order {
      *
      * @return order_status - 订单状态，0-进行中，1-已完成，2-已取消
      */
-    public Boolean getOrderStatus() {
+    public Byte getOrderStatus() {
         return orderStatus;
     }
 
@@ -312,7 +313,7 @@ public class Order {
      *
      * @param orderStatus 订单状态，0-进行中，1-已完成，2-已取消
      */
-    public void setOrderStatus(Boolean orderStatus) {
+    public void setOrderStatus(Byte orderStatus) {
         this.orderStatus = orderStatus;
     }
 

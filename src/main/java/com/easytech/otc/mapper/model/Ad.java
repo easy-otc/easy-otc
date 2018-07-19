@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
 
+@Table(name = "ad")
 public class Ad {
     /**
      * id
@@ -21,13 +22,13 @@ public class Ad {
      * 广告类型
      */
     @Column(name = "ad_type")
-    private Boolean adType;
+    private Byte adType;
 
     /**
      * 币种
      */
     @Column(name = "coin_type")
-    private Boolean coinType;
+    private Byte coinType;
 
     /**
      * 币数量
@@ -50,12 +51,12 @@ public class Ad {
      * 是否仅限于已实名认证用户,0-否，1-是
      */
     @Column(name = "only_real_name_authed_user")
-    private Boolean onlyRealNameAuthedUser;
+    private Byte onlyRealNameAuthedUser;
 
     /**
      * 广告状态,0-上单，1-撤单，2-删除
      */
-    private Boolean status;
+    private Byte status;
 
     /**
      * 记录创建时间
@@ -104,7 +105,7 @@ public class Ad {
      *
      * @return ad_type - 广告类型
      */
-    public Boolean getAdType() {
+    public Byte getAdType() {
         return adType;
     }
 
@@ -113,7 +114,7 @@ public class Ad {
      *
      * @param adType 广告类型
      */
-    public void setAdType(Boolean adType) {
+    public void setAdType(Byte adType) {
         this.adType = adType;
     }
 
@@ -122,7 +123,7 @@ public class Ad {
      *
      * @return coin_type - 币种
      */
-    public Boolean getCoinType() {
+    public Byte getCoinType() {
         return coinType;
     }
 
@@ -131,7 +132,7 @@ public class Ad {
      *
      * @param coinType 币种
      */
-    public void setCoinType(Boolean coinType) {
+    public void setCoinType(Byte coinType) {
         this.coinType = coinType;
     }
 
@@ -186,7 +187,7 @@ public class Ad {
      * @param transactionTerm 交易条款
      */
     public void setTransactionTerm(String transactionTerm) {
-        this.transactionTerm = transactionTerm;
+        this.transactionTerm = transactionTerm == null ? null : transactionTerm.trim();
     }
 
     /**
@@ -194,7 +195,7 @@ public class Ad {
      *
      * @return only_real_name_authed_user - 是否仅限于已实名认证用户,0-否，1-是
      */
-    public Boolean getOnlyRealNameAuthedUser() {
+    public Byte getOnlyRealNameAuthedUser() {
         return onlyRealNameAuthedUser;
     }
 
@@ -203,7 +204,7 @@ public class Ad {
      *
      * @param onlyRealNameAuthedUser 是否仅限于已实名认证用户,0-否，1-是
      */
-    public void setOnlyRealNameAuthedUser(Boolean onlyRealNameAuthedUser) {
+    public void setOnlyRealNameAuthedUser(Byte onlyRealNameAuthedUser) {
         this.onlyRealNameAuthedUser = onlyRealNameAuthedUser;
     }
 
@@ -212,7 +213,7 @@ public class Ad {
      *
      * @return status - 广告状态,0-上单，1-撤单，2-删除
      */
-    public Boolean getStatus() {
+    public Byte getStatus() {
         return status;
     }
 
@@ -221,7 +222,7 @@ public class Ad {
      *
      * @param status 广告状态,0-上单，1-撤单，2-删除
      */
-    public void setStatus(Boolean status) {
+    public void setStatus(Byte status) {
         this.status = status;
     }
 

@@ -1,7 +1,7 @@
 /**
  * Copyright (C), 2011-2016, 微贷网.
  */
-package com.easytech.common;
+package com.easytech.otc.common;
 
 import com.easytech.otc.mvc.protocol.Resp;
 

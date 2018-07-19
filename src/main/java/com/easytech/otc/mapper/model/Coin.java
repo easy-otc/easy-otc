@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
 
+@Table(name = "coin")
 public class Coin {
     /**
      * id
@@ -132,7 +133,7 @@ public class Coin {
      * @param privateKey 私钥
      */
     public void setPrivateKey(String privateKey) {
-        this.privateKey = privateKey;
+        this.privateKey = privateKey == null ? null : privateKey.trim();
     }
 
     /**
@@ -150,7 +151,7 @@ public class Coin {
      * @param publicKey 公钥
      */
     public void setPublicKey(String publicKey) {
-        this.publicKey = publicKey;
+        this.publicKey = publicKey == null ? null : publicKey.trim();
     }
 
     /**
@@ -168,7 +169,7 @@ public class Coin {
      * @param address 地址
      */
     public void setAddress(String address) {
-        this.address = address;
+        this.address = address == null ? null : address.trim();
     }
 
     /**

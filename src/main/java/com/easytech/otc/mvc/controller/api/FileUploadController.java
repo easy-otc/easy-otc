@@ -5,13 +5,13 @@ import java.util.Date;
 
 import javax.imageio.ImageIO;
 
-import com.easytech.common.DateFormatTool;
-import com.easytech.common.FileUploadUtil;
+import com.easytech.otc.common.DateFormatTool;
+import com.easytech.otc.common.FileUploadUtil;
 import com.easytech.otc.mvc.controller.WebConst;
 import com.easytech.otc.mvc.protocol.ACL;
 import com.easytech.otc.mvc.protocol.Resp;
 import com.easytech.otc.mvc.protocol.RetCodeEnum;
-import com.easytech.common.PictureData;
+import com.easytech.otc.common.PictureData;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.easytech.common;
+package com.easytech.otc.common;
 
 import java.io.Serializable;
 

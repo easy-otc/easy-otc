@@ -21,7 +21,7 @@ public class WorkOrder {
      * 工单类型，0-交易，1-账户，2-投诉，3-建议
      */
     @Column(name = "work_order_type")
-    private Boolean workOrderType;
+    private Byte workOrderType;
 
     /**
      * 主题
@@ -37,7 +37,7 @@ public class WorkOrder {
     /**
      * 工单状态，0-提交，2-处理中，3-处理完成
      */
-    private Boolean status;
+    private Byte status;
 
     /**
      * 记录创建时间
@@ -103,7 +103,7 @@ public class WorkOrder {
      *
      * @return work_order_type - 工单类型，0-交易，1-账户，2-投诉，3-建议
      */
-    public Boolean getWorkOrderType() {
+    public Byte getWorkOrderType() {
         return workOrderType;
     }
 
@@ -112,7 +112,7 @@ public class WorkOrder {
      *
      * @param workOrderType 工单类型，0-交易，1-账户，2-投诉，3-建议
      */
-    public void setWorkOrderType(Boolean workOrderType) {
+    public void setWorkOrderType(Byte workOrderType) {
         this.workOrderType = workOrderType;
     }
 
@@ -131,7 +131,7 @@ public class WorkOrder {
      * @param theme 主题
      */
     public void setTheme(String theme) {
-        this.theme = theme;
+        this.theme = theme == null ? null : theme.trim();
     }
 
     /**
@@ -149,7 +149,7 @@ public class WorkOrder {
      * @param attachUrl 附件图片url
      */
     public void setAttachUrl(String attachUrl) {
-        this.attachUrl = attachUrl;
+        this.attachUrl = attachUrl == null ? null : attachUrl.trim();
     }
 
     /**
@@ -157,7 +157,7 @@ public class WorkOrder {
      *
      * @return status - 工单状态，0-提交，2-处理中，3-处理完成
      */
-    public Boolean getStatus() {
+    public Byte getStatus() {
         return status;
     }
 
@@ -166,7 +166,7 @@ public class WorkOrder {
      *
      * @param status 工单状态，0-提交，2-处理中，3-处理完成
      */
-    public void setStatus(Boolean status) {
+    public void setStatus(Byte status) {
         this.status = status;
     }
 
@@ -221,7 +221,7 @@ public class WorkOrder {
      * @param content 内容
      */
     public void setContent(String content) {
-        this.content = content;
+        this.content = content == null ? null : content.trim();
     }
 
     /**
@@ -239,6 +239,6 @@ public class WorkOrder {
      * @param communicateRecord 交流记录。以HTML的形式存储，前端拿到后直接渲染
      */
     public void setCommunicateRecord(String communicateRecord) {
-        this.communicateRecord = communicateRecord;
+        this.communicateRecord = communicateRecord == null ? null : communicateRecord.trim();
     }
 }

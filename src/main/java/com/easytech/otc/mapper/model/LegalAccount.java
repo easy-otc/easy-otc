@@ -20,7 +20,13 @@ public class LegalAccount {
     /**
      * 收款方式，0-支付宝，1-微信，2-银行卡
      */
-    private Boolean mode;
+    private Byte mode;
+
+    /**
+     * 姓名
+     */
+    @Column(name = "real_name")
+    private String realName;
 
     /**
      * 账号
@@ -28,10 +34,10 @@ public class LegalAccount {
     private String account;
 
     /**
-     * 姓名
+     * 收款二维码url
      */
-    @Column(name = "real_name")
-    private String realName;
+    @Column(name = "qr_code_url")
+    private String qrCodeUrl;
 
     /**
      * 个人说明
@@ -91,7 +97,7 @@ public class LegalAccount {
      *
      * @return mode - 收款方式，0-支付宝，1-微信，2-银行卡
      */
-    public Boolean getMode() {
+    public Byte getMode() {
         return mode;
     }
 
@@ -100,26 +106,8 @@ public class LegalAccount {
      *
      * @param mode 收款方式，0-支付宝，1-微信，2-银行卡
      */
-    public void setMode(Boolean mode) {
+    public void setMode(Byte mode) {
         this.mode = mode;
-    }
-
-    /**
-     * 获取账号
-     *
-     * @return account - 账号
-     */
-    public String getAccount() {
-        return account;
-    }
-
-    /**
-     * 设置账号
-     *
-     * @param account 账号
-     */
-    public void setAccount(String account) {
-        this.account = account;
     }
 
     /**
@@ -137,7 +125,43 @@ public class LegalAccount {
      * @param realName 姓名
      */
     public void setRealName(String realName) {
-        this.realName = realName;
+        this.realName = realName == null ? null : realName.trim();
+    }
+
+    /**
+     * 获取账号
+     *
+     * @return account - 账号
+     */
+    public String getAccount() {
+        return account;
+    }
+
+    /**
+     * 设置账号
+     *
+     * @param account 账号
+     */
+    public void setAccount(String account) {
+        this.account = account == null ? null : account.trim();
+    }
+
+    /**
+     * 获取收款二维码url
+     *
+     * @return qr_code_url - 收款二维码url
+     */
+    public String getQrCodeUrl() {
+        return qrCodeUrl;
+    }
+
+    /**
+     * 设置收款二维码url
+     *
+     * @param qrCodeUrl 收款二维码url
+     */
+    public void setQrCodeUrl(String qrCodeUrl) {
+        this.qrCodeUrl = qrCodeUrl == null ? null : qrCodeUrl.trim();
     }
 
     /**
@@ -155,7 +179,7 @@ public class LegalAccount {
      * @param memo 个人说明
      */
     public void setMemo(String memo) {
-        this.memo = memo;
+        this.memo = memo == null ? null : memo.trim();
     }
 
     /**

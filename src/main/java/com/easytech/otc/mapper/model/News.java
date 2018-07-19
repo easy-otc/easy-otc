@@ -3,6 +3,7 @@ package com.easytech.otc.mapper.model;
 import java.util.Date;
 import javax.persistence.*;
 
+@Table(name = "news")
 public class News {
     /**
      * id
@@ -15,7 +16,7 @@ public class News {
      * 讯息类型，0-公告，1-新闻
      */
     @Column(name = "news_type")
-    private Boolean newsType;
+    private Byte newsType;
 
     /**
      * 标题
@@ -30,7 +31,7 @@ public class News {
     /**
      * 讯息状态,0-发布，1-撤销
      */
-    private Boolean status;
+    private Byte status;
 
     /**
      * 记录创建时间
@@ -72,7 +73,7 @@ public class News {
      *
      * @return news_type - 讯息类型，0-公告，1-新闻
      */
-    public Boolean getNewsType() {
+    public Byte getNewsType() {
         return newsType;
     }
 
@@ -81,7 +82,7 @@ public class News {
      *
      * @param newsType 讯息类型，0-公告，1-新闻
      */
-    public void setNewsType(Boolean newsType) {
+    public void setNewsType(Byte newsType) {
         this.newsType = newsType;
     }
 
@@ -100,7 +101,7 @@ public class News {
      * @param title 标题
      */
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title == null ? null : title.trim();
     }
 
     /**
@@ -118,7 +119,7 @@ public class News {
      * @param author 作者
      */
     public void setAuthor(String author) {
-        this.author = author;
+        this.author = author == null ? null : author.trim();
     }
 
     /**
@@ -126,7 +127,7 @@ public class News {
      *
      * @return status - 讯息状态,0-发布，1-撤销
      */
-    public Boolean getStatus() {
+    public Byte getStatus() {
         return status;
     }
 
@@ -135,7 +136,7 @@ public class News {
      *
      * @param status 讯息状态,0-发布，1-撤销
      */
-    public void setStatus(Boolean status) {
+    public void setStatus(Byte status) {
         this.status = status;
     }
 
@@ -190,6 +191,6 @@ public class News {
      * @param content 内容。以HTML的形式存储，前端拿到后直接渲染
      */
     public void setContent(String content) {
-        this.content = content;
+        this.content = content == null ? null : content.trim();
     }
 }
