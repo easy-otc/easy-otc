@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript RSA Encryption</title>
+    <script src="./js/jquery-3.3.1.min.js"></script>
+    <script src="./js/jsencrypt.js"></script>
+    <script type="text/javascript">
+
+        // Call this code when the page is done loading.
+        $(function () {
+
+            // Run a quick encryption/decryption when they click.
+            $('#encrypt').click(function () {
+
+                // Encrypt with the public key...
+                var encrypt = new JSEncrypt();
+                encrypt.setPublicKey($('#pubkey').val());
+                var encrypted = encrypt.encrypt($('#input').val());
+
+                $('#result').val(encrypted);
+            });
+
+            $('#dencrypt').click(function () {
+
+                // Decrypt with the private key...
+                var decrypt = new JSEncrypt();
+
+                console.info($('#privkey').val());
+
+                decrypt.setPrivateKey($('#privkey').val());
+                var uncrypted = decrypt.decrypt($('#input').val());
+
+                $('#result').val(uncrypted);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<label for="privkey">Private Key</label><br/>
+<textarea id="privkey" rows="15" cols="65">MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL/nk4XyJxNNATTL/Tu+NaqM165ImwMYNqXfB0zzDpXd2WlvHSQuug0kyQZMHl7BgkC9IRf+P6VBGK+82GLTiNIUtytMtDACV3dARyIFmTVQ6kPEdr51pUTrr4GD//6UXOB6hkCvTwOcVbLwfWl74JOKVeEK1V/7YoxexMNIYUWJAgMBAAECgYB+4xrrFQr7Ow5SH5MIHqOTal7t0PoV2LvBfy9vlMKPG0o26Y5GL1M7f5gfvtLR6nc6YRNxrt3cYad2A5K7/YxX3OxrRsDjclW/V8uVNkKX66ZIOYJ+dfkxzq+9ra3npAMXMkVHplsb6kxPIt5Qg3UehXv9TEE5yQJkce1bnnNNAQJBAPiFj60cH0e+w/Z33vq7AILsWvtJZlihw0Io4P8GV9u+ojEqCqhNByZsaUKgHFUcs5IBKWV5FeDvhi8sH8v4h6ECQQDFreBAqV4wmLPGhDjFEzupf6BSoNKqpdi1IB0igGelDaTv8Zs8J7qm4pX7gddn2NFkX+Dc31cwBHVKdbuDjVTpAkB/97Ydu0dYGCCrvtmwXa5LvAy1K/xpUxJJ9Oa2Krv+yNCXZECMnO07mcMxrWQpZ1gHrFV2jLz5UBzWGXBeBSFBAkBlSMis+Nqs1aDPJzIbL9aS6zSPAZ3PF7ioXTLwWZBBTnNjCYz7TnPhTBmCyy0+JSZsYn/JS5nVnYMnSplwNvr5AkEA9c2X8TpOdlemAzOLDs8BWMAqg8FbQf09tyC/VlEGegjs/6+EjiyPEftooP2P/1RpUSyyrwGktNVL3Qj506qcZg==</textarea><br/>
+
+<label for="pubkey">Public Key</label><br/>
+<textarea id="pubkey" rows="15" cols="65">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC/55OF8icTTQE0y/07vjWqjNeuSJsDGDal3wdM8w6V3dlpbx0kLroNJMkGTB5ewYJAvSEX/j+lQRivvNhi04jSFLcrTLQwAld3QEciBZk1UOpDxHa+daVE66+Bg//+lFzgeoZAr08DnFWy8H1pe+CTilXhCtVf+2KMXsTDSGFFiQIDAQAB</textarea><br/>
+<label for="input">Text to operate:</label><br/>
+<textarea id="input" name="input" type="text" rows=4 cols=70></textarea><br/>
+<input id="encrypt" type="button" value="公钥加密"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input id="dencrypt" type="button" value="私钥解密"/><br/>
+<label for="result">operate result:</label><br/>
+<textarea id="result" name="input" type="text" rows=4 cols=70></textarea><br/>
+
+</body>
+</html>
