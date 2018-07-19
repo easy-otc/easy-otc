@@ -8,9 +8,9 @@ import lombok.Getter;
 @Getter
 public enum RealNameStatusEnum {
 
-    COMMITED(0, "已提交"), VERIFYING(1, "审核中"), SUCCEED(2, "认证通过"), FAILED(3, "认证失败");
+                                COMMITED(0, "已提交"), VERIFYING(1, "审核中"), SUCCEED(2, "认证通过"), FAILED(3, "认证失败");
 
-    int code;
+    int    code;
     String desc;
 
     RealNameStatusEnum(int code, String desc) {

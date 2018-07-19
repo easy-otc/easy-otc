@@ -14,15 +14,15 @@ public class Resp<E> implements Serializable, ProtocolResponse {
     private final static long serialVersionUID = 6725048659996675209L;
 
     @JSONField(name = "r", deserialize = false)
-    private int retCode = RetCodeEnum.UNKOWN.getCode();
+    private int               retCode          = RetCodeEnum.UNKOWN.getCode();
 
     // 数据, 具体接口, 具体约定
     @JSONField(name = "d", deserialize = false)
-    private E data = null;
+    private E                 data             = null;
 
     // 错误信息
     @JSONField(name = "m", deserialize = false)
-    private String errorMsg = null;
+    private String            errorMsg         = null;
 
     public Resp() {
 

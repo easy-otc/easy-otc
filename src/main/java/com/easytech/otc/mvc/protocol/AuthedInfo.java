@@ -17,25 +17,25 @@ public class AuthedInfo implements Serializable {
     /**
      * 已验证的身份Token
      */
-    private String token;
+    private String            token;
 
     /**
      * 身份信息
      */
-    private String uid;
+    private String            uid;
 
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Date              createTime;
 
     /**
      * 过期时间
      */
-    private Date expireTime;
+    private Date              expireTime;
 
     /**
      * 附加信息
      */
-    private String attach;
+    private String            attach;
 }

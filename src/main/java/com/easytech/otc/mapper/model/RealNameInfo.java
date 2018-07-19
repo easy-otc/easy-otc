@@ -16,31 +16,31 @@ public class RealNameInfo {
      * 真实姓名
      */
     @Column(name = "real_name")
-    private String realName;
+    private String  realName;
 
     /**
      * 身份证号
      */
     @Column(name = "id_card_no")
-    private String idCardNo;
+    private String  idCardNo;
 
     /**
      * 正面照片url
      */
     @Column(name = "id_card_front_pic_url")
-    private String idCardFrontPicUrl;
+    private String  idCardFrontPicUrl;
 
     /**
      * 背面照片url
      */
     @Column(name = "id_card_back_pic_url")
-    private String idCardBackPicUrl;
+    private String  idCardBackPicUrl;
 
     /**
      * 手持照片url
      */
     @Column(name = "id_card_held_pic_url")
-    private String idCardHeldPicUrl;
+    private String  idCardHeldPicUrl;
 
     /**
      * 实名认证状态，0-已提交，2-审核中，3-实名通过，4-实名认证失败
@@ -57,13 +57,13 @@ public class RealNameInfo {
      * 记录创建时间
      */
     @Column(name = "create_time")
-    private Date createTime;
+    private Date    createTime;
 
     /**
      * 修改时间
      */
     @Column(name = "update_time")
-    private Date updateTime;
+    private Date    updateTime;
 
     /**
      * 获取id

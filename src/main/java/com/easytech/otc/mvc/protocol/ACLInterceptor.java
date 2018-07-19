@@ -29,7 +29,6 @@ public class ACLInterceptor implements HandlerInterceptor {
             aclAnn = handlerMethod.getMethodAnnotation(ACL.class);
         }
 
-
         if (aclAnn == null) {
             RespWithoutData ret = new RespWithoutData();
             ret.setFail(RetCodeEnum.FORBIDDEN);
@@ -40,7 +39,6 @@ public class ACLInterceptor implements HandlerInterceptor {
         if ((!aclAnn.authControl())) {
             return true;
         }
-
 
         String idempotent = request.getHeader(HeaderNames.IDEMPOTENT);
         String token = request.getHeader(HeaderNames.AUTHORIZATION);
@@ -53,7 +51,6 @@ public class ACLInterceptor implements HandlerInterceptor {
             ServletResponsetUtil.respond(response, ret);
             return false;
         }
-
 
         Map<String, String> arguments = (Map<String, String>) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
         String urlAuthTag = arguments.get(aclAnn.authTagKey());

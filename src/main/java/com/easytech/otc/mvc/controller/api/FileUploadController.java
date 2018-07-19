@@ -25,14 +25,13 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping(WebConst.API_V1_PREFIX + "upload")
 public class FileUploadController {
 
-    private static final String[] IMAGE_TYPE = new String[]{".bmp", ".jpg", ".jpeg", ".gif", ".png"};
+    private static final String[] IMAGE_TYPE     = new String[] { ".bmp", ".jpg", ".jpeg", ".gif", ".png" };
 
     // 文件名前缀
-    public static final String UPLOAD_TAG = "APP_";
+    public static final String    UPLOAD_TAG     = "APP_";
 
     // 文件大小限制 5*1024*1024
-    private static final int MAX_UPLOADSIZE = 5242880;
-
+    private static final int      MAX_UPLOADSIZE = 5242880;
 
     /**
      * 图片上传

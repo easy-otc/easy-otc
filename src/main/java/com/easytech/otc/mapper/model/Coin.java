@@ -11,35 +11,35 @@ public class Coin {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "SELECT LAST_INSERT_ID()")
-    private Integer id;
+    private Integer    id;
 
     /**
      * 用户id
      */
-    private Integer uid;
+    private Integer    uid;
 
     /**
      * 币种
      */
     @Column(name = "coin_type")
-    private Integer coinType;
+    private Integer    coinType;
 
     /**
      * 私钥
      */
     @Column(name = "private_key")
-    private String privateKey;
+    private String     privateKey;
 
     /**
      * 公钥
      */
     @Column(name = "public_key")
-    private String publicKey;
+    private String     publicKey;
 
     /**
      * 地址
      */
-    private String address;
+    private String     address;
 
     /**
      * 币数量
@@ -56,13 +56,13 @@ public class Coin {
      * 记录创建时间
      */
     @Column(name = "create_time")
-    private Date createTime;
+    private Date       createTime;
 
     /**
      * 修改时间
      */
     @Column(name = "update_time")
-    private Date updateTime;
+    private Date       updateTime;
 
     /**
      * 获取id

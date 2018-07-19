@@ -5,10 +5,9 @@ import lombok.Getter;
 @Getter
 public enum CoinOpEnum {
 
-    BUY(0, "买"), SELL(1, "卖");
+                        BUY(0, "买"), SELL(1, "卖");
 
-
-    int code;
+    int    code;
     String desc;
 
     CoinOpEnum(int code, String desc) {
@@ -24,10 +23,9 @@ public enum CoinOpEnum {
     @Getter
     public enum CoinOp {
 
-        RECHARGE(0, "充"), WITHDRAWAL(1, "提"), BUY(2, "买"), SELL(3, "卖");
+                        RECHARGE(0, "充"), WITHDRAWAL(1, "提"), BUY(2, "买"), SELL(3, "卖");
 
-
-        int code;
+        int    code;
         String desc;
 
         CoinOp(int code, String desc) {
@@ -45,10 +43,9 @@ public enum CoinOpEnum {
     @Getter
     public enum LegalOp {
 
-        RECHARGE(0, "充"), WITHDRAWAL(1, "提"), FEE(2, "手续费"), PAY_BACK_FEE(3, "手续费返还");
+                         RECHARGE(0, "充"), WITHDRAWAL(1, "提"), FEE(2, "手续费"), PAY_BACK_FEE(3, "手续费返还");
 
-
-        int code;
+        int    code;
         String desc;
 
         LegalOp(int code, String desc) {

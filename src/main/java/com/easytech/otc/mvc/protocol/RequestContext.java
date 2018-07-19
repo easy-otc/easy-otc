@@ -8,7 +8,7 @@ public class RequestContext {
     // 请求用户信息
     private static final ThreadLocal<AuthedInfo> AUTHED_INFO = new ThreadLocal<>();
     // 请求ip地址
-    private static final ThreadLocal<String> IP = new ThreadLocal<>();
+    private static final ThreadLocal<String>     IP          = new ThreadLocal<>();
 
     public static void setAuthedInfo(AuthedInfo authedInfo) {
         AUTHED_INFO.set(authedInfo);

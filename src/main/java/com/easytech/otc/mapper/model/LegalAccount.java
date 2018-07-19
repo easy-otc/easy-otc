@@ -26,35 +26,35 @@ public class LegalAccount {
      * 姓名
      */
     @Column(name = "real_name")
-    private String realName;
+    private String  realName;
 
     /**
      * 账号
      */
-    private String account;
+    private String  account;
 
     /**
      * 收款二维码url
      */
     @Column(name = "qr_code_url")
-    private String qrCodeUrl;
+    private String  qrCodeUrl;
 
     /**
      * 个人说明
      */
-    private String memo;
+    private String  memo;
 
     /**
      * 记录创建时间
      */
     @Column(name = "create_time")
-    private Date createTime;
+    private Date    createTime;
 
     /**
      * 修改时间
      */
     @Column(name = "update_time")
-    private Date updateTime;
+    private Date    updateTime;
 
     /**
      * 获取id

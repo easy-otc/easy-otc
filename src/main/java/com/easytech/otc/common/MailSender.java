@@ -13,13 +13,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MailSender {
 
-    private static final String SENDER_EMAIL = "737093270@qq.com";
-    private static final String SENDER_AUTH_CODE = "mfmllfelfeuebdbi";
+    private static final String     SENDER_EMAIL     = "737093270@qq.com";
+    private static final String     SENDER_AUTH_CODE = "mfmllfelfeuebdbi";
 
-    private static final String SENDER_NAME = "CAS-WEB";
-    private static final String RECIVER_NICK = "CAS-WEB用户";
+    private static final String     SENDER_NAME      = "CAS-WEB";
+    private static final String     RECIVER_NICK     = "CAS-WEB用户";
 
-    private static final Properties PROPS = new Properties();
+    private static final Properties PROPS            = new Properties();
 
     static {
         // 用于连接邮件服务器的参数配置
@@ -29,7 +29,6 @@ public class MailSender {
         PROPS.setProperty("mail.smtp.auth", "true"); // 需要请求认证
         PROPS.setProperty("mail.password", SENDER_AUTH_CODE);
     }
-
 
     public static boolean sendMail(String receiveMail, String subject, String content) {
         try {
