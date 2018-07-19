@@ -28,14 +28,14 @@ public class PassportController {
 
     @PostMapping(value = "/login")
     @ACL(authControl = false)
-    public Resp<LoginReturnVO> login(@RequestBody LoginRequest loginRequest) {
+    public Resp<LoginReturnVO> login(LoginRequest loginRequest) {
         Resp<LoginReturnVO> result = new Resp<>();
         redisTool.get(DemoKey.demo,"1");
         return result;
     }
     @PostMapping(value = "/register")
     @ACL(authControl = false)
-    public Resp<RegisterVO> register(@RequestBody RegisterRequest registerRequest){
+    public Resp<RegisterVO> register(RegisterRequest registerRequest){
         Resp<RegisterVO> result = new Resp<>();
 
 
