@@ -21,7 +21,7 @@ public class WorkOrder {
      * 工单类型，0-交易，1-账户，2-投诉，3-建议
      */
     @Column(name = "work_order_type")
-    private Byte workOrderType;
+    private Integer workOrderType;
 
     /**
      * 主题
@@ -37,7 +37,7 @@ public class WorkOrder {
     /**
      * 工单状态，0-提交，2-处理中，3-处理完成
      */
-    private Byte status;
+    private Integer status;
 
     /**
      * 记录创建时间
@@ -103,7 +103,7 @@ public class WorkOrder {
      *
      * @return work_order_type - 工单类型，0-交易，1-账户，2-投诉，3-建议
      */
-    public Byte getWorkOrderType() {
+    public Integer getWorkOrderType() {
         return workOrderType;
     }
 
@@ -112,7 +112,7 @@ public class WorkOrder {
      *
      * @param workOrderType 工单类型，0-交易，1-账户，2-投诉，3-建议
      */
-    public void setWorkOrderType(Byte workOrderType) {
+    public void setWorkOrderType(Integer workOrderType) {
         this.workOrderType = workOrderType;
     }
 
@@ -157,7 +157,7 @@ public class WorkOrder {
      *
      * @return status - 工单状态，0-提交，2-处理中，3-处理完成
      */
-    public Byte getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
@@ -166,7 +166,7 @@ public class WorkOrder {
      *
      * @param status 工单状态，0-提交，2-处理中，3-处理完成
      */
-    public void setStatus(Byte status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

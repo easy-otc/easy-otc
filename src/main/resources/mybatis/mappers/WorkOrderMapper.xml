@@ -16,34 +16,4 @@
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
     <result column="communicate_record" jdbcType="LONGVARCHAR" property="communicateRecord" />
   </resultMap>
-  <resultMap id="BaseResultMap" type="com.easytech.otc.mapper.model.WorkOrder">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="uid" jdbcType="INTEGER" property="uid" />
-    <result column="work_order_type" jdbcType="TINYINT" property="workOrderType" />
-    <result column="theme" jdbcType="VARCHAR" property="theme" />
-    <result column="attach_url" jdbcType="VARCHAR" property="attachUrl" />
-    <result column="status" jdbcType="TINYINT" property="status" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="content" jdbcType="LONGVARCHAR" property="content" />
-    <result column="communicate_record" jdbcType="LONGVARCHAR" property="communicateRecord" />
-  </resultMap>
-  <resultMap id="BaseResultMap" type="com.easytech.otc.mapper.model.WorkOrder">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="uid" jdbcType="INTEGER" property="uid" />
-    <result column="work_order_type" jdbcType="BIT" property="workOrderType" />
-    <result column="theme" jdbcType="VARCHAR" property="theme" />
-    <result column="attach_url" jdbcType="VARCHAR" property="attachUrl" />
-    <result column="status" jdbcType="BIT" property="status" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="content" jdbcType="LONGVARCHAR" property="content" />
-    <result column="communicate_record" jdbcType="LONGVARCHAR" property="communicateRecord" />
-  </resultMap>
 </mapper>

@@ -22,7 +22,7 @@ public class LegalFlow {
      * 流水类型，0-充，1-提，2-手续费，3-手续费返还，充提属于主动流水，手续费、手续费返还属于自动流水
      */
     @Column(name = "op_type")
-    private Byte opType;
+    private Integer opType;
 
     /**
      * 发生金额，单位：元
@@ -88,7 +88,7 @@ public class LegalFlow {
      *
      * @return op_type - 流水类型，0-充，1-提，2-手续费，3-手续费返还，充提属于主动流水，手续费、手续费返还属于自动流水
      */
-    public Byte getOpType() {
+    public Integer getOpType() {
         return opType;
     }
 
@@ -97,7 +97,7 @@ public class LegalFlow {
      *
      * @param opType 流水类型，0-充，1-提，2-手续费，3-手续费返还，充提属于主动流水，手续费、手续费返还属于自动流水
      */
-    public void setOpType(Byte opType) {
+    public void setOpType(Integer opType) {
         this.opType = opType;
     }
 

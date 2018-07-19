@@ -16,7 +16,7 @@ public class News {
      * 讯息类型，0-公告，1-新闻
      */
     @Column(name = "news_type")
-    private Byte newsType;
+    private Integer newsType;
 
     /**
      * 标题
@@ -31,7 +31,7 @@ public class News {
     /**
      * 讯息状态,0-发布，1-撤销
      */
-    private Byte status;
+    private Integer status;
 
     /**
      * 记录创建时间
@@ -73,7 +73,7 @@ public class News {
      *
      * @return news_type - 讯息类型，0-公告，1-新闻
      */
-    public Byte getNewsType() {
+    public Integer getNewsType() {
         return newsType;
     }
 
@@ -82,7 +82,7 @@ public class News {
      *
      * @param newsType 讯息类型，0-公告，1-新闻
      */
-    public void setNewsType(Byte newsType) {
+    public void setNewsType(Integer newsType) {
         this.newsType = newsType;
     }
 
@@ -127,7 +127,7 @@ public class News {
      *
      * @return status - 讯息状态,0-发布，1-撤销
      */
-    public Byte getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
@@ -136,7 +136,7 @@ public class News {
      *
      * @param status 讯息状态,0-发布，1-撤销
      */
-    public void setStatus(Byte status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
