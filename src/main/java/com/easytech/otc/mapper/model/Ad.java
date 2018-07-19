@@ -22,13 +22,13 @@ public class Ad {
      * 广告类型
      */
     @Column(name = "ad_type")
-    private Byte adType;
+    private Integer adType;
 
     /**
      * 币种
      */
     @Column(name = "coin_type")
-    private Byte coinType;
+    private Integer coinType;
 
     /**
      * 币数量
@@ -51,12 +51,12 @@ public class Ad {
      * 是否仅限于已实名认证用户,0-否，1-是
      */
     @Column(name = "only_real_name_authed_user")
-    private Byte onlyRealNameAuthedUser;
+    private Integer onlyRealNameAuthedUser;
 
     /**
      * 广告状态,0-上单，1-撤单，2-删除
      */
-    private Byte status;
+    private Integer status;
 
     /**
      * 记录创建时间
@@ -105,7 +105,7 @@ public class Ad {
      *
      * @return ad_type - 广告类型
      */
-    public Byte getAdType() {
+    public Integer getAdType() {
         return adType;
     }
 
@@ -114,7 +114,7 @@ public class Ad {
      *
      * @param adType 广告类型
      */
-    public void setAdType(Byte adType) {
+    public void setAdType(Integer adType) {
         this.adType = adType;
     }
 
@@ -123,7 +123,7 @@ public class Ad {
      *
      * @return coin_type - 币种
      */
-    public Byte getCoinType() {
+    public Integer getCoinType() {
         return coinType;
     }
 
@@ -132,7 +132,7 @@ public class Ad {
      *
      * @param coinType 币种
      */
-    public void setCoinType(Byte coinType) {
+    public void setCoinType(Integer coinType) {
         this.coinType = coinType;
     }
 
@@ -195,7 +195,7 @@ public class Ad {
      *
      * @return only_real_name_authed_user - 是否仅限于已实名认证用户,0-否，1-是
      */
-    public Byte getOnlyRealNameAuthedUser() {
+    public Integer getOnlyRealNameAuthedUser() {
         return onlyRealNameAuthedUser;
     }
 
@@ -204,7 +204,7 @@ public class Ad {
      *
      * @param onlyRealNameAuthedUser 是否仅限于已实名认证用户,0-否，1-是
      */
-    public void setOnlyRealNameAuthedUser(Byte onlyRealNameAuthedUser) {
+    public void setOnlyRealNameAuthedUser(Integer onlyRealNameAuthedUser) {
         this.onlyRealNameAuthedUser = onlyRealNameAuthedUser;
     }
 
@@ -213,7 +213,7 @@ public class Ad {
      *
      * @return status - 广告状态,0-上单，1-撤单，2-删除
      */
-    public Byte getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
@@ -222,7 +222,7 @@ public class Ad {
      *
      * @param status 广告状态,0-上单，1-撤单，2-删除
      */
-    public void setStatus(Byte status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

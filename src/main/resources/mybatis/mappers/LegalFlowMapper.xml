@@ -13,28 +13,4 @@
     <result column="after_amount" jdbcType="DECIMAL" property="afterAmount" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
-  <resultMap id="BaseResultMap" type="com.easytech.otc.mapper.model.LegalFlow">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="uid" jdbcType="INTEGER" property="uid" />
-    <result column="op_type" jdbcType="TINYINT" property="opType" />
-    <result column="amount" jdbcType="DECIMAL" property="amount" />
-    <result column="before_amount" jdbcType="DECIMAL" property="beforeAmount" />
-    <result column="after_amount" jdbcType="DECIMAL" property="afterAmount" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-  </resultMap>
-  <resultMap id="BaseResultMap" type="com.easytech.otc.mapper.model.LegalFlow">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="uid" jdbcType="INTEGER" property="uid" />
-    <result column="op_type" jdbcType="BIT" property="opType" />
-    <result column="amount" jdbcType="DECIMAL" property="amount" />
-    <result column="before_amount" jdbcType="DECIMAL" property="beforeAmount" />
-    <result column="after_amount" jdbcType="DECIMAL" property="afterAmount" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-  </resultMap>
 </mapper>

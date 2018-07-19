@@ -78,6 +78,12 @@ public class User {
     private BigDecimal legalAmount;
 
     /**
+     * 锁定法币
+     */
+    @Column(name = "lock_legal_amount")
+    private BigDecimal lockLegalAmount;
+
+    /**
      * 邀请码
      */
     @Column(name = "invition_code")
@@ -123,19 +129,19 @@ public class User {
      * 是否实名认证,0-否,1-是
      */
     @Column(name = "is_real_name_authed")
-    private Byte isRealNameAuthed;
+    private Integer isRealNameAuthed;
 
     /**
      * 手机号是否验证,0-否,1-是
      */
     @Column(name = "is_mobile_verified")
-    private Byte isMobileVerified;
+    private Integer isMobileVerified;
 
     /**
      * 邮箱是否验证,0-否,1-是
      */
     @Column(name = "is_email_verified")
-    private Byte isEmailVerified;
+    private Integer isEmailVerified;
 
     /**
      * 记录创建时间
@@ -366,6 +372,24 @@ public class User {
     }
 
     /**
+     * 获取锁定法币
+     *
+     * @return lock_legal_amount - 锁定法币
+     */
+    public BigDecimal getLockLegalAmount() {
+        return lockLegalAmount;
+    }
+
+    /**
+     * 设置锁定法币
+     *
+     * @param lockLegalAmount 锁定法币
+     */
+    public void setLockLegalAmount(BigDecimal lockLegalAmount) {
+        this.lockLegalAmount = lockLegalAmount;
+    }
+
+    /**
      * 获取邀请码
      *
      * @return invition_code - 邀请码
@@ -496,7 +520,7 @@ public class User {
      *
      * @return is_real_name_authed - 是否实名认证,0-否,1-是
      */
-    public Byte getIsRealNameAuthed() {
+    public Integer getIsRealNameAuthed() {
         return isRealNameAuthed;
     }
 
@@ -505,7 +529,7 @@ public class User {
      *
      * @param isRealNameAuthed 是否实名认证,0-否,1-是
      */
-    public void setIsRealNameAuthed(Byte isRealNameAuthed) {
+    public void setIsRealNameAuthed(Integer isRealNameAuthed) {
         this.isRealNameAuthed = isRealNameAuthed;
     }
 
@@ -514,7 +538,7 @@ public class User {
      *
      * @return is_mobile_verified - 手机号是否验证,0-否,1-是
      */
-    public Byte getIsMobileVerified() {
+    public Integer getIsMobileVerified() {
         return isMobileVerified;
     }
 
@@ -523,7 +547,7 @@ public class User {
      *
      * @param isMobileVerified 手机号是否验证,0-否,1-是
      */
-    public void setIsMobileVerified(Byte isMobileVerified) {
+    public void setIsMobileVerified(Integer isMobileVerified) {
         this.isMobileVerified = isMobileVerified;
     }
 
@@ -532,7 +556,7 @@ public class User {
      *
      * @return is_email_verified - 邮箱是否验证,0-否,1-是
      */
-    public Byte getIsEmailVerified() {
+    public Integer getIsEmailVerified() {
         return isEmailVerified;
     }
 
@@ -541,7 +565,7 @@ public class User {
      *
      * @param isEmailVerified 邮箱是否验证,0-否,1-是
      */
-    public void setIsEmailVerified(Byte isEmailVerified) {
+    public void setIsEmailVerified(Integer isEmailVerified) {
         this.isEmailVerified = isEmailVerified;
     }
 

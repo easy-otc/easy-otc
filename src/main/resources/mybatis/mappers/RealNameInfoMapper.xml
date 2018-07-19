@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easytech.otc.mapper.RealNameInfoMapper">
+  <resultMap id="BaseResultMap" type="com.easytech.otc.mapper.model.RealNameInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="id_card_no" jdbcType="VARCHAR" property="idCardNo" />
+    <result column="id_card_front_pic_url" jdbcType="VARCHAR" property="idCardFrontPicUrl" />
+    <result column="id_card_back_pic_url" jdbcType="VARCHAR" property="idCardBackPicUrl" />
+    <result column="id_card_held_pic_url" jdbcType="VARCHAR" property="idCardHeldPicUrl" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="fail_times" jdbcType="INTEGER" property="failTimes" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+</mapper>

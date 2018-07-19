@@ -16,34 +16,4 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
-  <resultMap id="BaseResultMap" type="com.easytech.otc.mapper.model.Coin">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="uid" jdbcType="INTEGER" property="uid" />
-    <result column="coin_type" jdbcType="TINYINT" property="coinType" />
-    <result column="private_key" jdbcType="VARCHAR" property="privateKey" />
-    <result column="public_key" jdbcType="VARCHAR" property="publicKey" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="amount" jdbcType="DECIMAL" property="amount" />
-    <result column="lock_amount" jdbcType="DECIMAL" property="lockAmount" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-  </resultMap>
-  <resultMap id="BaseResultMap" type="com.easytech.otc.mapper.model.Coin">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="uid" jdbcType="INTEGER" property="uid" />
-    <result column="coin_type" jdbcType="TINYINT" property="coinType" />
-    <result column="private_key" jdbcType="VARCHAR" property="privateKey" />
-    <result column="public_key" jdbcType="VARCHAR" property="publicKey" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="amount" jdbcType="DECIMAL" property="amount" />
-    <result column="lock_amount" jdbcType="DECIMAL" property="lockAmount" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-  </resultMap>
 </mapper>

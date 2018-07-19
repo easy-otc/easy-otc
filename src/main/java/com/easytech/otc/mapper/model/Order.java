@@ -34,7 +34,7 @@ public class Order {
      * 订单类型，0-买单，1-卖单
      */
     @Column(name = "order_type")
-    private Byte orderType;
+    private Integer orderType;
 
     /**
      * 广告id
@@ -46,7 +46,7 @@ public class Order {
      * 币种
      */
     @Column(name = "coin_type")
-    private Byte coinType;
+    private Integer coinType;
 
     /**
      * 交易数量
@@ -69,13 +69,13 @@ public class Order {
      * 支付状态，0-未支付，1-已支付
      */
     @Column(name = "payment_status")
-    private Byte paymentStatus;
+    private Integer paymentStatus;
 
     /**
      * 订单状态，0-进行中，1-已完成，2-已取消
      */
     @Column(name = "order_status")
-    private Byte orderStatus;
+    private Integer orderStatus;
 
     /**
      * 支付时间
@@ -178,7 +178,7 @@ public class Order {
      *
      * @return order_type - 订单类型，0-买单，1-卖单
      */
-    public Byte getOrderType() {
+    public Integer getOrderType() {
         return orderType;
     }
 
@@ -187,7 +187,7 @@ public class Order {
      *
      * @param orderType 订单类型，0-买单，1-卖单
      */
-    public void setOrderType(Byte orderType) {
+    public void setOrderType(Integer orderType) {
         this.orderType = orderType;
     }
 
@@ -214,7 +214,7 @@ public class Order {
      *
      * @return coin_type - 币种
      */
-    public Byte getCoinType() {
+    public Integer getCoinType() {
         return coinType;
     }
 
@@ -223,7 +223,7 @@ public class Order {
      *
      * @param coinType 币种
      */
-    public void setCoinType(Byte coinType) {
+    public void setCoinType(Integer coinType) {
         this.coinType = coinType;
     }
 
@@ -286,7 +286,7 @@ public class Order {
      *
      * @return payment_status - 支付状态，0-未支付，1-已支付
      */
-    public Byte getPaymentStatus() {
+    public Integer getPaymentStatus() {
         return paymentStatus;
     }
 
@@ -295,7 +295,7 @@ public class Order {
      *
      * @param paymentStatus 支付状态，0-未支付，1-已支付
      */
-    public void setPaymentStatus(Byte paymentStatus) {
+    public void setPaymentStatus(Integer paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
 
@@ -304,7 +304,7 @@ public class Order {
      *
      * @return order_status - 订单状态，0-进行中，1-已完成，2-已取消
      */
-    public Byte getOrderStatus() {
+    public Integer getOrderStatus() {
         return orderStatus;
     }
 
@@ -313,7 +313,7 @@ public class Order {
      *
      * @param orderStatus 订单状态，0-进行中，1-已完成，2-已取消
      */
-    public void setOrderStatus(Byte orderStatus) {
+    public void setOrderStatus(Integer orderStatus) {
         this.orderStatus = orderStatus;
     }
 

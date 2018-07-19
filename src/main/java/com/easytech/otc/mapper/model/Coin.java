@@ -22,7 +22,7 @@ public class Coin {
      * 币种
      */
     @Column(name = "coin_type")
-    private Byte coinType;
+    private Integer coinType;
 
     /**
      * 私钥
@@ -105,7 +105,7 @@ public class Coin {
      *
      * @return coin_type - 币种
      */
-    public Byte getCoinType() {
+    public Integer getCoinType() {
         return coinType;
     }
 
@@ -114,7 +114,7 @@ public class Coin {
      *
      * @param coinType 币种
      */
-    public void setCoinType(Byte coinType) {
+    public void setCoinType(Integer coinType) {
         this.coinType = coinType;
     }
 

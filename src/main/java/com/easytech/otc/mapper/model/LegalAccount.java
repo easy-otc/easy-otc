@@ -20,7 +20,7 @@ public class LegalAccount {
     /**
      * 收款方式，0-支付宝，1-微信，2-银行卡
      */
-    private Byte mode;
+    private Integer mode;
 
     /**
      * 姓名
@@ -97,7 +97,7 @@ public class LegalAccount {
      *
      * @return mode - 收款方式，0-支付宝，1-微信，2-银行卡
      */
-    public Byte getMode() {
+    public Integer getMode() {
         return mode;
     }
 
@@ -106,7 +106,7 @@ public class LegalAccount {
      *
      * @param mode 收款方式，0-支付宝，1-微信，2-银行卡
      */
-    public void setMode(Byte mode) {
+    public void setMode(Integer mode) {
         this.mode = mode;
     }
 

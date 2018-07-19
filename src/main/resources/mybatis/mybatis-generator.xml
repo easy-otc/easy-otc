@@ -26,7 +26,7 @@
                         password="${jdbc.druid.password}">
         </jdbcConnection>
 
-        <javaTypeResolver type="com.easytech.otc.common.mybatis.plugin.TinyintToIntegerTypeResolverDefaultImpl">
+        <javaTypeResolver type="org.mybatis.generator.internal.types.TinyintToIntegerTypeResolverDefaultImpl">
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
