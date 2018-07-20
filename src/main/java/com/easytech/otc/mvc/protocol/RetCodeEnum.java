@@ -32,6 +32,8 @@ public enum RetCodeEnum {
                           * 业务异常
                           */
                          BUSINESS_ERROR(-100001, "业务异常"),
+
+                        VERIFY_CODE_ERROR(-100002,"短信验证码错误"),
                          /***用户实名认证失败**/
                          USER_REAL_AUTH_FAILED(-100008, "用户实名认证失败"),
                          /***交易密码不正确**/
