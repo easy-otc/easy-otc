@@ -57,8 +57,7 @@ class Tool {
             @Override
             public Long exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.CHANGE);
-                return jedis.incrBy(param.buildKey(),
-                        Long.valueOf(param.getValues()[0].toString()));
+                return jedis.incrBy(param.buildKey(), Long.valueOf(param.getValues()[0].toString()));
             }
         };
     }
@@ -78,8 +77,7 @@ class Tool {
             @Override
             public Long exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.CHANGE);
-                return jedis.decrBy(param.buildKey(),
-                        Long.valueOf(param.getValues()[0].toString()));
+                return jedis.decrBy(param.buildKey(), Long.valueOf(param.getValues()[0].toString()));
             }
         };
     }
@@ -114,18 +112,14 @@ class Tool {
         };
     }
 
-
     ///////////////////////////////////////////////////////////////////////////
-
 
     public static Operator<Long> hset() {
         return new Operator<Long>() {
             @Override
             public Long exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.CHANGE);
-                return jedis.hset(param.buildKey(),
-                        param.getValues()[0].toString(),
-                        param.getValues()[1].toString());
+                return jedis.hset(param.buildKey(), param.getValues()[0].toString(), param.getValues()[1].toString());
             }
         };
     }
@@ -135,8 +129,7 @@ class Tool {
             @Override
             public String exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.CHANGE);
-                return jedis.hmset(param.buildKey(),
-                        (Map<String, String>) param.getValues()[0]);
+                return jedis.hmset(param.buildKey(), (Map<String, String>) param.getValues()[0]);
             }
         };
     }
@@ -185,9 +178,7 @@ class Tool {
             @Override
             public Long exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.CHANGE);
-                return jedis.hincrBy(param.buildKey(),
-                        param.getValues()[0].toString(),
-                        Long.valueOf(param.getValues()[1].toString()));
+                return jedis.hincrBy(param.buildKey(), param.getValues()[0].toString(), Long.valueOf(param.getValues()[1].toString()));
             }
         };
     }
@@ -282,10 +273,7 @@ class Tool {
             @Override
             public List<String> exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.QUERY);
-                return jedis.lrange(param.buildKey(),
-                        Long.valueOf(param.getValues()[0].toString()),
-                        Long.valueOf(param.getValues()[1].toString())
-                );
+                return jedis.lrange(param.buildKey(), Long.valueOf(param.getValues()[0].toString()), Long.valueOf(param.getValues()[1].toString()));
             }
         };
     }
@@ -295,8 +283,7 @@ class Tool {
             @Override
             public Long exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.CHANGE);
-                return jedis.lrem(param.buildKey(), Long.valueOf(param.getValues()[0].toString()),
-                        param.getValues()[1].toString());
+                return jedis.lrem(param.buildKey(), Long.valueOf(param.getValues()[0].toString()), param.getValues()[1].toString());
             }
         };
     }
@@ -306,8 +293,7 @@ class Tool {
             @Override
             public String exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.CHANGE);
-                return jedis.lset(param.buildKey(), Long.valueOf(param.getValues()[0].toString()),
-                        param.getValues()[1].toString());
+                return jedis.lset(param.buildKey(), Long.valueOf(param.getValues()[0].toString()), param.getValues()[1].toString());
             }
         };
     }
@@ -334,7 +320,6 @@ class Tool {
         };
     }
 
-
     public static Operator<Set<String>> smembers() {
         return new Operator<Set<String>>() {
             @Override
@@ -350,8 +335,7 @@ class Tool {
             @Override
             public Boolean exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.QUERY);
-                return jedis.sismember(param.buildKey(),
-                        param.getValues()[0].toString());
+                return jedis.sismember(param.buildKey(), param.getValues()[0].toString());
             }
         };
     }
@@ -381,8 +365,7 @@ class Tool {
             @Override
             public Long exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.CHANGE);
-                return jedis.srem(param.buildKey(),
-                        ArrayUtils.objArr2StrArr(param.getValues()));
+                return jedis.srem(param.buildKey(), ArrayUtils.objArr2StrArr(param.getValues()));
             }
         };
     }
@@ -402,8 +385,7 @@ class Tool {
             @Override
             public List<String> exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.QUERY);
-                return jedis.sort(param.buildKey(),
-                        (SortingParams) param.getValues()[0]);
+                return jedis.sort(param.buildKey(), (SortingParams) param.getValues()[0]);
             }
         };
     }
@@ -413,9 +395,7 @@ class Tool {
             @Override
             public Long exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.CHANGE);
-                return jedis.zadd(param.buildKey(),
-                        Double.valueOf(param.getValues()[0].toString()),
-                        param.getValues()[1].toString());
+                return jedis.zadd(param.buildKey(), Double.valueOf(param.getValues()[0].toString()), param.getValues()[1].toString());
             }
         };
     }
@@ -425,8 +405,7 @@ class Tool {
             @Override
             public Long exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.CHANGE);
-                return jedis.zadd(param.buildKey(),
-                        (Map<String, Double>) param.getValues()[0]);
+                return jedis.zadd(param.buildKey(), (Map<String, Double>) param.getValues()[0]);
             }
         };
     }
@@ -446,9 +425,7 @@ class Tool {
             @Override
             public Double exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.CHANGE);
-                return jedis.zincrby(param.buildKey(),
-                        Double.valueOf(param.getValues()[0].toString()),
-                        param.getValues()[1].toString());
+                return jedis.zincrby(param.buildKey(), Double.valueOf(param.getValues()[0].toString()), param.getValues()[1].toString());
             }
         };
     }
@@ -458,9 +435,7 @@ class Tool {
             @Override
             public Set<String> exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.QUERY);
-                return jedis.zrange(param.buildKey(),
-                        Long.valueOf(param.getValues()[0].toString()),
-                        Long.valueOf(param.getValues()[1].toString()));
+                return jedis.zrange(param.buildKey(), Long.valueOf(param.getValues()[0].toString()), Long.valueOf(param.getValues()[1].toString()));
             }
         };
     }
@@ -470,9 +445,7 @@ class Tool {
             @Override
             public Set<Tuple> exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.QUERY);
-                return jedis.zrangeWithScores(param.buildKey(),
-                        Long.valueOf(param.getValues()[0].toString()),
-                        Long.valueOf(param.getValues()[1].toString()));
+                return jedis.zrangeWithScores(param.buildKey(), Long.valueOf(param.getValues()[0].toString()), Long.valueOf(param.getValues()[1].toString()));
             }
         };
     }
@@ -482,9 +455,7 @@ class Tool {
             @Override
             public Set<String> exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.QUERY);
-                return jedis.zrevrange(param.buildKey(),
-                        Long.valueOf(param.getValues()[0].toString()),
-                        Long.valueOf(param.getValues()[1].toString()));
+                return jedis.zrevrange(param.buildKey(), Long.valueOf(param.getValues()[0].toString()), Long.valueOf(param.getValues()[1].toString()));
             }
         };
     }
@@ -494,9 +465,7 @@ class Tool {
             @Override
             public Set<Tuple> exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.QUERY);
-                return jedis.zrevrangeWithScores(param.buildKey(),
-                        Long.valueOf(param.getValues()[0].toString()),
-                        Long.valueOf(param.getValues()[1].toString()));
+                return jedis.zrevrangeWithScores(param.buildKey(), Long.valueOf(param.getValues()[0].toString()), Long.valueOf(param.getValues()[1].toString()));
             }
         };
     }
@@ -506,8 +475,7 @@ class Tool {
             @Override
             public Long exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.CHANGE);
-                return jedis.zrem(param.buildKey(),
-                        ArrayUtils.objArr2StrArr(param.getValues()));
+                return jedis.zrem(param.buildKey(), ArrayUtils.objArr2StrArr(param.getValues()));
             }
         };
     }
@@ -517,9 +485,7 @@ class Tool {
             @Override
             public Long exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.CHANGE);
-                return jedis.zremrangeByRank(param.buildKey(),
-                        Long.valueOf(param.getValues()[0].toString()),
-                        Long.valueOf(param.getValues()[1].toString()));
+                return jedis.zremrangeByRank(param.buildKey(), Long.valueOf(param.getValues()[0].toString()), Long.valueOf(param.getValues()[1].toString()));
             }
         };
     }
@@ -529,9 +495,7 @@ class Tool {
             @Override
             public Long exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.CHANGE);
-                return jedis.zremrangeByScore(param.buildKey(),
-                        Double.valueOf(param.getValues()[0].toString()),
-                        Double.valueOf(param.getValues()[1].toString()));
+                return jedis.zremrangeByScore(param.buildKey(), Double.valueOf(param.getValues()[0].toString()), Double.valueOf(param.getValues()[1].toString()));
             }
         };
     }
@@ -540,8 +504,7 @@ class Tool {
         return new Operator<Long>() {
             @Override
             public Long exec(Jedis jedis, RedisParameter param) {
-                return jedis.expire(param.buildKey(),
-                        Integer.valueOf(param.getValues()[0].toString()));
+                return jedis.expire(param.buildKey(), Integer.valueOf(param.getValues()[0].toString()));
             }
         };
     }
@@ -551,9 +514,7 @@ class Tool {
             @Override
             public Long exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.CHANGE);
-                return jedis.hsetnx(param.buildKey(),
-                        param.getValues()[0].toString(),
-                        param.getValues()[1].toString());
+                return jedis.hsetnx(param.buildKey(), param.getValues()[0].toString(), param.getValues()[1].toString());
             }
         };
     }
@@ -563,8 +524,7 @@ class Tool {
             @Override
             public Long exec(Jedis jedis, RedisParameter param) {
                 param.setOp(OpType.CHANGE);
-                return jedis.setnx(param.buildKey(),
-                        param.getValues()[0].toString());
+                return jedis.setnx(param.buildKey(), param.getValues()[0].toString());
             }
         };
     }

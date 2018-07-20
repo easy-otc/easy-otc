@@ -44,10 +44,12 @@ public class ArrayUtils {
      * @return 把数组通过连接符拼接成字符串
      */
     public static String objs2StrLinkBy(String separator, Object... objects) {
-        if (objects == null || objects.length == 0) return "";
+        if (objects == null || objects.length == 0)
+            return "";
         StringBuffer result = new StringBuffer();
         for (Object temp : objects) {
-            if(temp != null)result.append(temp.toString()).append(separator);
+            if (temp != null)
+                result.append(temp.toString()).append(separator);
         }
         if (result.toString().length() > 0) {
             return result.toString().substring(0, result.toString().lastIndexOf(separator));
@@ -60,13 +62,13 @@ public class ArrayUtils {
      * @param objArr Object对象数组
      * @return 将objArr转换成字符串数组返回
      */
-    public static String[] objArr2StrArr(Object[] objArr){
-        if(objArr == null){
+    public static String[] objArr2StrArr(Object[] objArr) {
+        if (objArr == null) {
             return null;
         }
         String[] values = new String[objArr.length];
         int index = 0;
-        for(Object obj : objArr){
+        for (Object obj : objArr) {
             values[index++] = (obj == null ? null : obj.toString());
         }
 
@@ -78,12 +80,12 @@ public class ArrayUtils {
      * @param objArr
      * @return 将objArr转换成set返回
      */
-    public static Set<Object> objArr2ObjSet(Object[] objArr){
-        if(objArr == null){
+    public static Set<Object> objArr2ObjSet(Object[] objArr) {
+        if (objArr == null) {
             return null;
         }
         Set<Object> set = new HashSet<>();
-        for(Object obj:objArr){
+        for (Object obj : objArr) {
             set.add(obj);
         }
         return set;

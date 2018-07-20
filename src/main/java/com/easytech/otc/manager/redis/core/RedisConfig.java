@@ -7,14 +7,14 @@ package com.easytech.otc.manager.redis.core;
  */
 
 public class RedisConfig {
-    private String serverGroup = "default";
-    private String host = "127.0.0.1";
-    private int port = 6379;
-    private int timeout = 2000;
+    private String  serverGroup = "default";
+    private String  host        = "127.0.0.1";
+    private int     port        = 6379;
+    private int     timeout     = 2000;
 
-    private Integer maxActive = 40;
-    private Integer maxIdle = 10;
-    private Long maxWait = 1000L;
+    private Integer maxActive   = 40;
+    private Integer maxIdle     = 10;
+    private Long    maxWait     = 1000L;
 
     public RedisConfig(String serverGroup, String host, int port) {
         this.serverGroup = serverGroup;

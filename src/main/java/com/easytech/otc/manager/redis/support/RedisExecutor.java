@@ -23,9 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public abstract class RedisExecutor {
 
-
-
-    private Random random = new Random();
+    private Random                       random  = new Random();
 
     private Map<String, List<JedisPool>> poolMap = new ConcurrentHashMap<String, List<JedisPool>>();
 
@@ -44,9 +42,9 @@ public abstract class RedisExecutor {
             }
 
             JedisPoolConfig poolConfig = new JedisPoolConfig();
-//            poolConfig.setMaxIdle(config.getMaxIdle());
-//            poolConfig.setMaxTotal(config.getMaxActive());
-//            poolConfig.setMaxWaitMillis(config.getMaxWait());
+            //            poolConfig.setMaxIdle(config.getMaxIdle());
+            //            poolConfig.setMaxTotal(config.getMaxActive());
+            //            poolConfig.setMaxWaitMillis(config.getMaxWait());
             poolList.add(new JedisPool(poolConfig, config.getHost(), config.getPort(), config.getTimeout()));
         }
     }
@@ -93,7 +91,7 @@ public abstract class RedisExecutor {
     }
 
     private <T> T executeWithPool(JedisPool pool, RedisParameter param, Operator<T> operator) {
-        final Jedis[] jedis = {null};
+        final Jedis[] jedis = { null };
         int index = 0;
 
         int retryTimes = 3;

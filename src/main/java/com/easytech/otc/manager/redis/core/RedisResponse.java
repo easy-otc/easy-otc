@@ -8,7 +8,7 @@ package com.easytech.otc.manager.redis.core;
 
 public class RedisResponse<T> {
     private boolean isAllDown = false;
-    private T result = null;
+    private T       result    = null;
 
     public RedisResponse() {
 
@@ -36,9 +36,6 @@ public class RedisResponse<T> {
 
     @Override
     public String toString() {
-        return "RedisResponse{" +
-                "isAllDown=" + isAllDown +
-                ", result=" + result +
-                '}';
+        return "RedisResponse{" + "isAllDown=" + isAllDown + ", result=" + result + '}';
     }
 }

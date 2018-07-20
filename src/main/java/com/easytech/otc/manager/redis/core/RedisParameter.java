@@ -13,11 +13,11 @@ import java.io.Serializable;
 
 public class RedisParameter {
 
-    private RedisKey redisKey = null;
-    private OpType op = null;
-    private KeyType keyType = null;
-    private Serializable keyId = null;
-    private Object[] values = null;
+    private RedisKey     redisKey = null;
+    private OpType       op       = null;
+    private KeyType      keyType  = null;
+    private Serializable keyId    = null;
+    private Object[]     values   = null;
 
     public RedisParameter() {
 
@@ -80,17 +80,11 @@ public class RedisParameter {
         if (namespace == null || namespace.length() == 0) {
             throw new IllegalArgumentException("The return value of RedisKey#namespace() COULD NOT BE EMPTY.");
         }
-        return namespace + RedisKey.KEY_SEPARATOR +
-                redisKey.keyName() + RedisKey.KEY_ID_SEPARATOR +
-                keyId;
+        return namespace + RedisKey.KEY_SEPARATOR + redisKey.keyName() + RedisKey.KEY_ID_SEPARATOR + keyId;
     }
 
     public String buildKey() {
         return buildKey(getKeyId());
     }
 
-
-
-
 }
-

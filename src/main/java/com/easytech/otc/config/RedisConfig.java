@@ -15,9 +15,9 @@ import org.springframework.core.env.Environment;
 public class RedisConfig {
     @Autowired
     private Environment envir;
+
     @Bean
-    public RedisTool getRedisTool(){
-        return new RedisTool(envir.getProperty("redis.host","127.0.0.1"),
-                Integer.valueOf(envir.getProperty("redis.port","6379")));
+    public RedisTool getRedisTool() {
+        return new RedisTool(envir.getProperty("redis.host", "127.0.0.1"), Integer.valueOf(envir.getProperty("redis.port", "6379")));
     }
 }

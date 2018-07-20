@@ -9,14 +9,13 @@ import com.easytech.otc.manager.redis.RedisKey;
  * Date: 2018/7/19 22:53
  */
 
-public enum DemoKey implements RedisKey{
-    demo(24 * 3600 * 2, KeyType.STRING, "test");
+public enum DemoKey implements RedisKey {
+                                         demo(24 * 3600 * 2, KeyType.STRING, "test");
     private static final String NAMESPACE = "DEMO";
 
-    private int expire = -1;
-    private KeyType keyType = null;
-    private String desc = null;
-
+    private int                 expire    = -1;
+    private KeyType             keyType   = null;
+    private String              desc      = null;
 
     DemoKey(int expire, KeyType keyType, String desc) {
         this.expire = expire;

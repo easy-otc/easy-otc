@@ -4,9 +4,6 @@ import com.easytech.otc.common.crypt.RSAUtils;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.security.Key;
-import java.util.Map;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -16,10 +13,10 @@ public class RSAUtilsTest {
     private String privateKey;
 
     @Before
-    public void setUp() throws Exception {
-        Map<String, Key> keyMap = RSAUtils.initKey();
-        publicKey = RSAUtils.getPublicKey(keyMap);
-        privateKey = RSAUtils.getPrivateKey(keyMap);
+    public void setUp() {
+        RSAUtils.K k = RSAUtils.initKey();
+        publicKey = k.getPublicKey();
+        privateKey = k.getPrivateKey();
         System.err.println("公钥: \n\r" + publicKey);
         System.err.println("私钥： \n\r" + privateKey);
     }

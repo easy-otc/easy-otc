@@ -1,21 +1,17 @@
 package com.easytech.otc.common.crypt;
 
+import lombok.Getter;
 import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.Cipher;
 import java.security.*;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-import java.util.HashMap;
-import java.util.Map;
 
 public class RSAUtils {
 
-    public static final String  KEY_ALGORITHM       = "RSA";
-    public static final String  SIGNATURE_ALGORITHM = "MD5withRSA";
-
-    private static final String PUBLIC_KEY          = "RSAPublicKey";
-    private static final String PRIVATE_KEY         = "RSAPrivateKey";
+    public static final String KEY_ALGORITHM       = "RSA";
+    public static final String SIGNATURE_ALGORITHM = "MD5withRSA";
 
     public static byte[] decryptBASE64(String key) {
         return Base64.decodeBase64(key);
@@ -174,43 +170,29 @@ public class RSAUtils {
         return cipher.doFinal(data);
     }
 
-    /**
-     * 取得私钥
-     *
-     * @param keyMap
-     * @return
-     * @throws Exception
-     */
-    public static String getPrivateKey(Map<String, Key> keyMap) throws Exception {
-        Key key = (Key) keyMap.get(PRIVATE_KEY);
-        return encryptBASE64(key.getEncoded());
-    }
-
-    /**
-     * 取得公钥
-     *
-     * @param keyMap
-     * @return
-     * @throws Exception
-     */
-    public static String getPublicKey(Map<String, Key> keyMap) throws Exception {
-        Key key = keyMap.get(PUBLIC_KEY);
-        return encryptBASE64(key.getEncoded());
+    @Getter
+    public static class K {
+        private String privateKey;
+        private String publicKey;
     }
 
     /**
      * 初始化密钥
      *
      * @return
-     * @throws Exception
      */
-    public static Map<String, Key> initKey() throws Exception {
-        KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(KEY_ALGORITHM);
-        keyPairGen.initialize(1024);
-        KeyPair keyPair = keyPairGen.generateKeyPair();
-        Map<String, Key> keyMap = new HashMap(2);
-        keyMap.put(PUBLIC_KEY, keyPair.getPublic());// 公钥
-        keyMap.put(PRIVATE_KEY, keyPair.getPrivate());// 私钥
-        return keyMap;
+    public static K initKey() {
+        try {
+            KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(KEY_ALGORITHM);
+            keyPairGen.initialize(1024);
+            KeyPair keyPair = keyPairGen.generateKeyPair();
+
+            K k = new K();
+            k.privateKey = encryptBASE64(keyPair.getPrivate().getEncoded());
+            k.publicKey = encryptBASE64(keyPair.getPublic().getEncoded());
+            return k;
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

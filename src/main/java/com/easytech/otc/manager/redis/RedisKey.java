@@ -7,8 +7,8 @@ package com.easytech.otc.manager.redis;
  */
 
 public interface RedisKey {
-    String KEY_SEPARATOR = ".";
-    String KEY_ID_SEPARATOR = "#";
+    String KEY_SEPARATOR               = ".";
+    String KEY_ID_SEPARATOR            = "#";
     String KEY_ID_SEPARATOR_COMPATIBLE = "`@~";
 
     /**
@@ -51,4 +51,3 @@ public interface RedisKey {
      */
     String serverGroup();
 }
-

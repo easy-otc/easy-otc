@@ -7,8 +7,8 @@ package com.easytech.otc.mvc.vo;
  */
 
 public class RegisterRequest {
-    private String userName;//用户名
-    private String mobile;//手机号码
+    private String userName;  //用户名
+    private String mobile;    //手机号码
     private String ciphertext;//密文
     private String verifyCode;//验证码
 }

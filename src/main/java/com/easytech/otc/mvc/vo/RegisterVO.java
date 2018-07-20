@@ -8,6 +8,6 @@ package com.easytech.otc.mvc.vo;
 
 public class RegisterVO {
     private String userName;//用户名
-    private String mobile;//手机号码
-    private String token;//用户登录凭证
+    private String mobile;  //手机号码
+    private String token;   //用户登录凭证
 }

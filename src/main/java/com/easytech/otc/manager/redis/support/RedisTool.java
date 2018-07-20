@@ -20,11 +20,12 @@ import java.util.Set;
  */
 
 public class RedisTool extends RedisExecutor {
-    public RedisTool(){
+    public RedisTool() {
 
     }
-    public RedisTool(String host,int port){
-        super(new RedisConfig(host,port));
+
+    public RedisTool(String host, int port) {
+        super(new RedisConfig(host, port));
     }
 
     public RedisTool(RedisConfig... configs) {
@@ -145,7 +146,6 @@ public class RedisTool extends RedisExecutor {
         RedisResponse<Long> setResult = execute(new RedisParameter(key, id, val), Tool.rpush());
         return setResult.getResult();
     }
-
 
     public Long lpush(RedisKey key, Serializable id, String... val) {
         RedisResponse<Long> setResult = execute(new RedisParameter(key, id, val), Tool.lpush());
@@ -298,7 +298,7 @@ public class RedisTool extends RedisExecutor {
     }
 
     public static void main(String[] args) {
-        RedisTool redisTool = new RedisTool(new RedisConfig("127.0.0.1",6379));
-        redisTool.set(DemoKey.demo,"1","cch");
+        RedisTool redisTool = new RedisTool(new RedisConfig("127.0.0.1", 6379));
+        redisTool.set(DemoKey.demo, "1", "cch");
     }
 }
