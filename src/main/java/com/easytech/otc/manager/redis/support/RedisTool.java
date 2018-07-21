@@ -1,17 +1,18 @@
 package com.easytech.otc.manager.redis.support;
 
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import com.easytech.otc.cache.DemoKey;
 import com.easytech.otc.manager.redis.RedisKey;
 import com.easytech.otc.manager.redis.core.RedisConfig;
 import com.easytech.otc.manager.redis.core.RedisParameter;
 import com.easytech.otc.manager.redis.core.RedisResponse;
+
 import redis.clients.jedis.SortingParams;
 import redis.clients.jedis.Tuple;
-
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Description:

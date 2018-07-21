@@ -1,16 +1,17 @@
 package com.easytech.otc.manager.redis.support;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import com.easytech.otc.manager.ArrayUtils;
 import com.easytech.otc.manager.redis.core.OpType;
 import com.easytech.otc.manager.redis.core.Operator;
 import com.easytech.otc.manager.redis.core.RedisParameter;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.SortingParams;
 import redis.clients.jedis.Tuple;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Description:

@@ -1,13 +1,14 @@
 package com.easytech.otc;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.easytech.otc.common.mybatis.plugin.OtcMapper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.easytech.otc.common.mybatis.plugin.OtcMapper;
 
 @SpringBootApplication
 @MapperScan(basePackages = "com.easytech.otc.mapper", markerInterface = OtcMapper.class)

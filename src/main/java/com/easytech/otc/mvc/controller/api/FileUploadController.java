@@ -5,6 +5,10 @@ import java.util.Date;
 
 import javax.imageio.ImageIO;
 
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.easytech.otc.common.DateFormatTool;
 import com.easytech.otc.common.FileUploadUtil;
 import com.easytech.otc.mvc.controller.WebConst;
@@ -12,10 +16,8 @@ import com.easytech.otc.mvc.protocol.ACL;
 import com.easytech.otc.mvc.protocol.Resp;
 import com.easytech.otc.mvc.protocol.RetCodeEnum;
 import com.easytech.otc.mvc.vo.PictureVo;
+
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 图片上传

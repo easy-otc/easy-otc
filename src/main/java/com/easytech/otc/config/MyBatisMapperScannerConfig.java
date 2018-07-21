@@ -1,9 +1,9 @@
 package com.easytech.otc.config;
 
-import com.easytech.otc.config.MyBatisConfig;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import tk.mybatis.spring.mapper.MapperScannerConfigurer;
 
 @Configuration

@@ -6,7 +6,8 @@ package com.easytech.otc.mvc.controller;
  * Date: 2018/7/20 01:03
  */
 
-public class KeyValueConst {
-    public static final String PUBLIC_KEY  = "PublicKey";
-    public static final String PRIVATE_KEY = "PrivateKey";
+public interface KeyValueConst {
+
+    String PUBLIC_KEY  = "PublicKey";
+    String PRIVATE_KEY = "PrivateKey";
 }

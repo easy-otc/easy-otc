@@ -1,10 +1,13 @@
 package com.easytech.otc.mapper.model;
 
 import java.util.Date;
+
 import javax.persistence.*;
 
+import com.easytech.otc.common.mybatis.plugin.BaseModel;
+
 @Table(name = "work_order")
-public class WorkOrder {
+public class WorkOrder extends BaseModel {
     /**
      * id
      */

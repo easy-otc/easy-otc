@@ -1,5 +1,13 @@
 package com.easytech.otc.mvc.controller.api;
 
+import java.util.Objects;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.easytech.otc.cache.CodeKey;
 import com.easytech.otc.cache.DemoKey;
 import com.easytech.otc.common.MockUtil;
@@ -35,10 +43,12 @@ import java.util.UUID;
 @RestController
 @RequestMapping(WebConst.API_V1_PREFIX + "/passport")
 public class PassportController {
+
     @Autowired
-    private RedisTool redisTool;
+    private RedisTool   redisTool;
     @Autowired
     private UserService userService;
+
     @Autowired
     AuthedInfoRepository authedInfoRepository;
 
@@ -60,6 +70,15 @@ public class PassportController {
 
     @PostMapping(value = "/register")
     @ACL(authControl = false)
+    public Resp<RegisterVO> register(@RequestBody RegisterRequest registerRequest) {
+        Resp<RegisterVO> result = new Resp<>();
+
+        String verifyCode = redisTool.hget(CodeKey.VERIFY_CODE, VerifyCodeEnum.REGISTER, registerRequest.getMobile());
+        if (!Objects.equals(verifyCode, registerRequest.getVerifyCode())) {
+            return result.setFail(RetCodeEnum.VERIFY_CODE_ERROR);
+        }
+        if (userService.mobileExists(registerRequest.getMobile())) {
+
     public Resp register(@RequestBody RegisterRequest registerRequest) {
         Resp result = new Resp();
         userService.checkRegisterRequest(registerRequest);
@@ -68,6 +87,8 @@ public class PassportController {
         }
         if (userService.nameExists(registerRequest.getUserName())) {
             return result.setFail(RetCodeEnum.NAME_REPEAT_ERROR);
+        if (userService.nameExists(registerRequest.getUserName())) {
+
         }
         int uid = userService.register(registerRequest);
         userService.updateInvitionCode(uid);

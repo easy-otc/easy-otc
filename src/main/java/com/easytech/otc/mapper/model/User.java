@@ -2,10 +2,13 @@ package com.easytech.otc.mapper.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+
 import javax.persistence.*;
 
+import com.easytech.otc.common.mybatis.plugin.BaseModel;
+
 @Table(name = "user")
-public class User {
+public class User extends BaseModel {
     /**
      * id
      */

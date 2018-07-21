@@ -21,6 +21,7 @@ public class InviteUtil {
      * @throws Exception
      */
     public static String getCodeByUid(Integer uid) {
+
         if (uid == null || uid < 0) {
             return null;
         }
@@ -52,13 +53,13 @@ public class InviteUtil {
         char[] codeChars = code.toCharArray();
         int codeLength = code.length();
         StringBuffer uidStr = new StringBuffer();
-        int result =0;
-        for(char codeChar:codeChars){
+        int result = 0;
+        for (char codeChar : codeChars) {
             int value = sourceString.indexOf(codeChar);
-            if(value==-1){
+            if (value == -1) {
                 return null;
             }
-            result= result+(int)(value*Math.pow(36,--codeLength));
+            result = result + (int) (value * Math.pow(36, --codeLength));
         }
         return result;
     }

@@ -1,12 +1,13 @@
 package com.easytech.otc.service;
 
-import com.alibaba.fastjson.JSON;
-import com.easytech.otc.mapper.UserMapper;
-import com.easytech.otc.mapper.model.User;
+import java.math.BigDecimal;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.math.BigDecimal;
+import com.alibaba.fastjson.JSON;
+import com.easytech.otc.mapper.UserMapper;
+import com.easytech.otc.mapper.model.User;
 
 public class MapperTest extends BaseTest {
 

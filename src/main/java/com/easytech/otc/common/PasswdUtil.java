@@ -1,7 +1,8 @@
 package com.easytech.otc.common;
 
-import com.easytech.otc.common.crypt.CryptUtil;
 import org.apache.commons.lang3.StringUtils;
+
+import com.easytech.otc.common.crypt.CryptUtil;
 
 public class PasswdUtil {
 

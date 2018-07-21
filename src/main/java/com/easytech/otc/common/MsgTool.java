@@ -7,6 +7,7 @@ import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
+import com.easytech.otc.config.PropertiesConfig;
 import com.easytech.otc.exception.BizException;
 import com.easytech.otc.mvc.protocol.RetCodeEnum;
 
@@ -17,22 +18,22 @@ import com.easytech.otc.mvc.protocol.RetCodeEnum;
  */
 
 public class MsgTool {
-    public static String sendVerifyCode(String mobile)throws Exception{
-        if(MockUtil.isMock()){
+    public static String sendVerifyCode(String mobile) throws Exception {
+
+        if (PropertiesConfig.isMock()) {
             return MobileVerifyUtil.genMobileCode();
         }
         //设置超时时间-可自行调整
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
         System.setProperty("sun.net.client.defaultReadTimeout", "10000");
-//初始化ascClient需要的几个参数
+        //初始化ascClient需要的几个参数
         final String product = "Dysmsapi";//短信API产品名称（短信产品名固定，无需修改）
         final String domain = "dysmsapi.aliyuncs.com";//短信API产品域名（接口地址固定，无需修改）
-//替换成你的AK
+        //替换成你的AK
         final String accessKeyId = "yourAccessKeyId";//你的accessKeyId,参考本文档步骤2
         final String accessKeySecret = "yourAccessKeySecret";//你的accessKeySecret，参考本文档步骤2
-//初始化ascClient,暂时不支持多region（请勿修改）
-        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId,
-                accessKeySecret);
+        //初始化ascClient,暂时不支持多region（请勿修改）
+        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
         DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
         IAcsClient acsClient = new DefaultAcsClient(profile);
         //组装请求对象
@@ -48,20 +49,20 @@ public class MsgTool {
         //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
         //友情提示:如果JSON中需要带换行符,请参照标准的JSON协议对换行符的要求,比如短信内容中包含\r\n的情况在JSON中需要表示成\\r\\n,否则会导致JSON在服务端解析失败
         String verifyCode = MobileVerifyUtil.genMobileCode();
-        request.setTemplateParam("{\"code\":\""+verifyCode+"\"}");
+        request.setTemplateParam("{\"code\":\"" + verifyCode + "\"}");
         //可选-上行短信扩展码(扩展码字段控制在7位或以下，无特殊需求用户请忽略此字段)
         //request.setSmsUpExtendCode("90997");
         //可选:outId为提供给业务方扩展字段,最终在短信回执消息中将此值带回给调用者
         request.setOutId("yourOutId");
         //请求失败这里会抛ClientException异常
         SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
-        if(sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("OK")) {
-        //请求成功
+        if (sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("OK")) {
+            //请求成功
             return verifyCode;
-        }else{
-            if(sendSmsResponse.getCode() == null){
+        } else {
+            if (sendSmsResponse.getCode() == null) {
                 throw new BizException(RetCodeEnum.FAIL);
-            }else{
+            } else {
                 throw new BizException(sendSmsResponse.getCode());
             }
         }

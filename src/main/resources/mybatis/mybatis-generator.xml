@@ -35,6 +35,7 @@
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
+            <property name="rootClass" value="com.easytech.otc.common.mybatis.plugin.BaseModel"/>
         </javaModelGenerator>
 
         <!--生成映射文件存放位置-->

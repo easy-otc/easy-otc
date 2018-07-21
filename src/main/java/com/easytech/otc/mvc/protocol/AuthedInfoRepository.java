@@ -5,7 +5,10 @@ import com.easytech.otc.cache.UserKey;
 import com.easytech.otc.manager.redis.support.RedisTool;
 import com.easytech.otc.mapper.model.User;
 import com.easytech.otc.mvc.vo.LoginReturnVO;
+import java.util.concurrent.ConcurrentMap;
+
 import com.google.common.collect.Maps;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,9 @@
 package com.easytech.otc.config;
 
-import com.github.pagehelper.PageHelper;
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -14,8 +17,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
-import javax.sql.DataSource;
-import java.util.Properties;
+import com.github.pagehelper.PageHelper;
 
 @Configuration
 @EnableTransactionManagement

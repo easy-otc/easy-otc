@@ -1,8 +1,9 @@
 package com.easytech.otc.common;
 
-import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class WebTool {
 

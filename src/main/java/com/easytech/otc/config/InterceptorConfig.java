@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
+import com.easytech.otc.mvc.protocol.ACLInterceptor;
+
 @Configuration
 public class InterceptorConfig extends WebMvcConfigurationSupport {
     @Autowired

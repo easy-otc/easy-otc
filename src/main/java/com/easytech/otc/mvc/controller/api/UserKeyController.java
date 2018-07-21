@@ -1,5 +1,11 @@
 package com.easytech.otc.mvc.controller.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.alibaba.fastjson.JSON;
 import com.easytech.otc.cache.CodeKey;
 import com.easytech.otc.common.MobileVerifyUtil;
@@ -12,11 +18,7 @@ import com.easytech.otc.mvc.controller.WebConst;
 import com.easytech.otc.mvc.protocol.ACL;
 import com.easytech.otc.mvc.protocol.Resp;
 import com.easytech.otc.mvc.protocol.RetCodeEnum;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.easytech.otc.service.UserService;
 
 /**
  * Description:
@@ -29,6 +31,11 @@ public class UserKeyController {
 
     @Autowired
     private RedisTool redisTool;
+
+
+    @Autowired
+    private UserService userService;
+
     /**
      * 获取临时公钥
      * 

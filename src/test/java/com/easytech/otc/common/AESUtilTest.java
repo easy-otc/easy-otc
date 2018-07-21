@@ -1,7 +1,8 @@
 package com.easytech.otc.common;
 
-import com.easytech.otc.common.crypt.AESUtil;
 import org.junit.Test;
+
+import com.easytech.otc.common.crypt.AESUtil;
 
 public class AESUtilTest {
 

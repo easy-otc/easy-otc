@@ -1,11 +1,12 @@
 package com.easytech.otc.mvc.controller.api;
 
+import org.springframework.web.bind.annotation.*;
+
 import com.easytech.otc.mvc.controller.WebConst;
 import com.easytech.otc.mvc.protocol.ACL;
 import com.easytech.otc.mvc.protocol.Resp;
 import com.easytech.otc.mvc.vo.LoginRequest;
 import com.easytech.otc.mvc.vo.LoginReturnVO;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(WebConst.API_V1_PREFIX + "/demo")

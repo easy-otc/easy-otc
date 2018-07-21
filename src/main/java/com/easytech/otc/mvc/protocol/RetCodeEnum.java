@@ -71,10 +71,6 @@ public enum RetCodeEnum {
      * 身份未验证
      */
     UNAUTHORIZED(-200002, "身份未验证"),
-    /**
-     * 非法身份
-     */
-    ILLEGAL_AUTHORIZATION(-200004, "非法身份"),
 
     /**
      * 拒绝访问.主要是一些非法访问<br>
