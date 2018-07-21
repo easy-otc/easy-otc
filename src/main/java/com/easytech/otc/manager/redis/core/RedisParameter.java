@@ -1,9 +1,9 @@
 package com.easytech.otc.manager.redis.core;
 
+import java.io.Serializable;
+
 import com.easytech.otc.manager.redis.KeyType;
 import com.easytech.otc.manager.redis.RedisKey;
-
-import java.io.Serializable;
 
 /**
  * Description:

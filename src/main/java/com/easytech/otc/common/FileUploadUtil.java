@@ -1,7 +1,8 @@
 package com.easytech.otc.common;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 文件上传工具类

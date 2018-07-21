@@ -1,8 +1,15 @@
 package com.easytech.otc.mvc.controller.api;
 
+import java.util.Objects;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.easytech.otc.cache.CodeKey;
 import com.easytech.otc.cache.DemoKey;
-import com.easytech.otc.common.MockUtil;
 import com.easytech.otc.enums.VerifyCodeEnum;
 import com.easytech.otc.manager.redis.support.RedisTool;
 import com.easytech.otc.mvc.controller.WebConst;
@@ -14,14 +21,6 @@ import com.easytech.otc.mvc.vo.LoginReturnVO;
 import com.easytech.otc.mvc.vo.RegisterRequest;
 import com.easytech.otc.mvc.vo.RegisterVO;
 import com.easytech.otc.service.UserService;
-import com.sun.org.apache.bcel.internal.generic.RET;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Objects;
 
 /**
  * Description:
@@ -31,10 +30,12 @@ import java.util.Objects;
 @RestController
 @RequestMapping(WebConst.API_V1_PREFIX + "/passport")
 public class PassportController {
+
     @Autowired
-    private RedisTool redisTool;
+    private RedisTool   redisTool;
     @Autowired
     private UserService userService;
+
     @PostMapping(value = "/login")
     @ACL(authControl = false)
     public Resp<LoginReturnVO> login(@RequestBody LoginRequest loginRequest) {
@@ -47,16 +48,15 @@ public class PassportController {
     @ACL(authControl = false)
     public Resp<RegisterVO> register(@RequestBody RegisterRequest registerRequest) {
         Resp<RegisterVO> result = new Resp<>();
-        if(!MockUtil.isMock()){
-            String verifyCode = redisTool.hget(CodeKey.VERIFY_CODE, VerifyCodeEnum.REGISTER, registerRequest.getMobile());
-            if(!Objects.equals(verifyCode,registerRequest.getVerifyCode())){
-                return result.setFail(RetCodeEnum.VERIFY_CODE_ERROR);
-            }
+
+        String verifyCode = redisTool.hget(CodeKey.VERIFY_CODE, VerifyCodeEnum.REGISTER, registerRequest.getMobile());
+        if (!Objects.equals(verifyCode, registerRequest.getVerifyCode())) {
+            return result.setFail(RetCodeEnum.VERIFY_CODE_ERROR);
         }
-        if(userService.mobileExists(registerRequest.getMobile())){
+        if (userService.mobileExists(registerRequest.getMobile())) {
 
         }
-        if(userService.nameExists(registerRequest.getUserName())){
+        if (userService.nameExists(registerRequest.getUserName())) {
 
         }
 

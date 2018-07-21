@@ -2,10 +2,13 @@ package com.easytech.otc.mapper.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+
 import javax.persistence.*;
 
+import com.easytech.otc.common.mybatis.plugin.BaseModel;
+
 @Table(name = "user")
-public class User {
+public class User extends BaseModel {
     /**
      * id
      */
@@ -130,12 +133,6 @@ public class User {
      */
     @Column(name = "is_real_name_authed")
     private Integer    isRealNameAuthed;
-
-    /**
-     * 手机号是否验证,0-否,1-是
-     */
-    @Column(name = "is_mobile_verified")
-    private Integer    isMobileVerified;
 
     /**
      * 邮箱是否验证,0-否,1-是
@@ -531,24 +528,6 @@ public class User {
      */
     public void setIsRealNameAuthed(Integer isRealNameAuthed) {
         this.isRealNameAuthed = isRealNameAuthed;
-    }
-
-    /**
-     * 获取手机号是否验证,0-否,1-是
-     *
-     * @return is_mobile_verified - 手机号是否验证,0-否,1-是
-     */
-    public Integer getIsMobileVerified() {
-        return isMobileVerified;
-    }
-
-    /**
-     * 设置手机号是否验证,0-否,1-是
-     *
-     * @param isMobileVerified 手机号是否验证,0-否,1-是
-     */
-    public void setIsMobileVerified(Integer isMobileVerified) {
-        this.isMobileVerified = isMobileVerified;
     }
 
     /**

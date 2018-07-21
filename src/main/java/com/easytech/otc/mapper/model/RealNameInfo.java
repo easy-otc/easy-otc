@@ -1,10 +1,13 @@
 package com.easytech.otc.mapper.model;
 
 import java.util.Date;
+
 import javax.persistence.*;
 
+import com.easytech.otc.common.mybatis.plugin.BaseModel;
+
 @Table(name = "real_name_info")
-public class RealNameInfo {
+public class RealNameInfo extends BaseModel {
     /**
      * id
      */

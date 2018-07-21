@@ -1,10 +1,11 @@
 
 package com.easytech.otc.mvc.protocol;
 
-import com.google.common.collect.Maps;
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.concurrent.ConcurrentMap;
+
+import com.google.common.collect.Maps;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 用户登陆信息存储

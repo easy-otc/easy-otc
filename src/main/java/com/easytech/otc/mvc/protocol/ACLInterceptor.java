@@ -1,17 +1,20 @@
 package com.easytech.otc.mvc.protocol;
 
-import com.easytech.otc.common.ServletResponsetUtil;
-import com.easytech.otc.common.WebTool;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
+import com.easytech.otc.common.ServletResponsetUtil;
+import com.easytech.otc.common.WebTool;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 访问控制拦截器

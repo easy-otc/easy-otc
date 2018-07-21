@@ -1,10 +1,11 @@
 package com.easytech.otc.common.fastjson;
 
-import com.alibaba.fastjson.serializer.ValueFilter;
+import java.math.BigDecimal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.math.BigDecimal;
+import com.alibaba.fastjson.serializer.ValueFilter;
 
 /**
  * fastjson插件，自定义BigDecimal序列化

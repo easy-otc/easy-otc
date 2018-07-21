@@ -17,7 +17,7 @@ public class InviteUtil {
      * @return
      * @throws Exception
      */
-    public static String getCodeByUid(Integer uid)throws Exception {
+    public static String getCodeByUid(Integer uid) throws Exception {
         if (uid == null || uid < 0) {
             return null;
         }
@@ -38,21 +38,21 @@ public class InviteUtil {
      * @return
      * @throws Exception
      */
-    public static Integer getUidByCode(String code)throws Exception {
-        if (StringUtils.isBlank(code) ) {
+    public static Integer getUidByCode(String code) throws Exception {
+        if (StringUtils.isBlank(code)) {
             return null;
         }
 
         char[] codeChars = code.toCharArray();
         int codeLength = code.length();
         StringBuffer uidStr = new StringBuffer();
-        int result =0;
-        for(char codeChar:codeChars){
+        int result = 0;
+        for (char codeChar : codeChars) {
             int value = sourceString.indexOf(codeChar);
-            if(value==-1){
+            if (value == -1) {
                 return null;
             }
-            result= result+(int)(value*Math.pow(36,--codeLength));
+            result = result + (int) (value * Math.pow(36, --codeLength));
         }
         return result;
     }

@@ -3,11 +3,11 @@
  */
 package com.easytech.otc.common;
 
-import com.easytech.otc.mvc.protocol.Resp;
-
 import java.io.IOException;
 
 import javax.servlet.ServletResponse;
+
+import com.easytech.otc.mvc.protocol.Resp;
 
 /**
  *

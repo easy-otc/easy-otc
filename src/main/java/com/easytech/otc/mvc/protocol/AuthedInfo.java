@@ -1,9 +1,9 @@
 package com.easytech.otc.mvc.protocol;
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.util.Date;
+
+import lombok.Data;
 
 /**
  * 用户已验证身份

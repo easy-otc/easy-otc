@@ -2,6 +2,8 @@ package com.easytech.otc.common;
 
 import java.util.regex.Pattern;
 
+import com.easytech.otc.config.PropertiesConfig;
+
 /**
  * 验证手机号，新加号段
  */
@@ -32,7 +34,7 @@ public class MobileVerifyUtil {
      */
     public static String genMobileCode() {
 
-        if (MockUtil.isMock()) {
+        if (PropertiesConfig.isMock()) {
             return "123456";
         } else {
             String vcode = "";
