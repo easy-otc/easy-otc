@@ -2,13 +2,17 @@ package com.easytech.otc.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
 public class PropertiesConfig {
 
-    @Value("${env.mock}")
-    private static boolean mock;
 
+    private static boolean mock;
+    @Value("${env.mock}")
+    public void setMock(boolean _mock) {
+        mock = _mock;
+    }
     public static boolean isMock() {
         return mock;
     }

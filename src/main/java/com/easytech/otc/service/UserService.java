@@ -39,6 +39,15 @@ public class UserService extends BaseService<User>{
     private UserMapper userMapper;
     @Autowired
     private RedisTool redisTool;
+    public boolean nameExists(String name){
+        return getUserByName(name) != null;
+    }
+
+    public User getUserByName(String name){
+        User user = new User();
+        user.setName(name);
+        return userMapper.selectOne(user);
+    }
 
     public boolean mobileExists(String mobile) {
         return getUserByMobile(mobile) != null;

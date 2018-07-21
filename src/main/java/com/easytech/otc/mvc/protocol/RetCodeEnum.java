@@ -77,6 +77,10 @@ public enum RetCodeEnum {
      */
     FORBIDDEN(-200003, "拒绝访问"),
     /**
+     * 非法身份
+     */
+    ILLEGAL_AUTHORIZATION(-200004, "非法身份"),
+    /**
      * 非法请求参数
      */
     ILLEGAL_ARGUMENT(-300001, "非法请求参数"),

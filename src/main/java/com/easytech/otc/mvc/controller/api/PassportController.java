@@ -1,16 +1,6 @@
 package com.easytech.otc.mvc.controller.api;
 
-import java.util.Objects;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.easytech.otc.cache.CodeKey;
-import com.easytech.otc.cache.DemoKey;
-import com.easytech.otc.common.MockUtil;
 import com.easytech.otc.common.PasswdUtil;
 import com.easytech.otc.enums.VerifyCodeEnum;
 import com.easytech.otc.manager.redis.support.RedisTool;
@@ -25,7 +15,6 @@ import com.easytech.otc.mvc.vo.LoginReturnVO;
 import com.easytech.otc.mvc.vo.RegisterRequest;
 import com.easytech.otc.mvc.vo.RegisterVO;
 import com.easytech.otc.service.UserService;
-import com.sun.org.apache.bcel.internal.generic.RET;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  * Description:
@@ -45,7 +33,7 @@ import java.util.UUID;
 public class PassportController {
 
     @Autowired
-    private RedisTool   redisTool;
+    private RedisTool redisTool;
     @Autowired
     private UserService userService;
 
@@ -58,10 +46,10 @@ public class PassportController {
         Resp<LoginReturnVO> result = new Resp<>();
         userService.checkLoginRequest(loginRequest);
         User user = userService.getUserByMobile(loginRequest.getMobile());
-        if(user==null){
+        if (user == null) {
             return result.setFail(RetCodeEnum.LOGIN_ERROR);
         }
-        if(!PasswdUtil.verify(loginRequest.getPassword(),user.getLoginPassword())){
+        if (!PasswdUtil.verify(loginRequest.getPassword(), user.getLoginPassword())) {
             return result.setFail(RetCodeEnum.LOGIN_ERROR);
         }
         LoginReturnVO loginReturnVO = authedInfoRepository.saveLogin(user);
@@ -77,22 +65,18 @@ public class PassportController {
         if (!Objects.equals(verifyCode, registerRequest.getVerifyCode())) {
             return result.setFail(RetCodeEnum.VERIFY_CODE_ERROR);
         }
-        if (userService.mobileExists(registerRequest.getMobile())) {
 
-    public Resp register(@RequestBody RegisterRequest registerRequest) {
-        Resp result = new Resp();
         userService.checkRegisterRequest(registerRequest);
         if (userService.mobileExists(registerRequest.getMobile())) {
             return result.setFail(RetCodeEnum.MOBILE_ERROR);
         }
         if (userService.nameExists(registerRequest.getUserName())) {
             return result.setFail(RetCodeEnum.NAME_REPEAT_ERROR);
-        if (userService.nameExists(registerRequest.getUserName())) {
-
         }
         int uid = userService.register(registerRequest);
         userService.updateInvitionCode(uid);
-        return  Resp.newSuccessResult();
-    }
+        return Resp.newSuccessResult();
 
+
+    }
 }
