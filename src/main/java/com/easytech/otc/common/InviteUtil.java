@@ -2,6 +2,9 @@ package com.easytech.otc.common;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Description:
  * Author: Hank
@@ -10,14 +13,14 @@ import org.apache.commons.lang3.StringUtils;
 
 public class InviteUtil {
     private static final String sourceString = "bnm012kjtyplhgfdq5sa3rzxcv8w6e497iuo";
-
+    private static final Pattern pattern = Pattern.compile("^[A-Za-z0-9]{5,}$");
     /**
      * 通过用户id获取邀请码
      * @param uid
      * @return
      * @throws Exception
      */
-    public static String getCodeByUid(Integer uid)throws Exception {
+    public static String getCodeByUid(Integer uid) {
         if (uid == null || uid < 0) {
             return null;
         }
@@ -38,9 +41,12 @@ public class InviteUtil {
      * @return
      * @throws Exception
      */
-    public static Integer getUidByCode(String code)throws Exception {
+    public static Integer getUidByCode(String code){
         if (StringUtils.isBlank(code) ) {
             return null;
+        }
+        if(!check(code)){
+            throw new IllegalArgumentException("邀请码错误");
         }
 
         char[] codeChars = code.toCharArray();
@@ -55,5 +61,10 @@ public class InviteUtil {
             result= result+(int)(value*Math.pow(36,--codeLength));
         }
         return result;
+    }
+
+    public static boolean check(String code){
+        Matcher matcher = pattern.matcher(code);
+        return matcher.matches();
     }
 }

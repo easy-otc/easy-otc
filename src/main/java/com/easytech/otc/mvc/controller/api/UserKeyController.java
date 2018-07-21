@@ -8,8 +8,6 @@ import com.easytech.otc.common.crypt.RSAUtils;
 import com.easytech.otc.enums.VerifyCodeEnum;
 import com.easytech.otc.exception.BizException;
 import com.easytech.otc.manager.redis.support.RedisTool;
-import com.easytech.otc.mapper.UserMapper;
-import com.easytech.otc.mvc.controller.Cache;
 import com.easytech.otc.mvc.controller.WebConst;
 import com.easytech.otc.mvc.protocol.ACL;
 import com.easytech.otc.mvc.protocol.Resp;
@@ -31,8 +29,6 @@ public class UserKeyController {
 
     @Autowired
     private RedisTool redisTool;
-    @Autowired
-    private UserMapper userMapper;
     /**
      * 获取临时公钥
      * 

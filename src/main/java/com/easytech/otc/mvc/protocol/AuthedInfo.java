@@ -13,29 +13,33 @@ public class AuthedInfo implements Serializable {
 
     /** */
     private static final long serialVersionUID = -2813504955609506749L;
-
     /**
-     * 已验证的身份Token
+     * token
      */
-    private String            token;
-
+    private String token;
     /**
-     * 身份信息
+     * 用户名
      */
-    private String            uid;
-
+    private String userName;
     /**
-     * 创建时间
+     * 用户id
      */
-    private Date              createTime;
-
+    private Integer uid;
     /**
-     * 过期时间
+     * 手机号
      */
-    private Date              expireTime;
-
+    private String mobile;
     /**
-     * 附加信息
+     * 邮箱
      */
-    private String            attach;
+    private String email;
+    /**
+     * 邀请码
+     */
+    private String invitionCode;
+    /**
+     * 邀请人
+     */
+    private Integer invitedBy;
+
 }

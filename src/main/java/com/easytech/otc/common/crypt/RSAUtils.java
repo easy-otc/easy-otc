@@ -1,5 +1,6 @@
 package com.easytech.otc.common.crypt;
 
+import lombok.Data;
 import lombok.Getter;
 import org.apache.commons.codec.binary.Base64;
 
@@ -170,7 +171,7 @@ public class RSAUtils {
         return cipher.doFinal(data);
     }
 
-    @Getter
+    @Data
     public static class K {
         private String privateKey;
         private String publicKey;

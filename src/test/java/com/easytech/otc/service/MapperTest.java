@@ -43,9 +43,10 @@ public class MapperTest extends BaseTest {
 
         user.setIsRealNameAuthed(0);
         user.setIsEmailVerified(0);
-        user.setIsMobileVerified(1);
+
 
         int i = userMapper.insert(user);
+
 
         System.out.println(i);
     }

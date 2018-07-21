@@ -3,10 +3,13 @@ package com.easytech.otc.mvc.controller.api;
 import com.easytech.otc.cache.CodeKey;
 import com.easytech.otc.cache.DemoKey;
 import com.easytech.otc.common.MockUtil;
+import com.easytech.otc.common.PasswdUtil;
 import com.easytech.otc.enums.VerifyCodeEnum;
 import com.easytech.otc.manager.redis.support.RedisTool;
+import com.easytech.otc.mapper.model.User;
 import com.easytech.otc.mvc.controller.WebConst;
 import com.easytech.otc.mvc.protocol.ACL;
+import com.easytech.otc.mvc.protocol.AuthedInfoRepository;
 import com.easytech.otc.mvc.protocol.Resp;
 import com.easytech.otc.mvc.protocol.RetCodeEnum;
 import com.easytech.otc.mvc.vo.LoginRequest;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * Description:
@@ -35,32 +39,39 @@ public class PassportController {
     private RedisTool redisTool;
     @Autowired
     private UserService userService;
+    @Autowired
+    AuthedInfoRepository authedInfoRepository;
+
     @PostMapping(value = "/login")
     @ACL(authControl = false)
     public Resp<LoginReturnVO> login(@RequestBody LoginRequest loginRequest) {
         Resp<LoginReturnVO> result = new Resp<>();
-        redisTool.get(DemoKey.demo, "1");
-        return result;
+        userService.checkLoginRequest(loginRequest);
+        User user = userService.getUserByMobile(loginRequest.getMobile());
+        if(user==null){
+            return result.setFail(RetCodeEnum.LOGIN_ERROR);
+        }
+        if(!PasswdUtil.verify(loginRequest.getPassword(),user.getLoginPassword())){
+            return result.setFail(RetCodeEnum.LOGIN_ERROR);
+        }
+        LoginReturnVO loginReturnVO = authedInfoRepository.saveLogin(user);
+        return Resp.newSuccessResult(loginReturnVO);
     }
 
     @PostMapping(value = "/register")
     @ACL(authControl = false)
-    public Resp<RegisterVO> register(@RequestBody RegisterRequest registerRequest) {
-        Resp<RegisterVO> result = new Resp<>();
-        if(!MockUtil.isMock()){
-            String verifyCode = redisTool.hget(CodeKey.VERIFY_CODE, VerifyCodeEnum.REGISTER, registerRequest.getMobile());
-            if(!Objects.equals(verifyCode,registerRequest.getVerifyCode())){
-                return result.setFail(RetCodeEnum.VERIFY_CODE_ERROR);
-            }
+    public Resp register(@RequestBody RegisterRequest registerRequest) {
+        Resp result = new Resp();
+        userService.checkRegisterRequest(registerRequest);
+        if (userService.mobileExists(registerRequest.getMobile())) {
+            return result.setFail(RetCodeEnum.MOBILE_ERROR);
         }
-        if(userService.mobileExists(registerRequest.getMobile())){
-
+        if (userService.nameExists(registerRequest.getUserName())) {
+            return result.setFail(RetCodeEnum.NAME_REPEAT_ERROR);
         }
-        if(userService.nameExists(registerRequest.getUserName())){
-
-        }
-
-        return result;
+        int uid = userService.register(registerRequest);
+        userService.updateInvitionCode(uid);
+        return  Resp.newSuccessResult();
     }
 
 }

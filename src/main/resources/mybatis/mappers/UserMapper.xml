@@ -26,11 +26,8 @@
     <result column="login_ip" jdbcType="VARCHAR" property="loginIp" />
     <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
     <result column="is_real_name_authed" jdbcType="TINYINT" property="isRealNameAuthed" />
-    <result column="is_mobile_verified" jdbcType="TINYINT" property="isMobileVerified" />
     <result column="is_email_verified" jdbcType="TINYINT" property="isEmailVerified" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
-
-
 </mapper>

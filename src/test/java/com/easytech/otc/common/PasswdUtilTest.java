@@ -10,6 +10,7 @@ public class PasswdUtilTest {
         String passwd = "easy-otc";
 
         String encode = PasswdUtil.encode(passwd);
+        System.out.println(encode);
         System.out.println(PasswdUtil.verify(passwd, encode));
     }
 }

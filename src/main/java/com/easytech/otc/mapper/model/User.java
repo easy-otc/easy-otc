@@ -131,11 +131,7 @@ public class User {
     @Column(name = "is_real_name_authed")
     private Integer    isRealNameAuthed;
 
-    /**
-     * 手机号是否验证,0-否,1-是
-     */
-    @Column(name = "is_mobile_verified")
-    private Integer    isMobileVerified;
+
 
     /**
      * 邮箱是否验证,0-否,1-是
@@ -533,23 +529,6 @@ public class User {
         this.isRealNameAuthed = isRealNameAuthed;
     }
 
-    /**
-     * 获取手机号是否验证,0-否,1-是
-     *
-     * @return is_mobile_verified - 手机号是否验证,0-否,1-是
-     */
-    public Integer getIsMobileVerified() {
-        return isMobileVerified;
-    }
-
-    /**
-     * 设置手机号是否验证,0-否,1-是
-     *
-     * @param isMobileVerified 手机号是否验证,0-否,1-是
-     */
-    public void setIsMobileVerified(Integer isMobileVerified) {
-        this.isMobileVerified = isMobileVerified;
-    }
 
     /**
      * 获取邮箱是否验证,0-否,1-是
