@@ -24,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 public class ACLInterceptor implements HandlerInterceptor {
+
     @Autowired
     AuthedInfoRepository authedInfoRepository;
 
@@ -51,7 +52,7 @@ public class ACLInterceptor implements HandlerInterceptor {
         String idempotent = request.getHeader(HeaderNames.IDEMPOTENT);
         String token = request.getHeader(HeaderNames.AUTHORIZATION);
         String uid = request.getHeader(HeaderNames.IDENTITY);
-        AuthedInfo authedInfo = authedInfoRepository.getAuthedInfo(uid,token);
+        AuthedInfo authedInfo = authedInfoRepository.getAuthedInfo(uid, token);
         if (authedInfo == null) {
             RespWithoutData ret = new RespWithoutData();
             ret.setFail(RetCodeEnum.UNAUTHORIZED);
@@ -60,7 +61,7 @@ public class ACLInterceptor implements HandlerInterceptor {
         }
 
         Map<String, String> arguments = (Map<String, String>) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
-       /* String urlAuthTag = arguments.get(aclAnn.authTagKey());
+        /* String urlAuthTag = arguments.get(aclAnn.authTagKey());
         String authTag = String.valueOf(authedInfo.getUid());
         if (!StringUtils.equals(urlAuthTag, authTag)) {
             RespWithoutData ret = new RespWithoutData();

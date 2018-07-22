@@ -1,5 +1,14 @@
 package com.easytech.otc.service;
 
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.Objects;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
+
 import com.alibaba.fastjson.JSON;
 import com.easytech.otc.cache.CodeKey;
 import com.easytech.otc.common.InviteUtil;
@@ -15,19 +24,6 @@ import com.easytech.otc.mapper.model.User;
 import com.easytech.otc.mvc.protocol.RetCodeEnum;
 import com.easytech.otc.mvc.vo.LoginRequest;
 import com.easytech.otc.mvc.vo.RegisterRequest;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
-
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.Objects;
-
-import com.easytech.otc.mapper.UserMapper;
-import com.easytech.otc.mapper.model.User;
 
 /**
  * Description:
@@ -35,16 +31,17 @@ import com.easytech.otc.mapper.model.User;
  * Date: 2018/7/20 22:46
  */
 @Service
-public class UserService extends BaseService<User>{
+public class UserService extends BaseService<User> {
     @Autowired
     private UserMapper userMapper;
     @Autowired
-    private RedisTool redisTool;
-    public boolean nameExists(String name){
+    private RedisTool  redisTool;
+
+    public boolean nameExists(String name) {
         return getUserByName(name) != null;
     }
 
-    public User getUserByName(String name){
+    public User getUserByName(String name) {
         User user = new User();
         user.setName(name);
         return userMapper.selectOne(user);
@@ -53,13 +50,14 @@ public class UserService extends BaseService<User>{
     public boolean mobileExists(String mobile) {
         return getUserByMobile(mobile) != null;
     }
+
     public User getUserByMobile(String mobile) {
         User user = new User();
         user.setMobile(mobile);
         return userMapper.selectOne(user);
     }
 
-    public User getUserById(Integer id ){
+    public User getUserById(Integer id) {
         return userMapper.selectByPrimaryKey(id);
     }
 
@@ -67,12 +65,12 @@ public class UserService extends BaseService<User>{
         return getUserById(id) != null;
     }
 
-    public void checkLoginRequest(LoginRequest loginRequest){
+    public void checkLoginRequest(LoginRequest loginRequest) {
         Assert.hasLength(loginRequest.getMobile(), "手机号码不能为空");
         if (!MobileVerifyUtil.verifyMobile(loginRequest.getMobile())) {
             throw new IllegalArgumentException("手机号码输入有误");
         }
-        Assert.hasLength(loginRequest.getPassword(),"密码不能为空");
+        Assert.hasLength(loginRequest.getPassword(), "密码不能为空");
     }
 
     public void checkRegisterRequest(RegisterRequest registerRequest) {
@@ -111,7 +109,7 @@ public class UserService extends BaseService<User>{
         user.setMobile(registerRequest.getMobile());
         String secretKeys = redisTool.hget(CodeKey.SECRET_KEY, "", registerRequest.getMobile());
         RSAUtils.K k = JSON.parseObject(secretKeys, RSAUtils.K.class);
-        if(k==null){
+        if (k == null) {
             throw new BizException(RetCodeEnum.INTERNAL_ERROR);
         }
         user.setLoginPasswordPrivateKey(k.getPrivateKey());
@@ -135,7 +133,7 @@ public class UserService extends BaseService<User>{
         user.setIsEmailVerified(0);
         user.setCreateTime(new Date());
         user.setUpdateTime(new Date());
-         userMapper.insert(user);
+        userMapper.insert(user);
         return user.getId();
     }
 
@@ -145,7 +143,7 @@ public class UserService extends BaseService<User>{
     }
 
     @Transactional
-    public int updateInvitionCode(int uid){
+    public int updateInvitionCode(int uid) {
         User user = new User();
         user.setId(uid);
         user.setInvitionCode(InviteUtil.getCodeByUid(uid));
@@ -153,7 +151,7 @@ public class UserService extends BaseService<User>{
     }
 
     @Transactional
-    public int updateEmailStatus(int uid){
+    public int updateEmailStatus(int uid) {
         User user = new User();
         user.setId(uid);
         user.setIsEmailVerified(YesNoEnum.YES.getCode());

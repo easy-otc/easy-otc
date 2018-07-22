@@ -134,8 +134,6 @@ public class User extends BaseModel {
     @Column(name = "is_real_name_authed")
     private Integer    isRealNameAuthed;
 
-
-
     /**
      * 邮箱是否验证,0-否,1-是
      */
@@ -531,7 +529,6 @@ public class User extends BaseModel {
     public void setIsRealNameAuthed(Integer isRealNameAuthed) {
         this.isRealNameAuthed = isRealNameAuthed;
     }
-
 
     /**
      * 获取邮箱是否验证,0-否,1-是

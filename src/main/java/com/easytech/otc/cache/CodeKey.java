@@ -10,10 +10,9 @@ import com.easytech.otc.manager.redis.RedisKey;
  */
 
 public enum CodeKey implements RedisKey {
-    IMAGE_CODE(3*60,KeyType.HASH,"图片验证码"),
-    VERIFY_CODE(3 * 60, KeyType.HASH, "短信验证码"),
-    SECRET_KEY(3 * 60, KeyType.HASH, "临时公私钥"),
-    CONFIRM_EMAIL_CODE(30*60,KeyType.STRING,"邮箱验证码");
+                                         IMAGE_CODE(3 * 60, KeyType.HASH, "图片验证码"), VERIFY_CODE(3 * 60, KeyType.HASH, "短信验证码"), SECRET_KEY(3 * 60, KeyType.HASH,
+                                                                                                                                           "临时公私钥"), CONFIRM_EMAIL_CODE(30 * 60, KeyType.STRING,
+                                                                                                                                                                        "邮箱验证码");
     private static final String NAMESPACE = "code";
 
     private int                 expire    = -1;

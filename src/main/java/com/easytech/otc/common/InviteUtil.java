@@ -1,9 +1,9 @@
 package com.easytech.otc.common;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Description:
@@ -12,8 +12,9 @@ import java.util.regex.Pattern;
  */
 
 public class InviteUtil {
-    private static final String sourceString = "bnm012kjtyplhgfdq5sa3rzxcv8w6e497iuo";
-    private static final Pattern pattern = Pattern.compile("^[A-Za-z0-9]{5,}$");
+    private static final String  sourceString = "bnm012kjtyplhgfdq5sa3rzxcv8w6e497iuo";
+    private static final Pattern pattern      = Pattern.compile("^[A-Za-z0-9]{5,}$");
+
     /**
      * 通过用户id获取邀请码
      * @param uid
@@ -42,11 +43,11 @@ public class InviteUtil {
      * @return
      * @throws Exception
      */
-    public static Integer getUidByCode(String code){
-        if (StringUtils.isBlank(code) ) {
+    public static Integer getUidByCode(String code) {
+        if (StringUtils.isBlank(code)) {
             return null;
         }
-        if(!check(code)){
+        if (!check(code)) {
             throw new IllegalArgumentException("邀请码错误");
         }
 
@@ -64,7 +65,7 @@ public class InviteUtil {
         return result;
     }
 
-    public static boolean check(String code){
+    public static boolean check(String code) {
         Matcher matcher = pattern.matcher(code);
         return matcher.matches();
     }

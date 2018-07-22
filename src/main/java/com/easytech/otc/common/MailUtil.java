@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class MailUtil {
-    private static final Pattern EMAIL_VERIFY   = Pattern.compile("^[A-Za-z\\d]+([-_.][A-Za-z\\d]+)*@([A-Za-z\\d]+[-.])+[A-Za-z\\d]{2,4}$");
+    private static final Pattern    EMAIL_VERIFY     = Pattern.compile("^[A-Za-z\\d]+([-_.][A-Za-z\\d]+)*@([A-Za-z\\d]+[-.])+[A-Za-z\\d]{2,4}$");
     private static final String     SENDER_EMAIL     = "459105408@qq.com";
     private static final String     SENDER_AUTH_CODE = "cparfuzpstvbcagg";
 
@@ -108,8 +108,8 @@ public class MailUtil {
         return message;
     }
 
-    public static boolean isEmail(String email){
-        if(email==null){
+    public static boolean isEmail(String email) {
+        if (email == null) {
             return false;
         }
         return EMAIL_VERIFY.matcher(email).matches();

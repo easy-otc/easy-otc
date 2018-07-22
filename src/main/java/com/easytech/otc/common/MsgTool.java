@@ -1,5 +1,8 @@
 package com.easytech.otc.common;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
@@ -10,9 +13,6 @@ import com.aliyuncs.profile.IClientProfile;
 import com.easytech.otc.config.PropertiesConfig;
 import com.easytech.otc.exception.BizException;
 import com.easytech.otc.mvc.protocol.RetCodeEnum;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 /**
  * Description:发送短信工具类
@@ -24,6 +24,7 @@ public class MsgTool {
 
     private static String AccessKeyId;
     private static String AccessKeySecret;
+
     public static String sendVerifyCode(String mobile) throws Exception {
 
         if (PropertiesConfig.isMock()) {
@@ -74,12 +75,13 @@ public class MsgTool {
         }
     }
 
-    @Value("${AccessKeyId}")
-    public  void setAccessKeyId(String accessKeyId) {
+    @Value("${message.access.keyid}")
+    public void setAccessKeyId(String accessKeyId) {
         AccessKeyId = accessKeyId;
     }
-    @Value("${AccessKeySecret}")
-    public  void setAccessKeySecret(String accessKeySecret) {
+
+    @Value("${message.access.keysecret}")
+    public void setAccessKeySecret(String accessKeySecret) {
         AccessKeySecret = accessKeySecret;
     }
 }

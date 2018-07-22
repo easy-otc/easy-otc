@@ -1,7 +1,6 @@
 package com.easytech.otc.mvc.protocol;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import lombok.Data;
 
@@ -16,30 +15,30 @@ public class AuthedInfo implements Serializable {
     /**
      * token
      */
-    private String token;
+    private String            token;
     /**
      * 用户名
      */
-    private String userName;
+    private String            userName;
     /**
      * 用户id
      */
-    private Integer uid;
+    private Integer           uid;
     /**
      * 手机号
      */
-    private String mobile;
+    private String            mobile;
     /**
      * 邮箱
      */
-    private String email;
+    private String            email;
     /**
      * 邀请码
      */
-    private String invitionCode;
+    private String            invitionCode;
     /**
      * 邀请人
      */
-    private Integer invitedBy;
+    private Integer           invitedBy;
 
 }
