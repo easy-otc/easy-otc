@@ -26,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ACLInterceptor implements HandlerInterceptor {
     @Autowired
     AuthedInfoRepository authedInfoRepository;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         ACL aclAnn = null;
@@ -49,7 +50,8 @@ public class ACLInterceptor implements HandlerInterceptor {
 
         String idempotent = request.getHeader(HeaderNames.IDEMPOTENT);
         String token = request.getHeader(HeaderNames.AUTHORIZATION);
-        AuthedInfo authedInfo = authedInfoRepository.getAuthedInfo(token);
+        String uid = request.getHeader(HeaderNames.IDENTITY);
+        AuthedInfo authedInfo = authedInfoRepository.getAuthedInfo(uid,token);
         if (authedInfo == null) {
             RespWithoutData ret = new RespWithoutData();
             ret.setFail(RetCodeEnum.UNAUTHORIZED);
@@ -58,16 +60,14 @@ public class ACLInterceptor implements HandlerInterceptor {
         }
 
         Map<String, String> arguments = (Map<String, String>) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
-        String urlAuthTag = arguments.get(aclAnn.authTagKey());
-        String uid = request.getHeader(HeaderNames.IDENTITY);
+       /* String urlAuthTag = arguments.get(aclAnn.authTagKey());
         String authTag = String.valueOf(authedInfo.getUid());
-
         if (!StringUtils.equals(urlAuthTag, authTag)) {
             RespWithoutData ret = new RespWithoutData();
             ret.setFail(RetCodeEnum.ILLEGAL_AUTHORIZATION);
             ServletResponsetUtil.respond(response, ret);
             return false;
-        }
+        }*/
 
         if (aclAnn.idempotent()) {
             if (StringUtils.isBlank(idempotent)) {
@@ -83,6 +83,7 @@ public class ACLInterceptor implements HandlerInterceptor {
 
         RequestContext.setAuthedInfo(authedInfo);
         RequestContext.setIp(WebTool.getIpAddr(request));
+        authedInfoRepository.saveAuthedInfo(authedInfo);
         return true;
     }
 

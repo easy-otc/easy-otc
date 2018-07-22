@@ -7,6 +7,7 @@ import com.easytech.otc.common.MobileVerifyUtil;
 import com.easytech.otc.common.PasswdUtil;
 import com.easytech.otc.common.crypt.RSAUtils;
 import com.easytech.otc.enums.VerifyCodeEnum;
+import com.easytech.otc.enums.YesNoEnum;
 import com.easytech.otc.exception.BizException;
 import com.easytech.otc.manager.redis.support.RedisTool;
 import com.easytech.otc.mapper.UserMapper;
@@ -143,10 +144,19 @@ public class UserService extends BaseService<User>{
         return userMapper.updateByPrimaryKeySelective(user);
     }
 
+    @Transactional
     public int updateInvitionCode(int uid){
         User user = new User();
         user.setId(uid);
         user.setInvitionCode(InviteUtil.getCodeByUid(uid));
+        return updateByPrimaryKeySelective(user);
+    }
+
+    @Transactional
+    public int updateEmailStatus(int uid){
+        User user = new User();
+        user.setId(uid);
+        user.setIsEmailVerified(YesNoEnum.YES.getCode());
         return updateByPrimaryKeySelective(user);
     }
 }

@@ -27,10 +27,20 @@ public class AuthedInfoRepository {
     @Autowired
     private RedisTool redisTool;
 
-    public AuthedInfo getAuthedInfo(String token) {
-        Map<String, String> stringStringMap = redisTool.hgetAll(UserKey.USER_INFO, token);
-
-        return null;
+    public AuthedInfo getAuthedInfo(String uid,String token) {
+        Map<String, String> map = redisTool.hgetAll(UserKey.USER_INFO, uid+"_"+token);
+        if(map.size()==0){
+            return null;
+        }
+        AuthedInfo authedInfo = new AuthedInfo();
+        authedInfo.setToken(token);
+        authedInfo.setUserName(map.get("userName"));
+        authedInfo.setUid(Integer.valueOf(map.get("uid")));
+        authedInfo.setMobile(map.get("mobile"));
+        authedInfo.setInvitionCode(map.get("invitionCode"));
+        authedInfo.setInvitedBy(Integer.valueOf(map.get("invitedBy")));
+        authedInfo.setEmail(map.get("email"));
+        return authedInfo;
     }
 
     public void saveAuthedInfo(AuthedInfo authedInfo) {
@@ -41,7 +51,7 @@ public class AuthedInfoRepository {
         map.put("invitionCode",authedInfo.getInvitionCode());
         map.put("invitedBy",String.valueOf(authedInfo.getInvitedBy()));
         map.put("email",authedInfo.getEmail()==null?"":authedInfo.getEmail());
-        redisTool.hmset(UserKey.USER_INFO, authedInfo.getToken(),map);
+        redisTool.hmset(UserKey.USER_INFO, authedInfo.getUid()+"_"+authedInfo.getToken(),map);
     }
 
     public LoginReturnVO saveLogin(User user){

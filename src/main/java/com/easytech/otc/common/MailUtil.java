@@ -2,6 +2,7 @@ package com.easytech.otc.common;
 
 import java.util.Date;
 import java.util.Properties;
+import java.util.regex.Pattern;
 
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -11,10 +12,10 @@ import javax.mail.internet.MimeMessage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class MailSender {
-
-    private static final String     SENDER_EMAIL     = "737093270@qq.com";
-    private static final String     SENDER_AUTH_CODE = "mfmllfelfeuebdbi";
+public class MailUtil {
+    private static final Pattern EMAIL_VERIFY   = Pattern.compile("^[A-Za-z\\d]+([-_.][A-Za-z\\d]+)*@([A-Za-z\\d]+[-.])+[A-Za-z\\d]{2,4}$");
+    private static final String     SENDER_EMAIL     = "459105408@qq.com";
+    private static final String     SENDER_AUTH_CODE = "cparfuzpstvbcagg";
 
     private static final String     SENDER_NAME      = "CAS-WEB";
     private static final String     RECIVER_NICK     = "CAS-WEB用户";
@@ -106,4 +107,12 @@ public class MailSender {
 
         return message;
     }
+
+    public static boolean isEmail(String email){
+        if(email==null){
+            return false;
+        }
+        return EMAIL_VERIFY.matcher(email).matches();
+    }
+
 }
