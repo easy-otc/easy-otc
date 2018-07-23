@@ -24,7 +24,7 @@ public enum CoinTypeEnum {
     String     code;
     String     desc;
     /**
-     *
+     * 代币符号
      */
     String     symbol;
     /**

@@ -29,7 +29,7 @@ import rx.functions.Action1;
  * 所有监听都在Web3jRx中
  *
  */
-@Component
+//@Component
 public class EthObserver {
 
     @Autowired
