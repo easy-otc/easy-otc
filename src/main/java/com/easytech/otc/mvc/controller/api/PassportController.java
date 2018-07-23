@@ -2,11 +2,12 @@ package com.easytech.otc.mvc.controller.api;
 
 import java.util.Objects;
 
+import com.easytech.otc.cache.UserKey;
+import com.easytech.otc.common.WebTool;
+import com.easytech.otc.mvc.protocol.*;
+import com.easytech.otc.mvc.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.easytech.otc.cache.CodeKey;
 import com.easytech.otc.common.PasswdUtil;
@@ -14,15 +15,9 @@ import com.easytech.otc.enums.VerifyCodeEnum;
 import com.easytech.otc.manager.redis.support.RedisTool;
 import com.easytech.otc.mapper.model.User;
 import com.easytech.otc.mvc.controller.WebConst;
-import com.easytech.otc.mvc.protocol.ACL;
-import com.easytech.otc.mvc.protocol.AuthedInfoRepository;
-import com.easytech.otc.mvc.protocol.Resp;
-import com.easytech.otc.mvc.protocol.RetCodeEnum;
-import com.easytech.otc.mvc.vo.LoginRequest;
-import com.easytech.otc.mvc.vo.LoginReturnVO;
-import com.easytech.otc.mvc.vo.RegisterRequest;
-import com.easytech.otc.mvc.vo.RegisterVO;
 import com.easytech.otc.service.UserService;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Description:
@@ -43,7 +38,7 @@ public class PassportController {
 
     @PostMapping(value = "/login")
     @ACL(authControl = false)
-    public Resp<LoginReturnVO> login(@RequestBody LoginRequest loginRequest) {
+    public Resp<LoginReturnVO> login(HttpServletRequest request,@RequestBody LoginRequest loginRequest) {
         Resp<LoginReturnVO> result = new Resp<>();
         userService.checkLoginRequest(loginRequest);
         User user = userService.getUserByMobile(loginRequest.getMobile());
@@ -53,6 +48,7 @@ public class PassportController {
         if (!PasswdUtil.verify(loginRequest.getPassword(), user.getLoginPassword())) {
             return result.setFail(RetCodeEnum.LOGIN_ERROR);
         }
+        userService.login(user, WebTool.getIpAddr(request));
         LoginReturnVO loginReturnVO = authedInfoRepository.saveLogin(user);
         return Resp.newSuccessResult(loginReturnVO);
     }
@@ -62,7 +58,7 @@ public class PassportController {
     public Resp<RegisterVO> register(@RequestBody RegisterRequest registerRequest) {
         Resp<RegisterVO> result = new Resp<>();
 
-        String verifyCode = redisTool.hget(CodeKey.VERIFY_CODE, VerifyCodeEnum.REGISTER, registerRequest.getMobile());
+        String verifyCode = redisTool.hget(CodeKey.VERIFY_CODE, VerifyCodeEnum.NO_LOGIN, registerRequest.getMobile());
         if (!Objects.equals(verifyCode, registerRequest.getVerifyCode())) {
             return result.setFail(RetCodeEnum.VERIFY_CODE_ERROR);
         }
@@ -77,4 +73,30 @@ public class PassportController {
         userService.register(registerRequest);
         return Resp.newSuccessResult();
     }
+
+    /**
+     * 修改密码
+     * @return
+     */
+    @PostMapping(value = "/passport/{uid}")
+    @ACL
+    public Resp updatePassword(@PathVariable Integer uid,@RequestBody UpdatePassportRequest pssportRequest){
+        Resp resp = new Resp();
+        User user = userService.getById(uid);
+        if(user==null){
+            resp.setFail(RetCodeEnum.ILLEGAL_ARGUMENT);
+            return resp;
+        }
+        if (!PasswdUtil.verify(pssportRequest.getOldPassword(), user.getLoginPassword())) {
+            return resp.setFail(RetCodeEnum.ILLEGAL_ARGUMENT);
+        }
+        userService.updatePassword(uid,pssportRequest.getNewPassword());
+        AuthedInfo authedInfo = RequestContext.getAuthedInfo();
+        redisTool.del(UserKey.USER_INFO,authedInfo.getToken());
+        RequestContext.clear();
+        return Resp.newSuccessResult();
+    }
+
+
+
 }

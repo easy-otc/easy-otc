@@ -24,9 +24,10 @@ public class AuthedInfoRepository {
     @Autowired
     private RedisTool redisTool;
 
-    public AuthedInfo getAuthedInfo(String uid, String token) {
-        Map<String, String> map = redisTool.hgetAll(UserKey.USER_INFO, uid + "_" + token);
-        if (map.size() == 0) {
+    public AuthedInfo getAuthedInfo(String token) {
+        Map<String, String> map = redisTool.hgetAll(UserKey.USER_INFO, token);
+
+        if(map.size()==0){
             return null;
         }
         AuthedInfo authedInfo = new AuthedInfo();
@@ -37,18 +38,26 @@ public class AuthedInfoRepository {
         authedInfo.setInvitionCode(map.get("invitionCode"));
         authedInfo.setInvitedBy(Integer.valueOf(map.get("invitedBy")));
         authedInfo.setEmail(map.get("email"));
+        authedInfo.setCreateTime(Long.valueOf(map.get("createTime")));
+        authedInfo.setTtl(redisTool.TTL(UserKey.USER_INFO, token));
+
         return authedInfo;
     }
 
+    public void exprieAuthedInfo(AuthedInfo authedInfo){
+        redisTool.expire(UserKey.USER_INFO,authedInfo.getToken(),UserKey.USER_INFO.expire());
+    }
+
     public void saveAuthedInfo(AuthedInfo authedInfo) {
-        Map<String, String> map = new HashMap<>();
-        map.put("userName", authedInfo.getUserName());
-        map.put("uid", String.valueOf(authedInfo.getUid()));
-        map.put("mobile", authedInfo.getMobile());
-        map.put("invitionCode", authedInfo.getInvitionCode());
-        map.put("invitedBy", String.valueOf(authedInfo.getInvitedBy()));
-        map.put("email", authedInfo.getEmail() == null ? "" : authedInfo.getEmail());
-        redisTool.hmset(UserKey.USER_INFO, authedInfo.getUid() + "_" + authedInfo.getToken(), map);
+        Map<String,String> map = new HashMap<>();
+        map.put("userName",authedInfo.getUserName());
+        map.put("uid",String.valueOf(authedInfo.getUid()));
+        map.put("mobile",authedInfo.getMobile());
+        map.put("invitionCode",authedInfo.getInvitionCode());
+        map.put("invitedBy",String.valueOf(authedInfo.getInvitedBy()));
+        map.put("email",authedInfo.getEmail()==null?"":authedInfo.getEmail());
+        map.put("createTime",String.valueOf(authedInfo.getCreateTime()));
+        redisTool.hmset(UserKey.USER_INFO, authedInfo.getToken(),map);
     }
 
     public LoginReturnVO saveLogin(User user) {
@@ -81,6 +90,7 @@ public class AuthedInfoRepository {
         authedInfo.setMobile(user.getMobile());
         authedInfo.setUserName(user.getName());
         authedInfo.setToken(token);
+        authedInfo.setCreateTime(System.currentTimeMillis());
         return authedInfo;
     }
 
