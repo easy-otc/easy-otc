@@ -12,7 +12,7 @@ public class NewsEnum {
     @Getter
     public enum Type {
 
-                      TRADE(0, "公告"), SUGGEST(3, "新闻");
+        TRADE(0, "公告"), SUGGEST(3, "新闻");
 
         int    code;
         String desc;
@@ -29,7 +29,7 @@ public class NewsEnum {
     @Getter
     public enum Status {
 
-                        PUBLISH(0, "发布"), CANCELL(1, "撤销");
+        PUBLISH(0, "发布"), CANCELL(1, "撤销");
 
         int    code;
         String desc;

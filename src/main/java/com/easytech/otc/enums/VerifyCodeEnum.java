@@ -7,7 +7,7 @@ package com.easytech.otc.enums;
  */
 
 public enum VerifyCodeEnum {
-                            REGISTER(1, "注册短信");
+    REGISTER(1, "注册短信");
     private int    type;
     private String desc;
 
