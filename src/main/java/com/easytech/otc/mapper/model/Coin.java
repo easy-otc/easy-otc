@@ -22,10 +22,10 @@ public class Coin extends BaseModel {
     private Integer    uid;
 
     /**
-     * 币种
+     * 币种,前两位表示公链，后两位为00代表公链币，否则代表代币号
      */
     @Column(name = "coin_type")
-    private Integer    coinType;
+    private String     coinType;
 
     /**
      * 私钥
@@ -104,21 +104,21 @@ public class Coin extends BaseModel {
     }
 
     /**
-     * 获取币种
+     * 获取币种,前两位表示公链，后两位为00代表公链币，否则代表代币号
      *
-     * @return coin_type - 币种
+     * @return coin_type - 币种,前两位表示公链，后两位为00代表公链币，否则代表代币号
      */
-    public Integer getCoinType() {
+    public String getCoinType() {
         return coinType;
     }
 
     /**
-     * 设置币种
+     * 设置币种,前两位表示公链，后两位为00代表公链币，否则代表代币号
      *
-     * @param coinType 币种
+     * @param coinType 币种,前两位表示公链，后两位为00代表公链币，否则代表代币号
      */
-    public void setCoinType(Integer coinType) {
-        this.coinType = coinType;
+    public void setCoinType(String coinType) {
+        this.coinType = coinType == null ? null : coinType.trim();
     }
 
     /**

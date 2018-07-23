@@ -7,7 +7,7 @@
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="uid" jdbcType="INTEGER" property="uid" />
-    <result column="coin_type" jdbcType="TINYINT" property="coinType" />
+    <result column="coin_type" jdbcType="CHAR" property="coinType" />
     <result column="private_key" jdbcType="VARCHAR" property="privateKey" />
     <result column="public_key" jdbcType="VARCHAR" property="publicKey" />
     <result column="address" jdbcType="VARCHAR" property="address" />
