@@ -142,7 +142,7 @@ public class UserService extends BaseService<User> {
         this.updateById(u);
 
         // 生成用户所有币和代币地址
-        //coinService.genCoinAndTokenAccount(user.getId());
+        coinService.genCoinAndTokenAccount(user.getId());
     }
 
     @Transactional
