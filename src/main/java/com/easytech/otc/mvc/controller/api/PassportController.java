@@ -74,8 +74,7 @@ public class PassportController {
         if (userService.nameExists(registerRequest.getUserName())) {
             return result.setFail(RetCodeEnum.NAME_REPEAT_ERROR);
         }
-        int uid = userService.register(registerRequest);
-        userService.updateInvitionCode(uid);
+        userService.register(registerRequest);
         return Resp.newSuccessResult();
     }
 }

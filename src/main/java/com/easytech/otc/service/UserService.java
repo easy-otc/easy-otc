@@ -32,10 +32,14 @@ import com.easytech.otc.mvc.vo.RegisterRequest;
  */
 @Service
 public class UserService extends BaseService<User> {
+
     @Autowired
-    private UserMapper userMapper;
+    private UserMapper  userMapper;
     @Autowired
-    private RedisTool  redisTool;
+    private RedisTool   redisTool;
+
+    @Autowired
+    private CoinService coinService;
 
     public boolean nameExists(String name) {
         return getUserByName(name) != null;
@@ -54,15 +58,11 @@ public class UserService extends BaseService<User> {
     public User getUserByMobile(String mobile) {
         User user = new User();
         user.setMobile(mobile);
-        return userMapper.selectOne(user);
-    }
-
-    public User getUserById(Integer id) {
-        return userMapper.selectByPrimaryKey(id);
+        return this.selectOne(user);
     }
 
     public boolean idExists(Integer id) {
-        return getUserById(id) != null;
+        return this.getById(id) != null;
     }
 
     public void checkLoginRequest(LoginRequest loginRequest) {
@@ -103,7 +103,7 @@ public class UserService extends BaseService<User> {
     }
 
     @Transactional
-    public int register(RegisterRequest registerRequest) {
+    public void register(RegisterRequest registerRequest) {
         User user = new User();
         user.setName(registerRequest.getUserName());
         user.setMobile(registerRequest.getMobile());
@@ -116,6 +116,7 @@ public class UserService extends BaseService<User> {
         user.setLoginPasswordPublicKey(k.getPublicKey());
         user.setLoginPassword(PasswdUtil.encode(registerRequest.getCiphertext()));
         RSAUtils.K fund = RSAUtils.initKey();
+
         user.setFundPasswordPrivateKey(fund.getPrivateKey());
         user.setFundPasswordPublicKey(fund.getPublicKey());
         user.setLegalAmount(BigDecimal.ZERO);
@@ -134,20 +135,14 @@ public class UserService extends BaseService<User> {
         user.setCreateTime(new Date());
         user.setUpdateTime(new Date());
         userMapper.insert(user);
-        return user.getId();
-    }
 
-    @Transactional
-    public int updateByPrimaryKeySelective(User user) {
-        return userMapper.updateByPrimaryKeySelective(user);
-    }
+        User u = new User();
+        u.setId(user.getId());
+        u.setInvitionCode(InviteUtil.getCodeByUid(user.getId()));
+        this.updateById(u);
 
-    @Transactional
-    public int updateInvitionCode(int uid) {
-        User user = new User();
-        user.setId(uid);
-        user.setInvitionCode(InviteUtil.getCodeByUid(uid));
-        return updateByPrimaryKeySelective(user);
+        // 生成用户所有币和代币地址
+        coinService.genCoinAndTokenAccount(user.getId());
     }
 
     @Transactional
@@ -155,6 +150,6 @@ public class UserService extends BaseService<User> {
         User user = new User();
         user.setId(uid);
         user.setIsEmailVerified(YesNoEnum.YES.getCode());
-        return updateByPrimaryKeySelective(user);
+        return this.updateById(user);
     }
 }
