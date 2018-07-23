@@ -1,11 +1,9 @@
 package com.easytech.otc.mapper.model;
 
+import com.easytech.otc.common.mybatis.plugin.BaseModel;
 import java.math.BigDecimal;
 import java.util.Date;
-
 import javax.persistence.*;
-
-import com.easytech.otc.common.mybatis.plugin.BaseModel;
 
 @Table(name = "t_order")
 public class Order extends BaseModel {
@@ -14,42 +12,42 @@ public class Order extends BaseModel {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "SELECT LAST_INSERT_ID()")
-    private Integer    id;
+    private Integer id;
 
     /**
      * 订单号
      */
     @Column(name = "order_id")
-    private String     orderId;
+    private String orderId;
 
     /**
      * 用户id
      */
-    private Integer    uid;
+    private Integer uid;
 
     /**
      * 订单备注号
      */
     @Column(name = "memo_code")
-    private String     memoCode;
+    private String memoCode;
 
     /**
      * 订单类型，0-买单，1-卖单
      */
     @Column(name = "order_type")
-    private Integer    orderType;
+    private Integer orderType;
 
     /**
      * 广告id
      */
     @Column(name = "ad_id")
-    private Integer    adId;
+    private Integer adId;
 
     /**
      * 币种
      */
     @Column(name = "coin_type")
-    private Integer    coinType;
+    private Integer coinType;
 
     /**
      * 交易数量
@@ -72,43 +70,43 @@ public class Order extends BaseModel {
      * 支付时间
      */
     @Column(name = "payment_time")
-    private Date       paymentTime;
+    private Date paymentTime;
 
     /**
      * 订单状态，0-已下单，1-已支付，2-已取消，3-已完成
      */
     @Column(name = "order_status")
-    private Integer    orderStatus;
+    private Integer orderStatus;
 
     /**
      * 放币交易的hash
      */
     @Column(name = "coin_release_tx_hash")
-    private String     coinReleaseTxHash;
+    private String coinReleaseTxHash;
 
     /**
      * 放币状态，0-未放币，1-已放币，2-币交易接口调用失败，3-币交易接口已调用，4-币交易已提交到网络，5-币交易上链成功
      */
     @Column(name = "coin_release_status")
-    private Integer    coinReleaseStatus;
+    private Integer coinReleaseStatus;
 
     /**
      * 放币时间
      */
     @Column(name = "coin_release_time")
-    private Date       coinReleaseTime;
+    private Date coinReleaseTime;
 
     /**
      * 记录创建时间
      */
     @Column(name = "create_time")
-    private Date       createTime;
+    private Date createTime;
 
     /**
      * 修改时间
      */
     @Column(name = "update_time")
-    private Date       updateTime;
+    private Date updateTime;
 
     /**
      * 获取id
