@@ -1,6 +1,5 @@
 package com.easytech.otc.config;
 
-import com.easytech.otc.mvc.protocol.ACLInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -12,6 +11,7 @@ import com.easytech.otc.mvc.protocol.ACLInterceptor;
 public class InterceptorConfig extends WebMvcConfigurationSupport {
     @Autowired
     private ACLInterceptor aclInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(aclInterceptor).addPathPatterns("/api/v1/**");

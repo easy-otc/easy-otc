@@ -10,7 +10,9 @@ import org.junit.Test;
 
 public class InviteUtilTest {
     @Test
-    public void getCodeByUid(){
-        System.out.println(InviteUtil.getCodeByUid(1700001));
+    public void getCodeByUid() {
+        for (int i = 0; i < 100000; ++i) {
+            System.out.println(InviteUtil.getCodeByUid(i));
+        }
     }
 }

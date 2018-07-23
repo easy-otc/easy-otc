@@ -1,5 +1,14 @@
 package com.easytech.otc.service;
 
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.Objects;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
+
 import com.alibaba.fastjson.JSON;
 import com.easytech.otc.cache.CodeKey;
 import com.easytech.otc.common.InviteUtil;
@@ -24,22 +33,28 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
+
 /**
  * Description:
  * Author: Hank
  * Date: 2018/7/20 22:46
  */
 @Service
-public class UserService extends BaseService<User>{
+public class UserService extends BaseService<User> {
+
     @Autowired
-    private UserMapper userMapper;
+    private UserMapper  userMapper;
     @Autowired
-    private RedisTool redisTool;
-    public boolean nameExists(String name){
+    private RedisTool   redisTool;
+
+    @Autowired
+    private CoinService coinService;
+
+    public boolean nameExists(String name) {
         return getUserByName(name) != null;
     }
 
-    public User getUserByName(String name){
+    public User getUserByName(String name) {
         User user = new User();
         user.setName(name);
         return userMapper.selectOne(user);
@@ -48,26 +63,23 @@ public class UserService extends BaseService<User>{
     public boolean mobileExists(String mobile) {
         return getUserByMobile(mobile) != null;
     }
+
     public User getUserByMobile(String mobile) {
         User user = new User();
         user.setMobile(mobile);
-        return userMapper.selectOne(user);
-    }
-
-    public User getUserById(Integer id ){
-        return userMapper.selectByPrimaryKey(id);
+        return this.selectOne(user);
     }
 
     public boolean idExists(Integer id) {
-        return getUserById(id) != null;
+        return this.getById(id) != null;
     }
 
-    public void checkLoginRequest(LoginRequest loginRequest){
+    public void checkLoginRequest(LoginRequest loginRequest) {
         Assert.hasLength(loginRequest.getMobile(), "手机号码不能为空");
         if (!MobileVerifyUtil.verifyMobile(loginRequest.getMobile())) {
             throw new IllegalArgumentException("手机号码输入有误");
         }
-        Assert.hasLength(loginRequest.getPassword(),"密码不能为空");
+        Assert.hasLength(loginRequest.getPassword(), "密码不能为空");
     }
 
     public void checkRegisterRequest(RegisterRequest registerRequest) {
@@ -100,19 +112,20 @@ public class UserService extends BaseService<User>{
     }
 
     @Transactional
-    public int register(RegisterRequest registerRequest) {
+    public void register(RegisterRequest registerRequest) {
         User user = new User();
         user.setName(registerRequest.getUserName());
         user.setMobile(registerRequest.getMobile());
         String secretKeys = redisTool.hget(CodeKey.SECRET_KEY, "", registerRequest.getMobile());
         RSAUtils.K k = JSON.parseObject(secretKeys, RSAUtils.K.class);
-        if(k==null){
+        if (k == null) {
             throw new BizException(RetCodeEnum.INTERNAL_ERROR);
         }
         user.setLoginPasswordPrivateKey(k.getPrivateKey());
         user.setLoginPasswordPublicKey(k.getPublicKey());
         user.setLoginPassword(PasswdUtil.encode(registerRequest.getCiphertext()));
         RSAUtils.K fund = RSAUtils.initKey();
+
         user.setFundPasswordPrivateKey(fund.getPrivateKey());
         user.setFundPasswordPublicKey(fund.getPublicKey());
         user.setLegalAmount(BigDecimal.ZERO);
@@ -130,28 +143,22 @@ public class UserService extends BaseService<User>{
         user.setIsEmailVerified(0);
         user.setCreateTime(new Date());
         user.setUpdateTime(new Date());
-         userMapper.insert(user);
-        return user.getId();
+        userMapper.insert(user);
+
+        User u = new User();
+        u.setId(user.getId());
+        u.setInvitionCode(InviteUtil.getCodeByUid(user.getId()));
+        this.updateById(u);
+
+        // 生成用户所有币和代币地址
+        coinService.genCoinAndTokenAccount(user.getId());
     }
 
     @Transactional
-    public int updateByPrimaryKeySelective(User user) {
-        return userMapper.updateByPrimaryKeySelective(user);
-    }
-
-    @Transactional
-    public int updateInvitionCode(int uid){
-        User user = new User();
-        user.setId(uid);
-        user.setInvitionCode(InviteUtil.getCodeByUid(uid));
-        return updateByPrimaryKeySelective(user);
-    }
-
-    @Transactional
-    public int updateEmailStatus(int uid){
+    public int updateEmailStatus(int uid) {
         User user = new User();
         user.setId(uid);
         user.setIsEmailVerified(YesNoEnum.YES.getCode());
-        return updateByPrimaryKeySelective(user);
+        return this.updateById(user);
     }
 }

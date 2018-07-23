@@ -7,5 +7,6 @@ package com.easytech.otc.mvc.vo;
  */
 
 public class UpdatePassportVo {
-    //private
+    private String oldPassword;
+    private String newPassword;
 }
