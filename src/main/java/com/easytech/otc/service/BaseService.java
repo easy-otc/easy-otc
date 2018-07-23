@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.easytech.otc.common.mybatis.plugin.BaseModel;
 import com.easytech.otc.common.mybatis.plugin.OtcMapper;
@@ -21,10 +22,12 @@ public abstract class BaseService<T extends BaseModel> {
         return new PageInfo<>(list);
     }
 
+    @Transactional
     public int insert(T record) {
         return this.mapper.insert(record);
     }
 
+    @Transactional
     public int insertSelective(T record) {
         return this.mapper.insertSelective(record);
     }
@@ -53,10 +56,12 @@ public abstract class BaseService<T extends BaseModel> {
         return this.mapper.selectByRowBounds(record, rowBounds);
     }
 
+    @Transactional
     public int updateById(T record) {
         return this.mapper.updateByPrimaryKey(record);
     }
 
+    @Transactional
     public int updateByIdSelective(T record) {
         return this.mapper.updateByPrimaryKeySelective(record);
     }

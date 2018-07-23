@@ -1,55 +1,53 @@
 package com.easytech.otc.mapper.model;
 
+import com.easytech.otc.common.mybatis.plugin.BaseModel;
 import java.math.BigDecimal;
 import java.util.Date;
-
 import javax.persistence.*;
 
-import com.easytech.otc.common.mybatis.plugin.BaseModel;
-
-@Table(name = "order")
+@Table(name = "t_order")
 public class Order extends BaseModel {
     /**
      * id
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "SELECT LAST_INSERT_ID()")
-    private Integer    id;
+    private Integer id;
 
     /**
      * 订单号
      */
     @Column(name = "order_id")
-    private String     orderId;
+    private String orderId;
 
     /**
      * 用户id
      */
-    private Integer    uid;
+    private Integer uid;
 
     /**
      * 订单备注号
      */
     @Column(name = "memo_code")
-    private String     memoCode;
+    private String memoCode;
 
     /**
      * 订单类型，0-买单，1-卖单
      */
     @Column(name = "order_type")
-    private Integer    orderType;
+    private Integer orderType;
 
     /**
      * 广告id
      */
     @Column(name = "ad_id")
-    private Integer    adId;
+    private Integer adId;
 
     /**
      * 币种
      */
     @Column(name = "coin_type")
-    private Integer    coinType;
+    private Integer coinType;
 
     /**
      * 交易数量
@@ -69,40 +67,46 @@ public class Order extends BaseModel {
     private BigDecimal totalLegalPrice;
 
     /**
-     * 支付状态，0-未支付，1-已支付
-     */
-    @Column(name = "payment_status")
-    private Integer    paymentStatus;
-
-    /**
-     * 订单状态，0-进行中，1-已完成，2-已取消
-     */
-    @Column(name = "order_status")
-    private Integer    orderStatus;
-
-    /**
      * 支付时间
      */
     @Column(name = "payment_time")
-    private Date       paymentTime;
+    private Date paymentTime;
 
     /**
-     * 确认放币时间
+     * 订单状态，0-已下单，1-已支付，2-已取消，3-已完成
      */
-    @Column(name = "coin_Release_time")
-    private Date       coinReleaseTime;
+    @Column(name = "order_status")
+    private Integer orderStatus;
+
+    /**
+     * 放币交易的hash
+     */
+    @Column(name = "coin_release_tx_hash")
+    private String coinReleaseTxHash;
+
+    /**
+     * 放币状态，0-未放币，1-已放币，2-币交易接口调用失败，3-币交易接口已调用，4-币交易已提交到网络，5-币交易上链成功
+     */
+    @Column(name = "coin_release_status")
+    private Integer coinReleaseStatus;
+
+    /**
+     * 放币时间
+     */
+    @Column(name = "coin_release_time")
+    private Date coinReleaseTime;
 
     /**
      * 记录创建时间
      */
     @Column(name = "create_time")
-    private Date       createTime;
+    private Date createTime;
 
     /**
      * 修改时间
      */
     @Column(name = "update_time")
-    private Date       updateTime;
+    private Date updateTime;
 
     /**
      * 获取id
@@ -285,42 +289,6 @@ public class Order extends BaseModel {
     }
 
     /**
-     * 获取支付状态，0-未支付，1-已支付
-     *
-     * @return payment_status - 支付状态，0-未支付，1-已支付
-     */
-    public Integer getPaymentStatus() {
-        return paymentStatus;
-    }
-
-    /**
-     * 设置支付状态，0-未支付，1-已支付
-     *
-     * @param paymentStatus 支付状态，0-未支付，1-已支付
-     */
-    public void setPaymentStatus(Integer paymentStatus) {
-        this.paymentStatus = paymentStatus;
-    }
-
-    /**
-     * 获取订单状态，0-进行中，1-已完成，2-已取消
-     *
-     * @return order_status - 订单状态，0-进行中，1-已完成，2-已取消
-     */
-    public Integer getOrderStatus() {
-        return orderStatus;
-    }
-
-    /**
-     * 设置订单状态，0-进行中，1-已完成，2-已取消
-     *
-     * @param orderStatus 订单状态，0-进行中，1-已完成，2-已取消
-     */
-    public void setOrderStatus(Integer orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
-    /**
      * 获取支付时间
      *
      * @return payment_time - 支付时间
@@ -339,18 +307,72 @@ public class Order extends BaseModel {
     }
 
     /**
-     * 获取确认放币时间
+     * 获取订单状态，0-已下单，1-已支付，2-已取消，3-已完成
      *
-     * @return coin_Release_time - 确认放币时间
+     * @return order_status - 订单状态，0-已下单，1-已支付，2-已取消，3-已完成
+     */
+    public Integer getOrderStatus() {
+        return orderStatus;
+    }
+
+    /**
+     * 设置订单状态，0-已下单，1-已支付，2-已取消，3-已完成
+     *
+     * @param orderStatus 订单状态，0-已下单，1-已支付，2-已取消，3-已完成
+     */
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    /**
+     * 获取放币交易的hash
+     *
+     * @return coin_release_tx_hash - 放币交易的hash
+     */
+    public String getCoinReleaseTxHash() {
+        return coinReleaseTxHash;
+    }
+
+    /**
+     * 设置放币交易的hash
+     *
+     * @param coinReleaseTxHash 放币交易的hash
+     */
+    public void setCoinReleaseTxHash(String coinReleaseTxHash) {
+        this.coinReleaseTxHash = coinReleaseTxHash == null ? null : coinReleaseTxHash.trim();
+    }
+
+    /**
+     * 获取放币状态，0-未放币，1-已放币，2-币交易接口调用失败，3-币交易接口已调用，4-币交易已提交到网络，5-币交易上链成功
+     *
+     * @return coin_release_status - 放币状态，0-未放币，1-已放币，2-币交易接口调用失败，3-币交易接口已调用，4-币交易已提交到网络，5-币交易上链成功
+     */
+    public Integer getCoinReleaseStatus() {
+        return coinReleaseStatus;
+    }
+
+    /**
+     * 设置放币状态，0-未放币，1-已放币，2-币交易接口调用失败，3-币交易接口已调用，4-币交易已提交到网络，5-币交易上链成功
+     *
+     * @param coinReleaseStatus 放币状态，0-未放币，1-已放币，2-币交易接口调用失败，3-币交易接口已调用，4-币交易已提交到网络，5-币交易上链成功
+     */
+    public void setCoinReleaseStatus(Integer coinReleaseStatus) {
+        this.coinReleaseStatus = coinReleaseStatus;
+    }
+
+    /**
+     * 获取放币时间
+     *
+     * @return coin_release_time - 放币时间
      */
     public Date getCoinReleaseTime() {
         return coinReleaseTime;
     }
 
     /**
-     * 设置确认放币时间
+     * 设置放币时间
      *
-     * @param coinReleaseTime 确认放币时间
+     * @param coinReleaseTime 放币时间
      */
     public void setCoinReleaseTime(Date coinReleaseTime) {
         this.coinReleaseTime = coinReleaseTime;

@@ -63,8 +63,13 @@
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
         -->
-        <table tableName="%">
+
+        <table tableName="coin">
             <generatedKey column="id" sqlStatement="Mysql"/>
         </table>
+
+<!--        <table tableName="%">
+            <generatedKey column="id" sqlStatement="Mysql"/>
+        </table>-->
     </context>
 </generatorConfiguration>
