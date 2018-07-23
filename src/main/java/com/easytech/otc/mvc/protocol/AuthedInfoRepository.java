@@ -27,8 +27,8 @@ public class AuthedInfoRepository {
     @Autowired
     private RedisTool redisTool;
 
-    public AuthedInfo getAuthedInfo(String uid,String token) {
-        Map<String, String> map = redisTool.hgetAll(UserKey.USER_INFO, uid+"_"+token);
+    public AuthedInfo getAuthedInfo(String token) {
+        Map<String, String> map = redisTool.hgetAll(UserKey.USER_INFO, token);
         if(map.size()==0){
             return null;
         }
@@ -51,7 +51,7 @@ public class AuthedInfoRepository {
         map.put("invitionCode",authedInfo.getInvitionCode());
         map.put("invitedBy",String.valueOf(authedInfo.getInvitedBy()));
         map.put("email",authedInfo.getEmail()==null?"":authedInfo.getEmail());
-        redisTool.hmset(UserKey.USER_INFO, authedInfo.getUid()+"_"+authedInfo.getToken(),map);
+        redisTool.hmset(UserKey.USER_INFO, authedInfo.getToken(),map);
     }
 
     public LoginReturnVO saveLogin(User user){

@@ -51,7 +51,7 @@ public class ACLInterceptor implements HandlerInterceptor {
         String idempotent = request.getHeader(HeaderNames.IDEMPOTENT);
         String token = request.getHeader(HeaderNames.AUTHORIZATION);
         String uid = request.getHeader(HeaderNames.IDENTITY);
-        AuthedInfo authedInfo = authedInfoRepository.getAuthedInfo(uid,token);
+        AuthedInfo authedInfo = authedInfoRepository.getAuthedInfo(token);
         if (authedInfo == null) {
             RespWithoutData ret = new RespWithoutData();
             ret.setFail(RetCodeEnum.UNAUTHORIZED);
@@ -60,14 +60,15 @@ public class ACLInterceptor implements HandlerInterceptor {
         }
 
         Map<String, String> arguments = (Map<String, String>) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
-       /* String urlAuthTag = arguments.get(aclAnn.authTagKey());
+
+        //String urlAuthTag = arguments.get(aclAnn.authTagKey());
         String authTag = String.valueOf(authedInfo.getUid());
-        if (!StringUtils.equals(urlAuthTag, authTag)) {
+        if (!StringUtils.equals(uid, authTag)) {
             RespWithoutData ret = new RespWithoutData();
             ret.setFail(RetCodeEnum.ILLEGAL_AUTHORIZATION);
             ServletResponsetUtil.respond(response, ret);
             return false;
-        }*/
+        }
 
         if (aclAnn.idempotent()) {
             if (StringUtils.isBlank(idempotent)) {

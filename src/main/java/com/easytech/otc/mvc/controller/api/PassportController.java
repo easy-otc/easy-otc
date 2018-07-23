@@ -61,7 +61,7 @@ public class PassportController {
     public Resp<RegisterVO> register(@RequestBody RegisterRequest registerRequest) {
         Resp<RegisterVO> result = new Resp<>();
 
-        String verifyCode = redisTool.hget(CodeKey.VERIFY_CODE, VerifyCodeEnum.REGISTER, registerRequest.getMobile());
+        String verifyCode = redisTool.hget(CodeKey.VERIFY_CODE, VerifyCodeEnum.NO_LOGIN, registerRequest.getMobile());
         if (!Objects.equals(verifyCode, registerRequest.getVerifyCode())) {
             return result.setFail(RetCodeEnum.VERIFY_CODE_ERROR);
         }
@@ -76,7 +76,18 @@ public class PassportController {
         int uid = userService.register(registerRequest);
         userService.updateInvitionCode(uid);
         return Resp.newSuccessResult();
-
-
     }
+
+    /**
+     * 修改密码
+     * @return
+     */
+    @PostMapping(value = "/passport")
+    @ACL
+    public Resp updatePassword(){
+
+        return null;
+    }
+
+
 }

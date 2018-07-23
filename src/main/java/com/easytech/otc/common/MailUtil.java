@@ -17,7 +17,7 @@ public class MailUtil {
     private static final String     SENDER_EMAIL     = "459105408@qq.com";
     private static final String     SENDER_AUTH_CODE = "cparfuzpstvbcagg";
 
-    private static final String     SENDER_NAME      = "CAS-WEB";
+    private static final String     SENDER_NAME      = "OTC";
     private static final String     RECIVER_NICK     = "CAS-WEB用户";
 
     private static final Properties PROPS            = new Properties();

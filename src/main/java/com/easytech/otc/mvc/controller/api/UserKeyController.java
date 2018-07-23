@@ -92,7 +92,7 @@ public class UserKeyController {
     }
 
     /**
-     * 获取手机验证码
+     * 获取注册手机验证码
      * @return
      */
     @GetMapping(value = "/verifyCode/{mobile}/{imgCode}")
@@ -100,7 +100,8 @@ public class UserKeyController {
     public Resp getVerify(@PathVariable String mobile,@PathVariable String imgCode){
         Resp resp = new Resp();
         if(!MobileVerifyUtil.verifyMobile(mobile)){
-            throw new BizException(RetCodeEnum.ILLEGAL_ARGUMENT);
+            resp.setFail(RetCodeEnum.ILLEGAL_ARGUMENT);
+            return resp;
         }
         String redisImgCode = redisTool.hget(CodeKey.IMAGE_CODE, "", mobile);
         if(redisImgCode==null){
@@ -113,15 +114,31 @@ public class UserKeyController {
         }
         try {
             String verifyCode = MsgTool.sendVerifyCode(mobile);
-            redisTool.hset(CodeKey.VERIFY_CODE, VerifyCodeEnum.REGISTER,mobile,verifyCode);
+            redisTool.hset(CodeKey.VERIFY_CODE, VerifyCodeEnum.NO_LOGIN,mobile,verifyCode);
         } catch (Exception e) {
             throw new BizException("短信发送异常",e);
         }
         return Resp.newSuccessResult();
     }
-    @RequestMapping(value = "test")
-    @ACL(authControl = false)
-    public Resp test(){
+
+    /**
+     * 获得手机验证码
+     * @return
+     */
+    @GetMapping(value = "/verifyCode/{mobile}")
+    @ACL
+    public Resp getVerifyNeedLogin(@RequestHeader(name = "identity") String uid,@PathVariable String mobile){
+        Resp resp = new Resp();
+        if(!MobileVerifyUtil.verifyMobile(mobile)){
+            resp.setFail(RetCodeEnum.ILLEGAL_ARGUMENT);
+            return resp;
+        }
+        try {
+            String verifyCode = MsgTool.sendVerifyCode(mobile);
+            redisTool.hset(CodeKey.VERIFY_CODE, VerifyCodeEnum.LOGIN, mobile, verifyCode);
+        }catch (Exception e){
+            throw new BizException("短信发送异常",e);
+        }
         return Resp.newSuccessResult();
     }
 
@@ -144,7 +161,7 @@ public class UserKeyController {
 
         String url = request.getScheme() +"://" + request.getServerName()+ ":" +request.getServerPort()
                 +WebConst.API_V1_PREFIX+"user/key/confirm/"+uid+"/"+CryptUtil.md5(code);
-        MailUtil.sendMail(email,"邮箱激活","success");
+        MailUtil.sendMail(email,"邮箱激活",url);
         System.out.println(url);
         return Resp.newSuccessResult();
     }
@@ -189,4 +206,6 @@ public class UserKeyController {
             throw  new BizException(RetCodeEnum.INTERNAL_ERROR);
         }
     }
+
+
 }

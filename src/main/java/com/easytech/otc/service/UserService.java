@@ -15,8 +15,6 @@ import com.easytech.otc.mapper.model.User;
 import com.easytech.otc.mvc.protocol.RetCodeEnum;
 import com.easytech.otc.mvc.vo.LoginRequest;
 import com.easytech.otc.mvc.vo.RegisterRequest;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,9 +23,6 @@ import org.springframework.util.Assert;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
-
-import com.easytech.otc.mapper.UserMapper;
-import com.easytech.otc.mapper.model.User;
 
 /**
  * Description:
@@ -97,7 +92,7 @@ public class UserService extends BaseService<User>{
         if (registerRequest.getVerifyCode().length() != 6) {
             throw new IllegalArgumentException("手机验证码有误");
         }
-        String verifyCode = redisTool.hget(CodeKey.VERIFY_CODE, VerifyCodeEnum.REGISTER, registerRequest.getMobile());
+        String verifyCode = redisTool.hget(CodeKey.VERIFY_CODE, VerifyCodeEnum.NO_LOGIN, registerRequest.getMobile());
         if (!Objects.equals(verifyCode, registerRequest.getVerifyCode())) {
             throw new IllegalArgumentException("手机验证码有误");
         }

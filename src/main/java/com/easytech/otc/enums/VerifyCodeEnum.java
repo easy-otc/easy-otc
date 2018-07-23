@@ -7,7 +7,8 @@ package com.easytech.otc.enums;
  */
 
 public enum VerifyCodeEnum {
-    REGISTER(1, "注册短信");
+    NO_LOGIN(1, "不需要登录发送的短信"),
+    LOGIN(2, "需要登录发送的短信");
     private int type;
     private String desc;
 
