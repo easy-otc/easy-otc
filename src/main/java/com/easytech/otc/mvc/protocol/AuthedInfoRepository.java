@@ -26,6 +26,7 @@ public class AuthedInfoRepository {
 
     public AuthedInfo getAuthedInfo(String token) {
         Map<String, String> map = redisTool.hgetAll(UserKey.USER_INFO, token);
+
         if(map.size()==0){
             return null;
         }
@@ -37,7 +38,14 @@ public class AuthedInfoRepository {
         authedInfo.setInvitionCode(map.get("invitionCode"));
         authedInfo.setInvitedBy(Integer.valueOf(map.get("invitedBy")));
         authedInfo.setEmail(map.get("email"));
+        authedInfo.setCreateTime(Long.valueOf(map.get("createTime")));
+        authedInfo.setTtl(redisTool.TTL(UserKey.USER_INFO, token));
+
         return authedInfo;
+    }
+
+    public void exprieAuthedInfo(AuthedInfo authedInfo){
+        redisTool.expire(UserKey.USER_INFO,authedInfo.getToken(),UserKey.USER_INFO.expire());
     }
 
     public void saveAuthedInfo(AuthedInfo authedInfo) {
@@ -48,6 +56,7 @@ public class AuthedInfoRepository {
         map.put("invitionCode",authedInfo.getInvitionCode());
         map.put("invitedBy",String.valueOf(authedInfo.getInvitedBy()));
         map.put("email",authedInfo.getEmail()==null?"":authedInfo.getEmail());
+        map.put("createTime",String.valueOf(authedInfo.getCreateTime()));
         redisTool.hmset(UserKey.USER_INFO, authedInfo.getToken(),map);
     }
 
@@ -81,6 +90,7 @@ public class AuthedInfoRepository {
         authedInfo.setMobile(user.getMobile());
         authedInfo.setUserName(user.getName());
         authedInfo.setToken(token);
+        authedInfo.setCreateTime(System.currentTimeMillis());
         return authedInfo;
     }
 

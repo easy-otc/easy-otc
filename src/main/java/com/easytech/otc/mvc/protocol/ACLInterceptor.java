@@ -85,7 +85,7 @@ public class ACLInterceptor implements HandlerInterceptor {
 
         RequestContext.setAuthedInfo(authedInfo);
         RequestContext.setIp(WebTool.getIpAddr(request));
-        authedInfoRepository.saveAuthedInfo(authedInfo);
+        authedInfoRepository.exprieAuthedInfo(authedInfo);
         return true;
     }
 

@@ -40,5 +40,13 @@ public class AuthedInfo implements Serializable {
      * 邀请人
      */
     private Integer           invitedBy;
+    /**
+     * 创建时间戳
+     */
+    private long createTime;
+    /**
+     * 剩余时间
+     */
+    private long ttl;
 
 }

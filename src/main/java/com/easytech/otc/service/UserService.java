@@ -1,14 +1,5 @@
 package com.easytech.otc.service;
 
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.Objects;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
-
 import com.alibaba.fastjson.JSON;
 import com.easytech.otc.cache.CodeKey;
 import com.easytech.otc.common.InviteUtil;
@@ -24,13 +15,16 @@ import com.easytech.otc.mapper.model.User;
 import com.easytech.otc.mvc.protocol.RetCodeEnum;
 import com.easytech.otc.mvc.vo.LoginRequest;
 import com.easytech.otc.mvc.vo.RegisterRequest;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -41,9 +35,6 @@ import java.util.Objects;
  */
 @Service
 public class UserService extends BaseService<User> {
-
-    @Autowired
-    private UserMapper  userMapper;
     @Autowired
     private RedisTool   redisTool;
 
@@ -57,7 +48,7 @@ public class UserService extends BaseService<User> {
     public User getUserByName(String name) {
         User user = new User();
         user.setName(name);
-        return userMapper.selectOne(user);
+        return this.selectOne(user);
     }
 
     public boolean mobileExists(String mobile) {
@@ -143,7 +134,7 @@ public class UserService extends BaseService<User> {
         user.setIsEmailVerified(0);
         user.setCreateTime(new Date());
         user.setUpdateTime(new Date());
-        userMapper.insert(user);
+        this.insert(user);
 
         User u = new User();
         u.setId(user.getId());
@@ -151,7 +142,7 @@ public class UserService extends BaseService<User> {
         this.updateById(u);
 
         // 生成用户所有币和代币地址
-        coinService.genCoinAndTokenAccount(user.getId());
+        //coinService.genCoinAndTokenAccount(user.getId());
     }
 
     @Transactional
@@ -160,5 +151,37 @@ public class UserService extends BaseService<User> {
         user.setId(uid);
         user.setIsEmailVerified(YesNoEnum.YES.getCode());
         return this.updateById(user);
+    }
+    @Transactional
+    public int updatePassword(int uid,String password){
+        User user = new User();
+        user.setId(uid);
+        user.setLoginPassword(PasswdUtil.encode(password));
+        user.setUpdateTime(new Date());
+        return this.updateById(user);
+    }
+    @Transactional
+    public int login(User user,String ip){
+
+
+        String loginIp ="";
+        if(StringUtils.isNotBlank(user.getLoginIp())){
+            String[] split = user.getLoginIp().split("|");
+            List<String> list = Arrays.asList(split);
+            if(list.size()>=10){
+                list.remove(0);
+                list.add(ip);
+            }else{
+                list.add(ip);
+            }
+            loginIp = String.join("|",list);
+        }else{
+            loginIp = ip;
+        }
+        User updateUser = new User();
+        updateUser.setLoginIp(loginIp);
+        updateUser.setId(user.getId());
+        updateUser.setUpdateTime(new Date());
+        return this.updateById(updateUser);
     }
 }

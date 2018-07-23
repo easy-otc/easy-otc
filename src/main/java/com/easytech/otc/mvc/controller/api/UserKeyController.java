@@ -125,9 +125,9 @@ public class UserKeyController {
      * 获得手机验证码
      * @return
      */
-    @GetMapping(value = "/verifyCode/{mobile}")
+    @GetMapping(value = "/verifyCode/{uid}/{mobile}")
     @ACL
-    public Resp getVerifyNeedLogin(@RequestHeader(name = "identity") String uid,@PathVariable String mobile){
+    public Resp getVerifyNeedLogin(@PathVariable String uid,@PathVariable String mobile){
         Resp resp = new Resp();
         if(!MobileVerifyUtil.verifyMobile(mobile)){
             resp.setFail(RetCodeEnum.ILLEGAL_ARGUMENT);
@@ -147,22 +147,18 @@ public class UserKeyController {
      * @return
      */
 
-    @PostMapping(value = "/verifyEmail")
+    @PostMapping(value = "/verifyEmail/{uid}")
     @ACL
-    public Resp getVerifyEmail(HttpServletRequest request, @RequestHeader(name = "identity") String uid, @RequestParam String email) {
+    public Resp getVerifyEmail(HttpServletRequest request, @PathVariable String uid, @RequestParam String email) {
         Resp resp = new Resp();
         if (!MailUtil.isEmail(email)) {
             resp.setFail(RetCodeEnum.ILLEGAL_ARGUMENT);
             return resp;
         }
-        long curretTime = System.currentTimeMillis();
-        String code = String.valueOf(curretTime) + uid;
+        String code = MobileVerifyUtil.genMobileCode();
         redisTool.set(CodeKey.CONFIRM_EMAIL_CODE, uid, code);
 
-        String url = request.getScheme() +"://" + request.getServerName()+ ":" +request.getServerPort()
-                +WebConst.API_V1_PREFIX+"user/key/confirm/"+uid+"/"+CryptUtil.md5(code);
-        MailUtil.sendMail(email,"邮箱激活",url);
-        System.out.println(url);
+        MailUtil.sendMail(email,"邮箱激活",code);
         return Resp.newSuccessResult();
     }
 
@@ -179,7 +175,7 @@ public class UserKeyController {
             resp.setFail(RetCodeEnum.ILLEGAL_ARGUMENT);
             return resp;
         }
-        if (!Objects.equals(CryptUtil.md5(reidsCode), code)) {
+        if (!Objects.equals(reidsCode, code)) {
             resp.setFail(RetCodeEnum.ILLEGAL_ARGUMENT);
             return resp;
         }
@@ -191,6 +187,11 @@ public class UserKeyController {
         return Resp.newSuccessResult();
     }
 
+    /**
+     * 发送不需要登录的短信的图形验证码
+     * @param response
+     * @param mobile
+     */
     @GetMapping(value = "/{mobile}", params = "imgCode")
     @ACL(authControl = false)
     public void getImgeCode(HttpServletResponse response, @PathVariable String mobile) {

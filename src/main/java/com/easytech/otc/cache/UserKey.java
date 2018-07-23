@@ -10,7 +10,7 @@ import com.easytech.otc.manager.redis.RedisKey;
  */
 
 public enum UserKey implements RedisKey {
-                                         USER_INFO(24 * 60 * 60, KeyType.HASH, "用户信息");
+                                         USER_INFO(30 * 60, KeyType.HASH, "用户信息");
 
     private static final String NAMESPACE = "user";
 
