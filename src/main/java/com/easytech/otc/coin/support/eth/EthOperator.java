@@ -1,7 +1,6 @@
 package com.easytech.otc.coin.support.eth;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import com.easytech.otc.coin.support.KeyAddr;
 import com.easytech.otc.coin.support.eth.base.TransactionClient;
 import com.easytech.otc.coin.support.eth.base.WalletClient;
 import com.easytech.otc.enums.CoinTypeEnum;
-import com.easytech.otc.service.OrderService;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -30,9 +28,6 @@ public class EthOperator implements CoinOperator {
     private TransactionClient  transactionClient;
     @Autowired
     private TransactionChecker transactionChecker;
-
-    @Autowired
-    private OrderService       orderService;
 
     @Override
     public CoinTypeEnum coinType() {
@@ -64,13 +59,11 @@ public class EthOperator implements CoinOperator {
 
         String transactionHash;
         try {
-            BigInteger gasPrice = EthValues.getInstance().getGasPrice();
-
             if (StringUtils.isBlank(supplement)) {
                 supplement = EthValues.EMPTY_STR;
             }
 
-            transactionHash = transactionClient.sendTransaction(from, to, gasPrice, amount, supplement, EthValues.CHAIN_ID, privateKey);
+            transactionHash = transactionClient.sendTransaction(from, to, amount, EthValues.getGasPrice(), EthValues.getGasLimit(), supplement, EthValues.CHAIN_ID, privateKey);
         } catch (Exception e) {
             LOGGER.error("发送交易失败", e);
             return null;
@@ -93,7 +86,8 @@ public class EthOperator implements CoinOperator {
     @Override
     public String sendTokenTransaction(String contractAddress, String from, String to, BigDecimal amount, String privateKey) {
         try {
-            return transactionClient.sendTokenTransaction(contractAddress, from, to, amount, coinType().getDecimals(), EthValues.CHAIN_ID, privateKey);
+            return transactionClient.sendTokenTransaction(contractAddress, from, to, amount, coinType().getDecimals(), EthValues.getGasPrice(), EthValues.getGasLimit(), EthValues.CHAIN_ID,
+                privateKey);
         } catch (Exception e) {
             LOGGER.error("发送代币交易失败", e);
             return null;

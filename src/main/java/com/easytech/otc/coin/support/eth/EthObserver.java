@@ -7,7 +7,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.web3j.abi.EventEncoder;
 import org.web3j.abi.TypeReference;
 import org.web3j.abi.datatypes.Address;
@@ -76,8 +75,6 @@ public class EthObserver {
      */
     public Subscription newTransactionObserver() {
         return web3j.transactionObservable().subscribe(transaction -> {
-            EthValues.getInstance().setGasPrice(transaction.getGasPrice());
-
             // TODO liuweizhen 优化点：可以把交易过的hash放到redis上，然后从redis拿出来做一层过滤
             orderService.orderSuccessOnChain(transaction.getHash());
         });

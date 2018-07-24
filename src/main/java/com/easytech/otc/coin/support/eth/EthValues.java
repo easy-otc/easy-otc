@@ -8,32 +8,30 @@ import org.web3j.utils.Convert;
 
 public class EthValues {
 
-    public static final String EMPTY_STR = "";
-    public static final byte   CHAIN_ID  = ChainId.ROPSTEN;
+    public static final String                        EMPTY_STR         = "";
+    public static final byte                          CHAIN_ID          = ChainId.ROPSTEN;
 
-    private BigInteger         gasPrice  = Convert.toWei(BigDecimal.valueOf(3), Convert.Unit.GWEI).toBigInteger();
+    public static final BigInteger                    DEFAULT_GAS_PRICE = Convert.toWei(BigDecimal.valueOf(3), Convert.Unit.GWEI).toBigInteger();
+    public static final BigInteger                    DEFAULT_GAS_LIMIT = BigInteger.valueOf(21000);
 
-    // ------------------------------------------------------------------------
+    private static GasPriceStation.RecomendedGasPrice recomendedGasPrice;
 
-    private EthValues() {
+    public static synchronized void setRecomendedGasPrice(GasPriceStation.RecomendedGasPrice rgs) {
+        recomendedGasPrice = rgs;
     }
 
-    private static class Holder {
-        private static final EthValues INSTANCE = new EthValues();
+    public static synchronized GasPriceStation.RecomendedGasPrice getRecomendedGasPrice() {
+        return recomendedGasPrice;
     }
 
-    public static EthValues getInstance() {
-        return Holder.INSTANCE;
+    public static synchronized BigInteger getGasPrice() {
+        if (recomendedGasPrice != null) {
+            return recomendedGasPrice.getFast();
+        }
+        return DEFAULT_GAS_PRICE;
     }
 
-    // ------------------------------------------------------------------------
-
-    public synchronized void setGasPrice(BigInteger gasPrice) {
-        this.gasPrice = gasPrice;
+    public static synchronized BigInteger getGasLimit() {
+        return DEFAULT_GAS_LIMIT;
     }
-
-    public synchronized BigInteger getGasPrice() {
-        return gasPrice;
-    }
-
 }

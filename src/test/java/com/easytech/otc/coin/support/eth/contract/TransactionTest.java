@@ -13,7 +13,7 @@ import com.easytech.otc.coin.support.eth.EthValues;
 import com.easytech.otc.coin.support.eth.base.TransactionClient;
 import com.easytech.otc.service.BaseTest;
 
-public class TestTransaction extends BaseTest {
+public class TransactionTest extends BaseTest {
 
     private String            from            = "0x87C8437a3c1767e13134EF39287f52687e222Fd4";
     private String            to              = "0xa60Cc01168053e97C92cEE32d1241e944c2e09E0";
@@ -37,10 +37,7 @@ public class TestTransaction extends BaseTest {
         System.out.println(balance);
         System.out.println(Convert.fromWei(new BigDecimal(balance), ETHER));
 
-        BigInteger gasPrice = Convert.toWei(BigDecimal.valueOf(3), Convert.Unit.GWEI).toBigInteger();
-        BigInteger gasLimit = BigInteger.valueOf(30000);
-
-        String txHash = transactionClient.sendTransaction(from, to, gasPrice, new BigDecimal(28), "", EthValues.CHAIN_ID, privateKey);
+        String txHash = transactionClient.sendTransaction(from, to, new BigDecimal(28), EthValues.getGasPrice(), EthValues.getGasLimit(), "", EthValues.CHAIN_ID, privateKey);
         System.out.println(txHash);
 
         System.out.println();

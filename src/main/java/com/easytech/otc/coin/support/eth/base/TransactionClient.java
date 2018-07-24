@@ -25,7 +25,6 @@ import org.web3j.utils.Convert;
 import org.web3j.utils.Numeric;
 
 import com.easytech.otc.coin.support.eth.EthException;
-import com.easytech.otc.coin.support.eth.EthValues;
 
 /**
  * eth转账相关接口
@@ -54,21 +53,21 @@ public class TransactionClient {
 
     /**
      * 发送交易
-     *
+     * 
      * @param from
      * @param to
-     * @param gasPrice
      * @param amount
+     * @param gasPrice
+     * @param gasLimit
      * @param supplement
      * @param chainId
      * @param privateKey
      * @return
      */
-    public String sendTransaction(String from, String to, BigInteger gasPrice, BigDecimal amount, String supplement, byte chainId, String privateKey) {
+    public String sendTransaction(String from, String to, BigDecimal amount, BigInteger gasPrice, BigInteger gasLimit, String supplement, byte chainId, String privateKey) {
         try {
             BigInteger nonce = web3j.ethGetTransactionCount(from, DefaultBlockParameterName.PENDING).send().getTransactionCount();
             BigInteger value = Convert.toWei(amount, Convert.Unit.ETHER).toBigInteger();
-            BigInteger gasLimit = getTransactionGasLimit(makeTransaction(from, to, null, null, null, value));
 
             String signedData = signTransaction(nonce, gasPrice, gasLimit, to, value, supplement, chainId, privateKey);
             if (signedData != null) {
@@ -84,25 +83,24 @@ public class TransactionClient {
 
     /**
      * 发送代币交易
-     * 
+     *
      * @param contractAddress
      * @param from
      * @param to
      * @param amount
      * @param decimals
+     * @param gasPrice
+     * @param gasLimit
      * @param chainId
      * @param privateKey
      * @return
      */
-    public String sendTokenTransaction(String contractAddress, String from, String to, BigDecimal amount, int decimals, byte chainId, String privateKey) {
+    public String sendTokenTransaction(String contractAddress, String from, String to, BigDecimal amount, int decimals, BigInteger gasPrice, BigInteger gasLimit, byte chainId, String privateKey) {
 
         try {
-            BigInteger nonce = web3j.ethGetTransactionCount(from, DefaultBlockParameterName.PENDING).send().getTransactionCount();
-
-            BigInteger gasPrice = EthValues.getInstance().getGasPrice();
-            BigInteger gasLimit = BigInteger.valueOf(60000);
-
             String methodName = "transfer";
+
+            BigInteger nonce = web3j.ethGetTransactionCount(from, DefaultBlockParameterName.PENDING).send().getTransactionCount();
 
             List<Type> inputParameters = new ArrayList<>();
             inputParameters.add(new Address(to));
