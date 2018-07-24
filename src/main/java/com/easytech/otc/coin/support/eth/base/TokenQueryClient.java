@@ -1,36 +1,33 @@
 package com.easytech.otc.coin.support.eth.base;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.web3j.abi.FunctionEncoder;
 import org.web3j.abi.FunctionReturnDecoder;
 import org.web3j.abi.TypeReference;
-import org.web3j.abi.datatypes.*;
+import org.web3j.abi.datatypes.Address;
+import org.web3j.abi.datatypes.Function;
+import org.web3j.abi.datatypes.Type;
+import org.web3j.abi.datatypes.Utf8String;
 import org.web3j.abi.datatypes.generated.Uint256;
 import org.web3j.abi.datatypes.generated.Uint8;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.methods.request.Transaction;
 import org.web3j.protocol.core.methods.response.EthCall;
-import org.web3j.protocol.core.methods.response.EthGetTransactionCount;
-import org.web3j.protocol.core.methods.response.EthSendTransaction;
 
 import com.easytech.otc.coin.support.eth.EthException;
-import com.easytech.otc.coin.support.eth.EthValues;
 
 /**
  * 基于ERC20的代币
  *
  */
-@Component
-public class TokenClient {
+public class TokenQueryClient {
 
     @Autowired
     private Web3j  web3j;
@@ -143,46 +140,6 @@ public class TokenClient {
             EthCall ethCall = web3j.ethCall(transaction, DefaultBlockParameterName.LATEST).send();
             List<Type> results = FunctionReturnDecoder.decode(ethCall.getValue(), function.getOutputParameters());
             return (BigInteger) results.get(0).getValue();
-        } catch (IOException e) {
-            throw new EthException(e);
-        }
-    }
-
-    // --------------------------------------------------------------------------------------------------------------------
-
-    private String sendTokenTransaction(String fromAddress, String privateKey, String contractAddress, String toAddress, BigDecimal amount, int decimals, byte chainId) {
-
-        try {
-            EthGetTransactionCount ethGetTransactionCount = web3j.ethGetTransactionCount(fromAddress, DefaultBlockParameterName.PENDING).send();
-            BigInteger nonce = ethGetTransactionCount.getTransactionCount();
-
-            BigInteger gasPrice = EthValues.getInstance().getGasPrice();
-            BigInteger gasLimit = BigInteger.valueOf(60000);
-
-            BigInteger value = BigInteger.ZERO;
-            //token转账参数
-
-            String methodName = "transfer";
-
-            List<Type> inputParameters = new ArrayList<>();
-            inputParameters.add(new Address(toAddress));
-            inputParameters.add(new Uint256(amount.multiply(BigDecimal.TEN.pow(decimals)).toBigInteger()));
-
-            List<TypeReference<?>> outputParameters = new ArrayList<>();
-            outputParameters.add(new TypeReference<Bool>() {
-            });
-
-            Function function = new Function(methodName, inputParameters, outputParameters);
-            String data = FunctionEncoder.encode(function);
-
-            String signedData = TransactionClient.signTransaction(nonce, gasPrice, gasLimit, contractAddress, value, data, chainId, privateKey);
-            if (signedData != null) {
-                EthSendTransaction ethSendTransaction = web3j.ethSendRawTransaction(signedData).send();
-                String txHash = ethSendTransaction.getTransactionHash();
-                return txHash;
-            }
-
-            return null;
         } catch (IOException e) {
             throw new EthException(e);
         }

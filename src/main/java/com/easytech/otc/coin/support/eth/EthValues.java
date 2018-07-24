@@ -9,10 +9,9 @@ import org.web3j.utils.Convert;
 public class EthValues {
 
     public static final String EMPTY_STR = "";
+    public static final byte   CHAIN_ID  = ChainId.ROPSTEN;
 
     private BigInteger         gasPrice  = Convert.toWei(BigDecimal.valueOf(3), Convert.Unit.GWEI).toBigInteger();
-
-    private byte               chainId   = ChainId.ROPSTEN;
 
     // ------------------------------------------------------------------------
 
@@ -37,7 +36,4 @@ public class EthValues {
         return gasPrice;
     }
 
-    public synchronized byte getChainId() {
-        return chainId;
-    }
 }

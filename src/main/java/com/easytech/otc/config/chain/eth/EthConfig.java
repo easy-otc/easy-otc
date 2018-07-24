@@ -27,26 +27,34 @@ public class EthConfig {
     private long   timeout;
 
     @Bean
-    public Web3j web3j() {
-        Web3jService web3jService = buildService(web3jUrl);
+    public Web3j web3j(OkHttpClient httpClient) {
+        Web3jService web3jService = buildService(web3jUrl, httpClient);
         LOGGER.info("Building service for endpoint: " + web3jUrl);
         return Web3j.build(web3jService);
     }
 
     @Bean
-    public Admin admin() {
-        Web3jService web3jService = buildService(web3jUrl);
+    public Admin admin(OkHttpClient httpClient) {
+        Web3jService web3jService = buildService(web3jUrl, httpClient);
         LOGGER.info("Building admin service for endpoint: " + web3jUrl);
         return Admin.build(web3jService);
     }
 
-    private Web3jService buildService(String clientAddress) {
+    @Bean
+    public OkHttpClient httpClient() {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        configureLogging(builder);
+        configureTimeouts(builder);
+        return builder.build();
+    }
+
+    private Web3jService buildService(String clientAddress, OkHttpClient httpClient) {
         Web3jService web3jService;
 
         if (clientAddress == null || clientAddress.equals("")) {
-            web3jService = new HttpService(createOkHttpClient());
+            web3jService = new HttpService(httpClient);
         } else if (clientAddress.startsWith("http")) {
-            web3jService = new HttpService(clientAddress, createOkHttpClient(), false);
+            web3jService = new HttpService(clientAddress, httpClient, false);
         } else if (System.getProperty("os.name").toLowerCase().startsWith("win")) {
             web3jService = new WindowsIpcService(clientAddress);
         } else {
@@ -54,13 +62,6 @@ public class EthConfig {
         }
 
         return web3jService;
-    }
-
-    private OkHttpClient createOkHttpClient() {
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        configureLogging(builder);
-        configureTimeouts(builder);
-        return builder.build();
     }
 
     private void configureTimeouts(OkHttpClient.Builder builder) {

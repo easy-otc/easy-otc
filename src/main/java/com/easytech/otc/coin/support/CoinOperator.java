@@ -31,4 +31,16 @@ public interface CoinOperator {
      * @return
      */
     String sendTransaction(String from, String to, BigDecimal amount, String supplement, String privateKey);
+
+    /**
+     * 发送代币交易
+     * 
+     * @param contractAddress
+     * @param from
+     * @param to
+     * @param amount
+     * @param privateKey
+     * @return
+     */
+    String sendTokenTransaction(String contractAddress, String from, String to, BigDecimal amount, String privateKey);
 }

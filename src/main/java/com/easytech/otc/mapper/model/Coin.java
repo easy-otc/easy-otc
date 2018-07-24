@@ -1,11 +1,9 @@
 package com.easytech.otc.mapper.model;
 
+import com.easytech.otc.common.mybatis.plugin.BaseModel;
 import java.math.BigDecimal;
 import java.util.Date;
-
 import javax.persistence.*;
-
-import com.easytech.otc.common.mybatis.plugin.BaseModel;
 
 @Table(name = "coin")
 public class Coin extends BaseModel {
@@ -14,35 +12,41 @@ public class Coin extends BaseModel {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "SELECT LAST_INSERT_ID()")
-    private Integer    id;
+    private Integer id;
 
     /**
      * 用户id
      */
-    private Integer    uid;
+    private Integer uid;
 
     /**
      * 币种,前两位表示公链，后两位为00代表公链币，否则代表代币号
      */
-    @Column(name = "coin_type")
-    private String     coinType;
+    @Column(name = "coin_code")
+    private String coinCode;
+
+    /**
+     * 代币才有这个字段，指向平台币
+     */
+    @Column(name = "ref_coin")
+    private Integer refCoin;
 
     /**
      * 私钥
      */
     @Column(name = "private_key")
-    private String     privateKey;
+    private String privateKey;
 
     /**
      * 公钥
      */
     @Column(name = "public_key")
-    private String     publicKey;
+    private String publicKey;
 
     /**
      * 地址
      */
-    private String     address;
+    private String address;
 
     /**
      * 币数量
@@ -59,13 +63,13 @@ public class Coin extends BaseModel {
      * 记录创建时间
      */
     @Column(name = "create_time")
-    private Date       createTime;
+    private Date createTime;
 
     /**
      * 修改时间
      */
     @Column(name = "update_time")
-    private Date       updateTime;
+    private Date updateTime;
 
     /**
      * 获取id
@@ -106,19 +110,37 @@ public class Coin extends BaseModel {
     /**
      * 获取币种,前两位表示公链，后两位为00代表公链币，否则代表代币号
      *
-     * @return coin_type - 币种,前两位表示公链，后两位为00代表公链币，否则代表代币号
+     * @return coin_code - 币种,前两位表示公链，后两位为00代表公链币，否则代表代币号
      */
-    public String getCoinType() {
-        return coinType;
+    public String getCoinCode() {
+        return coinCode;
     }
 
     /**
      * 设置币种,前两位表示公链，后两位为00代表公链币，否则代表代币号
      *
-     * @param coinType 币种,前两位表示公链，后两位为00代表公链币，否则代表代币号
+     * @param coinCode 币种,前两位表示公链，后两位为00代表公链币，否则代表代币号
      */
-    public void setCoinType(String coinType) {
-        this.coinType = coinType == null ? null : coinType.trim();
+    public void setCoinCode(String coinCode) {
+        this.coinCode = coinCode == null ? null : coinCode.trim();
+    }
+
+    /**
+     * 获取代币才有这个字段，指向平台币
+     *
+     * @return ref_coin - 代币才有这个字段，指向平台币
+     */
+    public Integer getRefCoin() {
+        return refCoin;
+    }
+
+    /**
+     * 设置代币才有这个字段，指向平台币
+     *
+     * @param refCoin 代币才有这个字段，指向平台币
+     */
+    public void setRefCoin(Integer refCoin) {
+        this.refCoin = refCoin;
     }
 
     /**
