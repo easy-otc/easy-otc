@@ -54,6 +54,29 @@ public class News extends BaseModel {
     private String  content;
 
     /**
+     * 创建news
+     * @param newsType
+     * @param title
+     * @param author
+     * @param status
+     * @param content
+     */
+    public News(Integer newsType, String title, String author, Integer status, String content) {
+        this.newsType = newsType;
+        this.title = title;
+        this.author = author;
+        this.status = status;
+        this.content = content;
+    }
+
+    /**
+     * 无参构造
+     */
+    public News(){
+
+    }
+
+    /**
      * 获取id
      *
      * @return id - id
